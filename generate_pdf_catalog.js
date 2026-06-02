@@ -37,6 +37,25 @@ const eliteColorsBase64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.09 P
 const curvedArmBase64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.11 PM.jpeg', 'desktop_assets');
 const pumpDiagramBase64 = getBase64Image('WhatsApp Image 2026-02-16 at 4.30.26 PM.jpeg', 'desktop_assets');
 
+// Success partner original logos (loaded from downloads / fallbacks)
+const logoAddressCafeBase64 = getBase64Image('logo_address_cafe.png', 'desktop_assets');
+const logoUnitCoffeeBase64 = getBase64Image('logo_unit_coffee.jfif', 'desktop_assets');
+const logoTeaCakeBase64 = getBase64Image('logo_tea_cake.jpg', 'desktop_assets');
+const logoRahaCoffeeBase64 = getBase64Image('logo_raha_coffee.jpg', 'desktop_assets');
+const logoBotticelliBase64 = getBase64Image('logo_botticelli.jpeg', 'desktop_assets');
+const logoRoseMasyafBase64 = getBase64Image('logo_rose_masyaf.jpeg', 'desktop_assets');
+const logoTarhibHotelBase64 = getBase64Image('logo_tarhib_hotel.png', 'desktop_assets');
+const logoEightOzBase64 = getBase64Image('logo_eight_oz.webp', 'desktop_assets');
+const logoTeaSesameBase64 = getBase64Image('logo_tea_sesame.jpeg', 'desktop_assets');
+const logoDopamineBase64 = getBase64Image('logo_dopamine.png', 'desktop_assets');
+const logoArabiaBase64 = getBase64Image('logo_arabia.jpeg', 'desktop_assets');
+
+// Real completed installation photos (loaded from desktop assets)
+const instPhoto1Base64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.10 PM (5).jpeg', 'desktop_assets');
+const instPhoto2Base64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.09 PM (1).jpeg', 'desktop_assets');
+const instPhoto3Base64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.11 PM (3).jpeg', 'desktop_assets');
+const instPhoto4Base64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.10 PM (4).jpeg', 'desktop_assets');
+
 function generateHTML() {
   return `
     <!DOCTYPE html>
@@ -869,55 +888,153 @@ function generateHTML() {
           background-color: #f8fafc;
           border: 1px solid var(--border-color);
           border-radius: 15px;
-          padding: 12px 15px;
-          margin-bottom: 15px;
+          padding: 10px 15px;
+          margin-bottom: 10px;
         }
 
         .partners-section-box h4 {
-          font-size: 12px;
+          font-size: 11.5px;
           font-weight: 800;
           color: var(--primary-navy);
           border-bottom: 1px solid var(--border-color);
           padding-bottom: 4px;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
           display: flex;
           align-items: center;
           gap: 6px;
         }
 
         .partners-section-box h4 svg {
-          width: 14px;
-          height: 14px;
+          width: 13px;
+          height: 13px;
           stroke: var(--primary-blue);
           fill: none;
           stroke-width: 2;
         }
 
-        .partners-names-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 10px;
-          text-align: center;
+        /* Centered original logos circular gallery list */
+        .partners-gallery-flex {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+          margin-top: 6px;
         }
 
-        .partner-name-card {
+        .partner-logo-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          width: 68px;
+        }
+
+        .partner-logo-circle {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
           background-color: var(--white);
           border: 1px solid var(--border-color);
-          border-radius: 8px;
-          padding: 8px 5px;
-          font-size: 10px;
-          font-weight: 800;
-          color: var(--primary-navy);
-          box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+          box-shadow: 0 3px 6px rgba(0,0,0,0.03);
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow: hidden;
+          transition: transform 0.2s ease;
         }
 
-        .partner-name-card.featured {
-          border-color: var(--accent-gold);
-          color: var(--accent-gold);
-          background-color: #fffdf5;
+        .partner-logo-circle img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          padding: 2px;
+        }
+
+        /* Specific logo image paddings if needed to look clean */
+        .partner-logo-circle img.padded {
+          padding: 5px;
+        }
+
+        .partner-logo-name {
+          font-size: 8px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          margin-top: 3px;
+          line-height: 1.2;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        /* Real completed installation portfolio grid */
+        .portfolio-section-box {
+          background-color: #f8fafc;
+          border: 1px solid var(--border-color);
+          border-radius: 15px;
+          padding: 10px 15px;
+          margin-bottom: 10px;
+        }
+
+        .portfolio-section-box h4 {
+          font-size: 11.5px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 4px;
+          margin-bottom: 6px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .portfolio-section-box h4 svg {
+          width: 13px;
+          height: 13px;
+          stroke: var(--primary-blue);
+          fill: none;
+          stroke-width: 2;
+        }
+
+        .installations-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
+          margin-top: 6px;
+        }
+
+        .installation-item {
+          background-color: var(--white);
+          border: 1px solid var(--border-color);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .installation-img-box {
+          height: 90px;
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+          background: #e2e8f0;
+        }
+
+        .installation-img-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .installation-title {
+          font-size: 8px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          padding: 3px;
+          text-align: center;
+          background-color: var(--primary-light);
+          border-top: 1px solid var(--border-color);
         }
 
         .info-grid {
@@ -1477,24 +1594,141 @@ function generateHTML() {
 
         <div class="page-content">
           
-          <!-- Success Partners (NEW) -->
+          <!-- Success Partners Grid of Original Logos -->
           <div class="partners-section-box">
             <h4>
               <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               شركاء النجاح - بعض المحلات والمنشآت التي تفخر بخدمتها
             </h4>
-            <p class="section-desc" style="margin-bottom: 8px;">
-              حزنا على ثقة أشهر المقاهي والمطاعم والفنادق بفضل جودة أنظمتنا ودقتها وصيانتنا الدورية المستمرة:
-            </p>
-            <div class="partners-names-grid">
-              <div class="partner-name-card featured">UNIT Coffee (يونيت كوفي)</div>
-              <div class="partner-name-card">8Oz Coffee (أونص كوفي)</div>
-              <div class="partner-name-card">Demli Tea & Oven (دملي)</div>
-              <div class="partner-name-card featured">Arabia Cafe & Bakery (أرابيا)</div>
-              <div class="partner-name-card">The Coffee Address (ذا كوفي)</div>
-              <div class="partner-name-card featured">فندق الترحيب الفخم</div>
-              <div class="partner-name-card">مقهى حس المكان</div>
-              <div class="partner-name-card">جلسات ومسابح الفلل الخاصة</div>
+            <div class="partners-gallery-flex">
+              
+              <!-- 1. Address Cafe -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoAddressCafeBase64}" alt="Address Cafe">
+                </div>
+                <span class="partner-logo-name">عنوان القهوة</span>
+              </div>
+
+              <!-- 2. UNIT Coffee -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoUnitCoffeeBase64}" alt="UNIT Coffee">
+                </div>
+                <span class="partner-logo-name">يونت كوفي</span>
+              </div>
+
+              <!-- 3. Tea & Cake -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoTeaCakeBase64}" alt="Tea & Cake">
+                </div>
+                <span class="partner-logo-name">شاي وكعك</span>
+              </div>
+
+              <!-- 4. Raha Coffee -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoRahaCoffeeBase64}" alt="Raha Coffee">
+                </div>
+                <span class="partner-logo-name">رحى كافيه</span>
+              </div>
+
+              <!-- 5. Botticelli -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoBotticelliBase64}" alt="Botticelli">
+                </div>
+                <span class="partner-logo-name">بوتشيلي</span>
+              </div>
+
+              <!-- 6. Rose Al Masyaf Complex -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img class="padded" src="${logoRoseMasyafBase64}" alt="Rose Al Masyaf">
+                </div>
+                <span class="partner-logo-name">روز المصيف</span>
+              </div>
+
+              <!-- 7. Al Tarhib Hotel -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoTarhibHotelBase64}" alt="Al Tarhib Hotel">
+                </div>
+                <span class="partner-logo-name">فندق الترحيب</span>
+              </div>
+
+              <!-- 8. 8oz Coffee -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoEightOzBase64}" alt="8oz Coffee">
+                </div>
+                <span class="partner-logo-name">8oz Coffee</span>
+              </div>
+
+              <!-- 9. Tea & Sesame -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoTeaSesameBase64}" alt="Tea & Sesame">
+                </div>
+                <span class="partner-logo-name">شاي وسمسم</span>
+              </div>
+
+              <!-- 10. Dopamine -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoDopamineBase64}" alt="Dopamine">
+                </div>
+                <span class="partner-logo-name">دوبامين</span>
+              </div>
+
+              <!-- 11. Arabia -->
+              <div class="partner-logo-item">
+                <div class="partner-logo-circle">
+                  <img src="${logoArabiaBase64}" alt="Arabia">
+                </div>
+                <span class="partner-logo-name">أرابيا</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Real completed installations portfolio (NEW) -->
+          <div class="portfolio-section-box">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              📸 من أعمالنا وتركيباتنا الميدانية الفاخرة (صور حقيقية من مواقع التركيب)
+            </h4>
+            <div class="installations-grid">
+              
+              <div class="installation-item">
+                <div class="installation-img-box">
+                  <img src="${instPhoto1Base64}" alt="Installation 1">
+                </div>
+                <span class="installation-title">رذاذ الحدائق والجلسات</span>
+              </div>
+
+              <div class="installation-item">
+                <div class="installation-img-box">
+                  <img src="${instPhoto2Base64}" alt="Installation 2">
+                </div>
+                <span class="installation-title">تمديد ستانلس ستيل ذكي</span>
+              </div>
+
+              <div class="installation-item">
+                <div class="installation-img-box">
+                  <img src="${instPhoto3Base64}" alt="Installation 3">
+                </div>
+                <span class="installation-title">فوهات ونوازل سقفية</span>
+              </div>
+
+              <div class="installation-item">
+                <div class="installation-img-box">
+                  <img src="${instPhoto4Base64}" alt="Installation 4">
+                </div>
+                <span class="installation-title">وحدات ومضخات ضغط عالي</span>
+              </div>
+
             </div>
           </div>
 
