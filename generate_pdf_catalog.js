@@ -3,14 +3,14 @@ const path = require('path');
 const puppeteer = require('puppeteer');
 
 // Helper to convert local images to Base64 data URIs for instant, reliable rendering
-function getBase64Image(filename) {
-  const filePath = path.join(__dirname, 'images', filename);
+function getBase64Image(filename, subDir = '') {
+  const filePath = subDir ? path.join(__dirname, 'images', subDir, filename) : path.join(__dirname, 'images', filename);
   if (!fs.existsSync(filePath)) {
     console.error(`[Warning] Image not found: ${filePath}`);
     return '';
   }
   const fileBuffer = fs.readFileSync(filePath);
-  const ext = path.extname(filename).replace('.', '');
+  const ext = path.extname(filename).toLowerCase().replace('.', '');
   const mimeType = ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : `image/${ext}`;
   return `data:${mimeType};base64,${fileBuffer.toString('base64')}`;
 }
@@ -28,6 +28,14 @@ const fogNozzleBase64 = getBase64Image('fog_nozzle.png');
 const nozzleBaseImgBase64 = getBase64Image('nozzle_base.png');
 const endCapBase64 = getBase64Image('end_cap.png');
 const heroBannerBase64 = getBase64Image('hero_banner.png');
+
+// Desktop assets
+const pyramidalUmbrellaBase64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.12 PM (5).jpeg', 'desktop_assets');
+const roundUmbrellaBase64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.11 PM (5).jpeg', 'desktop_assets');
+const model4ColumnBase64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.09 PM (3).jpeg', 'desktop_assets');
+const eliteColorsBase64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.09 PM (6).jpeg', 'desktop_assets');
+const curvedArmBase64 = getBase64Image('WhatsApp Image 2026-02-15 at 2.41.11 PM.jpeg', 'desktop_assets');
+const pumpDiagramBase64 = getBase64Image('WhatsApp Image 2026-02-16 at 4.30.26 PM.jpeg', 'desktop_assets');
 
 function generateHTML() {
   return `
@@ -75,7 +83,7 @@ function generateHTML() {
           page-break-after: always;
           display: flex;
           flex-direction: column;
-          padding: 20mm 15mm 15mm 15mm;
+          padding: 15mm 15mm 15mm 15mm;
           box-sizing: border-box;
         }
 
@@ -94,8 +102,8 @@ function generateHTML() {
           align-items: center;
           justify-content: space-between;
           border-bottom: 2px solid var(--primary-light);
-          padding-bottom: 10px;
-          margin-bottom: 20px;
+          padding-bottom: 8px;
+          margin-bottom: 15px;
           z-index: 1;
         }
 
@@ -106,29 +114,29 @@ function generateHTML() {
         }
 
         .header-logo img {
-          height: 45px;
+          height: 40px;
         }
 
         .header-logo .brand-en {
           font-family: 'Outfit', sans-serif;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 800;
           color: var(--primary-navy);
         }
 
         .header-logo .brand-ar {
-          font-size: 10px;
+          font-size: 9px;
           color: var(--primary-blue);
           font-weight: 700;
           margin-top: -3px;
         }
 
         .header-title {
-          font-size: 12px;
+          font-size: 11px;
           color: var(--text-muted);
           font-weight: 700;
           background-color: var(--primary-light);
-          padding: 4px 12px;
+          padding: 3px 10px;
           border-radius: 50px;
         }
 
@@ -141,8 +149,8 @@ function generateHTML() {
           align-items: center;
           justify-content: space-between;
           border-top: 1px solid var(--border-color);
-          padding-top: 10px;
-          font-size: 10px;
+          padding-top: 8px;
+          font-size: 9px;
           color: var(--text-muted);
           font-weight: 600;
           z-index: 1;
@@ -179,21 +187,24 @@ function generateHTML() {
         .cover-logo-wrapper {
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          padding: 30px;
-          border-radius: 30px;
-          margin-bottom: 40px;
+          padding: 25px 40px;
+          border-radius: 25px;
+          margin-bottom: 30px;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
           backdrop-filter: blur(10px);
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .cover-logo {
-          height: 140px;
+          height: 120px;
           width: auto;
         }
 
         .cover-brand-title {
           font-family: 'Outfit', sans-serif;
-          font-size: 48px;
+          font-size: 42px;
           font-weight: 900;
           letter-spacing: 1px;
           background: linear-gradient(135deg, #ffffff 0%, var(--primary-light) 100%);
@@ -203,35 +214,34 @@ function generateHTML() {
         }
 
         .cover-brand-ar {
-          font-size: 20px;
+          font-size: 18px;
           color: var(--accent-teal);
           font-weight: 800;
           margin-top: 5px;
-          letter-spacing: 0.5px;
         }
 
         .cover-divider {
           width: 150px;
-          height: 4px;
+          height: 3px;
           background: linear-gradient(90deg, transparent, var(--accent-teal), var(--primary-blue), transparent);
-          margin: 30px auto;
+          margin: 25px auto;
           border-radius: 2px;
         }
 
         .cover-main-title {
-          font-size: 34px;
+          font-size: 30px;
           font-weight: 900;
           color: #ffffff;
           line-height: 1.4;
-          max-width: 650px;
+          max-width: 620px;
           margin: 0 auto 15px;
         }
 
         .cover-subtitle {
-          font-size: 16px;
+          font-size: 15px;
           color: var(--primary-light);
-          max-width: 550px;
-          margin: 0 auto 60px;
+          max-width: 520px;
+          margin: 0 auto 50px;
           font-weight: 500;
           opacity: 0.9;
         }
@@ -239,7 +249,7 @@ function generateHTML() {
         .cover-footer {
           position: absolute;
           bottom: 20mm;
-          font-size: 13px;
+          font-size: 12px;
           color: var(--text-muted);
           font-weight: 600;
           width: 100%;
@@ -255,54 +265,41 @@ function generateHTML() {
           font-weight: 700;
         }
 
-        /* ================= PAGE 2: SERVICES & STARTING PRICES ================= */
+        /* ================= PAGE 2: PRICE INDEX & SERVICES ================= */
         .section-title {
-          font-size: 22px;
+          font-size: 19px;
           font-weight: 800;
           color: var(--primary-navy);
-          margin-bottom: 15px;
+          margin-bottom: 10px;
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
           border-right: 4px solid var(--primary-blue);
-          padding-right: 12px;
+          padding-right: 10px;
         }
 
         .section-desc {
-          font-size: 13px;
+          font-size: 11.5px;
           color: var(--text-muted);
-          line-height: 1.7;
-          margin-bottom: 25px;
-        }
-
-        .price-intro-card {
-          background: var(--primary-light);
-          border: 1px solid rgba(13, 124, 196, 0.2);
-          border-radius: 15px;
-          padding: 15px 20px;
-          font-size: 13px;
-          color: var(--primary-navy);
-          font-weight: 700;
           line-height: 1.6;
-          margin-bottom: 30px;
+          margin-bottom: 15px;
         }
 
         /* Pricing Cards Grid */
         .price-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 18px;
-          margin-bottom: 35px;
+          gap: 15px;
+          margin-bottom: 20px;
         }
 
         .price-card {
           background: var(--white);
-          border: 2px solid var(--border-color);
-          border-radius: 18px;
-          padding: 20px 15px;
+          border: 1.5px solid var(--border-color);
+          border-radius: 15px;
+          padding: 15px 12px;
           text-align: center;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-          transition: all 0.3s ease;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -311,30 +308,29 @@ function generateHTML() {
 
         .price-card.featured {
           border-color: var(--accent-gold);
-          box-shadow: 0 8px 25px rgba(212, 168, 67, 0.1);
+          box-shadow: 0 6px 20px rgba(212, 168, 67, 0.08);
         }
 
         .price-card.featured::before {
-          content: 'الأعلى طلباً';
+          content: 'الأكثر طلباً';
           position: absolute;
-          top: -12px;
+          top: -10px;
           background: var(--accent-gold);
           color: var(--white);
-          font-size: 10px;
+          font-size: 9px;
           font-weight: 800;
-          padding: 2px 12px;
+          padding: 1px 10px;
           border-radius: 50px;
-          box-shadow: 0 2px 8px rgba(212, 168, 67, 0.3);
         }
 
         .price-icon-wrapper {
-          width: 55px;
-          height: 55px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
           background-color: var(--primary-light);
           color: var(--primary-blue);
         }
@@ -345,45 +341,45 @@ function generateHTML() {
         }
 
         .price-icon-wrapper svg {
-          width: 28px;
-          height: 28px;
+          width: 22px;
+          height: 22px;
           stroke: currentColor;
           fill: none;
           stroke-width: 2;
         }
 
         .price-card h3 {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 800;
           color: var(--primary-navy);
-          margin-bottom: 8px;
+          margin-bottom: 5px;
         }
 
         .price-card .desc {
-          font-size: 11px;
+          font-size: 9.5px;
           color: var(--text-muted);
-          line-height: 1.5;
-          margin-bottom: 18px;
-          height: 45px;
+          line-height: 1.4;
+          margin-bottom: 12px;
+          height: 38px;
           display: flex;
           align-items: center;
         }
 
         .price-start-at {
-          font-size: 12px;
+          font-size: 10px;
           color: var(--text-muted);
           font-weight: 600;
         }
 
         .price-value-box {
-          margin-top: 5px;
+          margin-top: 3px;
           background-color: var(--primary-light);
           border: 1px dashed var(--primary-blue);
-          padding: 8px 15px;
-          border-radius: 12px;
+          padding: 5px 12px;
+          border-radius: 10px;
           display: inline-flex;
           align-items: baseline;
-          gap: 4px;
+          gap: 3px;
         }
 
         .price-card.featured .price-value-box {
@@ -393,13 +389,13 @@ function generateHTML() {
 
         .price-val {
           font-family: 'Outfit', sans-serif;
-          font-size: 26px;
+          font-size: 20px;
           font-weight: 900;
           color: var(--primary-navy);
         }
 
         .price-curr {
-          font-size: 11px;
+          font-size: 9px;
           font-weight: 800;
           color: var(--text-muted);
         }
@@ -408,57 +404,130 @@ function generateHTML() {
           color: var(--accent-gold);
         }
 
-        .pricing-alert-box {
-          background: #fffbeb;
-          border: 1px solid #fef3c7;
-          border-radius: 12px;
-          padding: 15px;
-          font-size: 11.5px;
-          color: #92400e;
-          line-height: 1.6;
+        /* Split Technical Section (Diagram & Price List) */
+        .tech-section {
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          gap: 15px;
+          margin-top: 10px;
+          flex-grow: 1;
         }
 
-        .pricing-alert-box h4 {
+        .tech-diagram-box {
+          background-color: #f8fafc;
+          border: 1px solid var(--border-color);
+          border-radius: 15px;
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .tech-diagram-box h4 {
           font-size: 12px;
           font-weight: 800;
-          margin-bottom: 5px;
+          color: var(--primary-navy);
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 5px;
+          margin-bottom: 10px;
+        }
+
+        .diagram-img-wrapper {
+          flex-grow: 1;
           display: flex;
           align-items: center;
-          gap: 6px;
+          justify-content: center;
+          background-color: #ffffff;
+          border-radius: 10px;
+          border: 1px solid var(--border-color);
+          padding: 5px;
+        }
+
+        .diagram-img-wrapper img {
+          max-width: 100%;
+          max-height: 180px;
+          object-fit: contain;
+        }
+
+        .tech-prices-box {
+          background-color: #f8fafc;
+          border: 1px solid var(--border-color);
+          border-radius: 15px;
+          padding: 12px;
+        }
+
+        .tech-prices-box h4 {
+          font-size: 12px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 5px;
+          margin-bottom: 8px;
+        }
+
+        .part-price-list {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .part-price-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 9.5px;
+          padding-bottom: 4px;
+          border-bottom: 1px dotted var(--border-color);
+        }
+
+        .part-price-item:last-child {
+          border-bottom: none;
+        }
+
+        .part-name {
+          font-weight: 700;
+          color: var(--text-dark);
+        }
+
+        .part-price-val {
+          font-family: 'Outfit', sans-serif;
+          font-weight: 800;
+          color: var(--primary-blue);
+          background-color: var(--primary-light);
+          padding: 1px 6px;
+          border-radius: 4px;
         }
 
         /* ================= PAGE 3: THE 5 PACKAGES COMPARATIVE ================= */
         .pkg-compare-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 15px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
         }
 
         .pkg-compare-row {
           background: var(--white);
           border: 1px solid var(--border-color);
-          border-radius: 15px;
-          padding: 15px;
+          border-radius: 12px;
+          padding: 10px 12px;
           display: flex;
           align-items: center;
-          gap: 18px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+          gap: 15px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.01);
         }
 
         .pkg-compare-row.featured {
           border-color: var(--accent-gold);
           background: #fffdf5;
-          position: relative;
         }
 
         .pkg-badge {
           background-color: var(--primary-light);
           color: var(--primary-blue);
-          font-size: 10px;
+          font-size: 9px;
           font-weight: 800;
-          padding: 3px 10px;
+          padding: 2px 8px;
           border-radius: 50px;
-          align-self: flex-start;
+          flex-shrink: 0;
         }
 
         .pkg-compare-row.featured .pkg-badge {
@@ -467,15 +536,15 @@ function generateHTML() {
         }
 
         .pkg-img {
-          width: 75px;
-          height: 75px;
+          width: 55px;
+          height: 55px;
           background: #f8fafc;
           border: 1px solid var(--border-color);
-          border-radius: 12px;
+          border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 5px;
+          padding: 3px;
           flex-shrink: 0;
         }
 
@@ -490,44 +559,44 @@ function generateHTML() {
         }
 
         .pkg-title {
-          font-size: 15px;
+          font-size: 13.5px;
           font-weight: 800;
           color: var(--primary-navy);
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
         }
 
         .pkg-title span.tag {
-          font-size: 10px;
+          font-size: 9px;
           background-color: #f1f5f9;
           color: var(--text-muted);
-          padding: 2px 8px;
-          border-radius: 4px;
+          padding: 1px 6px;
+          border-radius: 3px;
           font-weight: 700;
         }
 
         .pkg-desc {
-          font-size: 11px;
+          font-size: 10px;
           color: var(--text-muted);
-          margin-top: 3px;
-          line-height: 1.5;
+          margin-top: 2px;
+          line-height: 1.4;
         }
 
         .pkg-items-list {
           display: flex;
           flex-wrap: wrap;
-          gap: 6px;
-          margin-top: 8px;
+          gap: 4px;
+          margin-top: 5px;
         }
 
         .pkg-item-tag {
-          font-size: 9.5px;
+          font-size: 8.5px;
           background-color: #f1f5f9;
           border: 1px solid var(--border-color);
           color: var(--primary-navy);
-          padding: 2px 8px;
-          border-radius: 6px;
+          padding: 1px 6px;
+          border-radius: 4px;
           font-weight: 700;
         }
 
@@ -538,89 +607,348 @@ function generateHTML() {
 
         .pkg-item-tag.accent {
           background-color: var(--primary-light);
-          border-color: rgba(13, 124, 196, 0.2);
+          border-color: rgba(13, 124, 196, 0.15);
           color: var(--primary-blue);
         }
 
-        /* ================= PAGE 4: COLUMNS & WARRANTY ================= */
-        .column-showcase {
+        /* ================= PAGE 4: UMBRELLAS SECTION (NEW) ================= */
+        .umbrella-showcase-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 15px;
-          margin-bottom: 25px;
+          flex-grow: 1;
         }
 
-        .col-card {
-          background-color: #f8fafc;
+        .umbrella-card {
+          background-color: #ffffff;
+          border: 1px solid var(--border-color);
+          border-radius: 15px;
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+        }
+
+        .umb-badge {
+          background-color: var(--primary-light);
+          color: var(--primary-blue);
+          font-size: 10px;
+          font-weight: 800;
+          padding: 3px 12px;
+          border-radius: 50px;
+          align-self: flex-start;
+          margin-bottom: 8px;
+        }
+
+        .umbrella-card h3 {
+          font-size: 15px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          margin-bottom: 10px;
+        }
+
+        .umbrella-img-box {
+          height: 160px;
+          background: #f8fafc;
           border: 1px solid var(--border-color);
           border-radius: 12px;
-          padding: 12px;
-          display: flex;
-          gap: 12px;
-          align-items: center;
-        }
-
-        .col-card-img {
-          width: 60px;
-          height: 60px;
-          background: #ffffff;
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 4px;
-          flex-shrink: 0;
+          padding: 5px;
+          margin-bottom: 12px;
         }
 
-        .col-card-img img {
+        .umbrella-img-box img {
           max-width: 100%;
           max-height: 100%;
           object-fit: contain;
         }
 
-        .col-card-details h4 {
-          font-size: 13px;
+        .umbrella-specs-box {
+          background-color: #f8fafc;
+          border-radius: 10px;
+          padding: 10px 12px;
+          flex-grow: 1;
+        }
+
+        .umbrella-specs-box h4 {
+          font-size: 11px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 3px;
+          margin-bottom: 5px;
+        }
+
+        .umbrella-specs-box ul {
+          list-style: none;
+        }
+
+        .umbrella-specs-box li {
+          font-size: 9.5px;
+          color: var(--text-dark);
+          margin-bottom: 4px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .umbrella-specs-box li::before {
+          content: '✔';
+          color: var(--accent-teal);
+          font-weight: bold;
+          font-size: 8px;
+        }
+
+        /* ================= PAGE 5: COLUMNS & SYSTEMS ================= */
+        .column-showcase {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 15px;
+          margin-bottom: 15px;
+        }
+
+        .col-card-large {
+          background-color: #f8fafc;
+          border: 1px solid var(--border-color);
+          border-radius: 15px;
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .col-card-large h4 {
+          font-size: 12px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 4px;
+          margin-bottom: 8px;
+        }
+
+        .col-large-img-box {
+          height: 150px;
+          background: #ffffff;
+          border: 1px solid var(--border-color);
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px;
+          margin-bottom: 8px;
+        }
+
+        .col-large-img-box img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+
+        .col-card-large p {
+          font-size: 9px;
+          color: var(--text-muted);
+          line-height: 1.4;
+        }
+
+        .col-small-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .col-card-small {
+          background-color: #f8fafc;
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          padding: 8px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .col-small-img-box {
+          width: 45px;
+          height: 45px;
+          background: #ffffff;
+          border: 1px solid var(--border-color);
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3px;
+          flex-shrink: 0;
+        }
+
+        .col-small-img-box img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+
+        .col-small-details h4 {
+          font-size: 11px;
           font-weight: 800;
           color: var(--primary-navy);
         }
 
-        .col-card-details p {
-          font-size: 10px;
+        .col-small-details p {
+          font-size: 8.5px;
           color: var(--text-muted);
-          margin-top: 2px;
-          line-height: 1.4;
+          margin-top: 1px;
+          line-height: 1.3;
+        }
+
+        .systems-grid-box {
+          background-color: #ffffff;
+          border: 1px solid var(--border-color);
+          border-radius: 15px;
+          padding: 12px;
+          margin-top: 10px;
+        }
+
+        .systems-grid-box h4 {
+          font-size: 12px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 4px;
+          margin-bottom: 8px;
+        }
+
+        .systems-items-flex {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+        }
+
+        .system-flex-item {
+          background-color: #f8fafc;
+          border: 1px solid var(--border-color);
+          border-radius: 10px;
+          padding: 8px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .sys-flex-img {
+          width: 40px;
+          height: 40px;
+          background: #ffffff;
+          border: 1px solid var(--border-color);
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2px;
+          flex-shrink: 0;
+        }
+
+        .sys-flex-img img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+
+        .sys-flex-details h5 {
+          font-size: 9.5px;
+          font-weight: 800;
+          color: var(--primary-navy);
+        }
+
+        .sys-flex-details p {
+          font-size: 8px;
+          color: var(--text-muted);
+          margin-top: 1px;
+        }
+
+        /* ================= PAGE 6: SUCCESS PARTNERS & WARRANTY ================= */
+        /* Partners section layout */
+        .partners-section-box {
+          background-color: #f8fafc;
+          border: 1px solid var(--border-color);
+          border-radius: 15px;
+          padding: 12px 15px;
+          margin-bottom: 15px;
+        }
+
+        .partners-section-box h4 {
+          font-size: 12px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 4px;
+          margin-bottom: 8px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .partners-section-box h4 svg {
+          width: 14px;
+          height: 14px;
+          stroke: var(--primary-blue);
+          fill: none;
+          stroke-width: 2;
+        }
+
+        .partners-names-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
+          text-align: center;
+        }
+
+        .partner-name-card {
+          background-color: var(--white);
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          padding: 8px 5px;
+          font-size: 10px;
+          font-weight: 800;
+          color: var(--primary-navy);
+          box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .partner-name-card.featured {
+          border-color: var(--accent-gold);
+          color: var(--accent-gold);
+          background-color: #fffdf5;
         }
 
         .info-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 15px;
-          margin-bottom: 20px;
+          gap: 12px;
+          margin-bottom: 12px;
         }
 
         .info-box {
           background: #f8fafc;
           border: 1px solid var(--border-color);
           border-radius: 12px;
-          padding: 12px 15px;
+          padding: 10px 12px;
         }
 
         .info-box h4 {
-          font-size: 13px;
+          font-size: 11px;
           font-weight: 800;
           color: var(--primary-navy);
-          margin-bottom: 8px;
+          margin-bottom: 6px;
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 5px;
           border-bottom: 1px solid var(--border-color);
-          padding-bottom: 5px;
+          padding-bottom: 4px;
         }
 
         .info-box h4 svg {
-          width: 14px;
-          height: 14px;
+          width: 12px;
+          height: 12px;
           stroke: var(--primary-blue);
           fill: none;
           stroke-width: 2;
@@ -631,13 +959,13 @@ function generateHTML() {
         }
 
         .info-box li {
-          font-size: 10px;
+          font-size: 9px;
           color: var(--text-dark);
-          margin-bottom: 5px;
+          margin-bottom: 4px;
           display: flex;
           align-items: flex-start;
-          gap: 5px;
-          line-height: 1.4;
+          gap: 4px;
+          line-height: 1.3;
         }
 
         .info-box li::before {
@@ -650,36 +978,36 @@ function generateHTML() {
           background: #fff5f5;
           border: 1px solid #fee2e2;
           border-radius: 10px;
-          padding: 10px 15px;
-          margin-bottom: 25px;
+          padding: 8px 12px;
+          margin-bottom: 15px;
         }
 
         .warning-box h4 {
           color: #dc2626;
-          font-size: 11.5px;
+          font-size: 10px;
           font-weight: 800;
-          margin-bottom: 4px;
+          margin-bottom: 3px;
           border-bottom: 1px solid #fecaca;
-          padding-bottom: 3px;
+          padding-bottom: 2px;
         }
 
         .warning-box p {
-          font-size: 10px;
+          font-size: 8.5px;
           color: #991b1b;
-          line-height: 1.4;
+          line-height: 1.3;
           font-weight: 500;
         }
 
-        /* Final contact block on page 4 */
+        /* Final contact block on page 6 */
         .final-contact-bar {
           background: linear-gradient(135deg, var(--primary-navy) 0%, #0d7cc4 100%);
           border-radius: 12px;
-          padding: 12px 20px;
+          padding: 10px 15px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           color: #ffffff;
-          box-shadow: 0 6px 15px rgba(13, 124, 196, 0.15);
+          box-shadow: 0 4px 10px rgba(13, 124, 196, 0.15);
         }
 
         .final-text-side {
@@ -688,13 +1016,13 @@ function generateHTML() {
         }
 
         .final-label {
-          font-size: 11px;
+          font-size: 10px;
           color: rgba(255, 255, 255, 0.85);
           font-weight: 500;
         }
 
         .final-main {
-          font-size: 14px;
+          font-size: 12.5px;
           font-weight: 800;
         }
 
@@ -702,19 +1030,19 @@ function generateHTML() {
           background: #25d366;
           color: #ffffff;
           font-family: 'Outfit', sans-serif;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 800;
-          padding: 5px 15px;
+          padding: 4px 12px;
           border-radius: 50px;
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 5px;
         }
 
         .final-phone-badge svg {
           fill: currentColor;
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
         }
       </style>
     </head>
@@ -733,7 +1061,7 @@ function generateHTML() {
         <div class="cover-divider"></div>
 
         <h1 class="cover-main-title">الكتالوج والدليل المرجعي الشامل للباقات والحلول المتكاملة</h1>
-        <p class="cover-subtitle">أنظمة الضباب والرذاذ المبتكرة وأعمدة الديكور والإنارة الخارجية</p>
+        <p class="cover-subtitle">أنظمة الضباب والرذاذ المبتكرة وأعمدة الديكور والإنارة الخارجية والمظلات</p>
 
         <div class="cover-footer">
           <span class="loc">📍 المقر الرئيسي: تبوك - نخدم جميع مناطق المملكة 🇸🇦</span>
@@ -763,12 +1091,6 @@ function generateHTML() {
             نحن في <strong>Silent Fog (أبو طيف)</strong> متخصصون في تأسيس وتوريد وتركيب أحدث أنظمة الضباب والرذاذ المبتكرة للحدائق، الجلسات الخارجية، الفلل، القصور، الاستراحات، المقاهي، والمطاعم. نوفر قطع غيار أصلية ومعدات مستوردة من تايوان وإيطاليا تضمن الأداء الأهدأ والعمر الافتراضي الأطول لشبكتك.
           </p>
 
-          <div class="price-intro-card">
-            💡 لتسهيل التخطيط واختيار ما يناسب ميزانيتكم، نقدم هنا دليلاً بمؤشرات الأسعار التقديرية التي تبدأ منها خدماتنا، مع العلم أن كل باقة ونظام يمكن تخصيصه بالكامل:
-          </div>
-
-          <h2 class="section-title" style="margin-bottom: 20px;">مؤشر الأسعار التقديري للباقات والخدمات</h2>
-          
           <div class="price-grid">
             
             <!-- Price 1: Mist -->
@@ -815,17 +1137,37 @@ function generateHTML() {
 
           </div>
 
-          <div class="pricing-alert-box">
-            <h4>💡 تنويه هام لعملائنا الكرام:</h4>
-            <p>
-              جميع مؤشرات الأسعار المذكورة أعلاه هي أسعار <strong>تقديرية وتبدأ من الأرقام المسجلة</strong>. السعر النهائي للخدمة أو النظام يتحدد بدقة تامة وبشفافية بعد قيام فريقنا الفني بعملية <strong>المعاينة الفنية المجانية للموقع</strong> للوقوف على مسافات التمديد المطلوبة، عدد فوهات الرذاذ ونوع الماكينة المختارة لضمان تلبية تطلعاتكم بكفاءة تامة.
-            </p>
+          <!-- Split Tech details -->
+          <div class="tech-section">
+            
+            <div class="tech-diagram-box">
+              <h4>🔍 المخطط التشريحي للمضخة الإيطالية</h4>
+              <div class="diagram-img-wrapper">
+                <img src="${pumpDiagramBase64}" alt="Pump Diagram">
+              </div>
+            </div>
+
+            <div class="tech-prices-box">
+              <h4>⚙️ قائمة أسعار القطع والمعدات الفردية</h4>
+              <div class="part-price-list">
+                <div class="part-price-item"><span class="part-name">بكج مضخة ضباب - ربع حصان (10-20 بخاخ)</span><span class="part-price-val">2800 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">مضخة ضباب - 1 حصان (40-80 بخاخ)</span><span class="part-price-val">5200 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">مضخة ضباب - 2 حصان (80-150 بخاخ)</span><span class="part-price-val">7500 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">نازل (بخاخ) ثلاثي نجمة سقفي</span><span class="part-price-val">250 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">نازل (بخاخ) سداسي نجمة سقفي</span><span class="part-price-val">350 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">رأس بخاخ ثلاثي / سداسي</span><span class="part-price-val">45 / 55 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">لفة لي (هوز) 50 متر تايواني</span><span class="part-price-val">450 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">مواسير ستيل (طول 1 متر)</span><span class="part-price-val">450 ريال</span></div>
+                <div class="part-price-item"><span class="part-name">أعمال التركيب الفني وتأسيس النظام بالكامل</span><span class="part-price-val">1500 ريال</span></div>
+              </div>
+            </div>
+
           </div>
         </div>
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 2 من 4</span>
+          <span class="page-footer-right">صفحة 2 من 6</span>
         </div>
       </div>
 
@@ -845,8 +1187,8 @@ function generateHTML() {
         </div>
 
         <div class="page-content">
-          <h2 class="section-title" style="margin-bottom: 12px;">مقارنة الباقات والحلول المتكاملة</h2>
-          <p class="section-desc" style="margin-bottom: 15px;">
+          <h2 class="section-title" style="margin-bottom: 10px;">مقارنة الباقات والحلول المتكاملة</h2>
+          <p class="section-desc" style="margin-bottom: 12px;">
             صممنا 5 باقات رسمية متكاملة ومدروسة هندسياً لتغطي جميع المساحات والاحتياجات. يوضح الجدول التالي مكونات وخصائص كل باقة ليسهل عليكم اختيار النظام الأنسب لموقعكم:
           </p>
 
@@ -896,7 +1238,7 @@ function generateHTML() {
                   <span class="pkg-item-tag accent">مضخة FWP-IT-100 إيطالية</span>
                   <span class="pkg-item-tag">25 نوزل ضباب 2 ميكرون</span>
                   <span class="pkg-item-tag">24 قاعدة سليب لوك</span>
-                  <span class="pkg-item-tag">1 غطاء نهاية مع فتحة نوزل</span>
+                  <span class="pkg-item-tag">1 نهاية بفتحة نوزل</span>
                   <span class="pkg-item-tag">50م لي سليب لوك</span>
                 </div>
               </div>
@@ -942,11 +1284,11 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 3 من 4</span>
+          <span class="page-footer-right">صفحة 3 من 6</span>
         </div>
       </div>
 
-      <!-- ================= PAGE 4: COLUMNS & WARRANTY ================= -->
+      <!-- ================= PAGE 4: UMBRELLAS SECTION (NEW) ================= -->
       <div class="page">
         <div class="watermark"></div>
         
@@ -958,36 +1300,201 @@ function generateHTML() {
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
             </div>
           </div>
-          <span class="header-title">أعمدة الضباب وشروط الضمان المعتمدة</span>
+          <span class="header-title">المظلات الخارجية والديكورية المبتكرة</span>
         </div>
 
         <div class="page-content">
-          <h2 class="section-title">أعمدة الضباب الديكورية والمبتكرة</h2>
+          <h2 class="section-title">مظلات تبريد الأماكن المفتوحة وتخصيص اللوقو</h2>
           <p class="section-desc" style="margin-bottom: 12px;">
-            نوفر تشكيلة فريدة ومتميزة من أعمدة الضباب المصنوعة بالكامل من الستانلس ستيل 304 المقاوم للصدأ ومجهزة بنوازل متطورة، طلاء أسود مطفي وإضاءة LED مدمجة:
+            نوفر تشكيلة فريدة ومتميزة من المظلات الخارجية الفاخرة المقاومة للعوامل الجوية وتتحمل أشعة الشمس الشديدة، مع تمديدات مدمجة وذكية لفوهات الرذاذ لخفض درجات الحرارة لغاية 15 درجة مئوية، ودعم طباعة لوقو محلك الخاص لجاذبية تسويقية واحترافية فائقة:
+          </p>
+
+          <div class="umbrella-showcase-grid">
+            
+            <!-- Umbrella 1 -->
+            <div class="umbrella-card">
+              <span class="umb-badge">دائرية مستقلة</span>
+              <h3>نموذج المظلة الدائرية المستقلة</h3>
+              <div class="umbrella-img-box">
+                <img src="${roundUmbrellaBase64}" alt="Round Umbrella">
+              </div>
+              <div class="umbrella-specs-box">
+                <h4>المواصفات الفنية للنموذج:</h4>
+                <ul>
+                  <li><strong>المقاس والقطر:</strong> قطر 300 سم، الارتفاع 260 سم.</li>
+                  <li><strong>الوزن الإجمالي:</strong> 25 - 28 كجم (ثبات ممتاز).</li>
+                  <li><strong>القماش والمعالجة:</strong> بوليستر سميك مقاوم للحرارة والماء.</li>
+                  <li><strong>التصميم والميزة:</strong> فتحة تهوية علوية، هيكل ألومنيوم مطلي بالبودرة.</li>
+                  <li><strong>تخصيص اللوقو:</strong> طباعة شعار العميل بـ 4 اتجاهات في قمة المظلة.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Umbrella 2 -->
+            <div class="umbrella-card">
+              <span class="umb-badge">هرمية ثقيلة (Heavy Duty)</span>
+              <h3>نموذج المظلة الهرمية الكبيرة</h3>
+              <div class="umbrella-img-box">
+                <img src="${pyramidalUmbrellaBase64}" alt="Pyramidal Umbrella">
+              </div>
+              <div class="umbrella-specs-box">
+                <h4>المواصفات الفنية للنموذج:</h4>
+                <ul>
+                  <li><strong>المقاسات المتاحة:</strong> 240×330 سم أو 300×400 سم.</li>
+                  <li><strong>الوزن الإجمالي:</strong> 35 - 40 كجم (ثبات فائق ضد الرياح).</li>
+                  <li><strong>الألوان المتاحة:</strong> أسود، بيج، أحمر قاني، زيتي، أزرق بحري.</li>
+                  <li><strong>الهيكل والقاعدة:</strong> ألومنيوم مقوى مع قاعدة حديد ثقيل.</li>
+                  <li><strong>الميزة:</strong> فتحة تهوية مزدوجة، قابلة للطي والحركة بمرونة.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
+          <span class="page-footer-right">صفحة 4 من 6</span>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 5: COLUMNS & SPECIFICATIONS ================= -->
+      <div class="page">
+        <div class="watermark"></div>
+        
+        <div class="page-header">
+          <div class="header-logo">
+            <img src="${logoBase64}" alt="Logo">
+            <div class="brand-text">
+              <span class="brand-en">Silent Fog</span>
+              <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
+            </div>
+          </div>
+          <span class="header-title">أعمدة الضباب والأنظمة الجدارية والسقفية</span>
+        </div>
+
+        <div class="page-content">
+          <h2 class="section-title">أعمدة قص الليزر والأعمدة الديكورية الفاخرة</h2>
+          <p class="section-desc" style="margin-bottom: 12px;">
+            نتميز بتوريد وتصميم أرقى تشكيلات أعمدة الضباب لعام 2026م المصنعة بالكامل من الستانلس ستيل 304 مع دمج تقنيات الإضاءة LED وأنظمة الرش رباعية وثنائية الاتجاهات:
           </p>
 
           <div class="column-showcase">
-            <div class="col-card">
-              <div class="col-card-img"><img src="${fountainColumnBase64}" alt="Fountain"></div>
-              <div class="col-card-details">
-                <h4>عمود النافورة ستالس ستيل</h4>
-                <p>ارتفاع 1.20م - رأس ثلاثي يحتوي 3 نوزل. خيار هادئ واقتصادي للجلسات والممرات المنخفضة.</p>
+            
+            <div class="col-card-large">
+              <h4>📐 الموديل الهندسي الفخم لقص الليزر والإضاءة</h4>
+              <div class="col-large-img-box">
+                <img src="${model4ColumnBase64}" alt="Laser Column">
               </div>
+              <p>
+                ارتفاع 230 سم - عرض 10×10 سم - قاعدة 15×15 سم. تصميم قص ليزر هندسي إسلامي فخم مع إضاءة خلفية دافئة مدمجة. 4 أذرع رش جانبية تحتوي 12 نوزل ستانلس ستيل مع طلاء أسود مطفي فاخر وتخصيص شعار محلك.
+              </p>
             </div>
-            <div class="col-card">
-              <div class="col-card-img"><img src="${productPoleBase64}" alt="Palm"></div>
-              <div class="col-card-details">
-                <h4>عمود النخلة ستانلس ستيل</h4>
-                <p>ارتفاع 2.60م - رأس نخلة بـ 3 أفرع والفرع يحتوي 3 نوزل (إجمالي 9 نوزل). توزيع ممتاز وجاذبية فخمة.</p>
+
+            <div class="col-small-list">
+              
+              <div class="col-card-small">
+                <div class="col-small-img-box"><img src="${fountainColumnBase64}" alt="Fountain"></div>
+                <div class="col-small-details">
+                  <h4>عمود النافورة ستالس ستيل</h4>
+                  <p>ارتفاع 1.20م - رأس يحتوي 3 نوازل تبريد. خيار هادئ واقتصادي جداً للممرات والحدائق المنخفضة.</p>
+                </div>
               </div>
+
+              <div class="col-card-small">
+                <div class="col-small-img-box"><img src="${productPoleBase64}" alt="Palm"></div>
+                <div class="col-small-details">
+                  <h4>عمود النخلة ستانلس ستيل</h4>
+                  <p>ارتفاع 2.60م - رأس نخلة بـ 3 أفرع والفرع يحتوي 3 نوزل (9 نوزل إجمالاً). ثبات فخم وقوة انتشار فائقة.</p>
+                </div>
+              </div>
+
+              <div class="col-card-small">
+                <div class="col-small-img-box"><img src="${eliteColorsBase64}" alt="Colors"></div>
+                <div class="col-small-details">
+                  <h4>تشكيلة "إيليت" للخامات والألوان</h4>
+                  <p>9 ألوان فاخرة: أسود مطفي، أبيض، رمادي، بيج، كورتن ستيل، تأثير خشبي، برونز، زيتي، وأزرق بحري.</p>
+                </div>
+              </div>
+
             </div>
-            <div class="col-card" style="grid-column: span 2;">
-              <div class="col-card-img"><img src="${heroBannerBase64}" alt="Laser"></div>
-              <div class="col-card-details">
-                <h4>أعمدة قص الليزر (إصدارات سيجنتشر والتراث)</h4>
-                <p>ارتفاع 230 سم - مقطع 10×10 سم - تصاميم هندسية وقص ليزر إسلامي وأوراق شجر، مع إنارة LED داخلية مذهلة وتأثيرات تراثية فخمة قابلة لتخصيص شعار محلك الخاص.</p>
+
+          </div>
+
+          <!-- Wall and Ceiling systems -->
+          <div class="systems-grid-box">
+            <h4>🛠️ أنظمة التثبيت الجدارية والسقفية الحديثة</h4>
+            <div class="systems-items-flex">
+              
+              <div class="system-flex-item">
+                <div class="sys-flex-img"><img src="${curvedArmBase64}" alt="Curved"></div>
+                <div class="sys-flex-details">
+                  <h5>تثبيت جانبي جداري (منحني 45°)</h5>
+                  <p>ماسورة ستانلس ستيل 304 ورأس ثلاثي النوازل.</p>
+                </div>
               </div>
+
+              <div class="system-flex-item">
+                <div class="sys-flex-img"><img src="${endCapBase64}" alt="Straight"></div>
+                <div class="sys-flex-details">
+                  <h5>تثبيت جانبي جداري (مستقيم)</h5>
+                  <p>رأس ثلاثي النوازل مثبت على ذراع مستقيم متين.</p>
+                </div>
+              </div>
+
+              <div class="system-flex-item">
+                <div class="sys-flex-img"><img src="${nozzleBaseImgBase64}" alt="Ceiling"></div>
+                <div class="sys-flex-details">
+                  <h5>تثبيت سقفي ممتد (نموذج 2)</h5>
+                  <p>ماسورة ستانلس ستيل (طول 1-2م) برأس ثلاثي أو سداسي.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
+          <span class="page-footer-right">صفحة 5 من 6</span>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 6: SUCCESS PARTNERS & WARRANTY ================= -->
+      <div class="page">
+        <div class="watermark"></div>
+        
+        <div class="page-header">
+          <div class="header-logo">
+            <img src="${logoBase64}" alt="Logo">
+            <div class="brand-text">
+              <span class="brand-en">Silent Fog</span>
+              <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
+            </div>
+          </div>
+          <span class="header-title">شركاء النجاح وشروط الضمان المعتمد</span>
+        </div>
+
+        <div class="page-content">
+          
+          <!-- Success Partners (NEW) -->
+          <div class="partners-section-box">
+            <h4>
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              شركاء النجاح - بعض المحلات والمنشآت التي تفخر بخدمتها
+            </h4>
+            <p class="section-desc" style="margin-bottom: 8px;">
+              حزنا على ثقة أشهر المقاهي والمطاعم والفنادق بفضل جودة أنظمتنا ودقتها وصيانتنا الدورية المستمرة:
+            </p>
+            <div class="partners-names-grid">
+              <div class="partner-name-card featured">UNIT Coffee (يونيت كوفي)</div>
+              <div class="partner-name-card">8Oz Coffee (أونص كوفي)</div>
+              <div class="partner-name-card">Demli Tea & Oven (دملي)</div>
+              <div class="partner-name-card featured">Arabia Cafe & Bakery (أرابيا)</div>
+              <div class="partner-name-card">The Coffee Address (ذا كوفي)</div>
+              <div class="partner-name-card featured">فندق الترحيب الفخم</div>
+              <div class="partner-name-card">مقهى حس المكان</div>
+              <div class="partner-name-card">جلسات ومسابح الفلل الخاصة</div>
             </div>
           </div>
 
@@ -1024,7 +1531,7 @@ function generateHTML() {
           <div class="warning-box">
             <h4>⚠️ تنبيهات سوء الاستخدام ومسببات الخروج عن الضمان:</h4>
             <p>
-              عدم إجراء الصيانة الدورية الموصى بها • تشغيل الماكينة دون ماء أو زيت أو تدفق سليم • تشغيل المضخة مع وجود تسريبات في شبكة التمديدات • رفع ضغط التشغيل للماكينة عن الحد المسموح • وضع المضخة في أماكن ضيقة مكتومة غير مهواة أو أماكن عرضة للغمر المباشر بالسيول أو مياه الأمطار.
+              عدم إجراء الصيانة الدورية الموصى بها • تشغيل الماكينة دون ماء أو زيت أو تدفق سليم • تشغيل المضخة مع وجود تسريبات في شبكة التمديدات • رفع ضغط التشغيل للماكينة عن الحد الأقصى المسموح به • وضع المضخة في أماكن ضيقة مكتومة غير مهواة أو أماكن عرضة للغمر المباشر بالسيول أو مياه الأمطار.
             </p>
           </div>
 
@@ -1043,7 +1550,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 4 من 4</span>
+          <span class="page-footer-right">صفحة 6 من 6</span>
         </div>
       </div>
 
@@ -1054,7 +1561,7 @@ function generateHTML() {
 
 // Generate the PDF brochure catalog
 async function main() {
-  console.log('🚀 Starting Master PDF Catalog Generation...');
+  console.log('🚀 Starting Expanded Master PDF Catalog Generation...');
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -1065,7 +1572,7 @@ async function main() {
   const htmlContent = generateHTML();
   await page.setContent(htmlContent, { waitUntil: 'load' });
   // Wait a brief moment to ensure fonts are fully rendered
-  await new Promise(r => setTimeout(r, 1000));
+  await new Promise(r => setTimeout(r, 1200));
 
   const outputDir = path.join(__dirname, 'images');
   const artifactsDir = 'C:\\Users\\t\\.gemini\\antigravity\\brain\\4ac733a0-c12b-413f-862e-707610cfd557';
@@ -1077,7 +1584,7 @@ async function main() {
   const localPDFPath = path.join(__dirname, 'images', 'silent_fog_catalog.pdf');
   const brainPDFPath = path.join(artifactsDir, 'silent_fog_catalog.pdf');
 
-  console.log('📸 Rendering A4 Pages into PDF...');
+  console.log('📸 Rendering 6 A4 Pages into PDF...');
   
   await page.pdf({
     path: localPDFPath,
@@ -1094,13 +1601,13 @@ async function main() {
   // Copy to brain artifacts directory so user can view immediately
   try {
     fs.copyFileSync(localPDFPath, brainPDFPath);
-    console.log(`✅ Saved master catalog PDF to website images and artifacts brain!`);
+    console.log(`✅ Saved expanded master catalog PDF to website images and artifacts brain!`);
   } catch (err) {
     console.error(`[Error] Failed to copy to artifacts:`, err.message);
   }
 
   await browser.close();
-  console.log('🎉 Master PDF Catalog generated successfully!');
+  console.log('🎉 Expanded Master PDF Catalog generated successfully!');
 }
 
 main().catch(err => {
