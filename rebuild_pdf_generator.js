@@ -1,18 +1,23 @@
 const fs = require('fs');
 const path = require('path');
+
+const filePath = path.join(__dirname, 'generate_pdf_catalog.js');
+
+const code = `const fs = require('fs');
+const path = require('path');
 const puppeteer = require('puppeteer');
 
 // Helper to convert local images to Base64 data URIs
 function getBase64Image(filename, subDir = '') {
   const filePath = subDir ? path.join(__dirname, 'images', subDir, filename) : path.join(__dirname, 'images', filename);
   if (!fs.existsSync(filePath)) {
-    console.error(`[Warning] Image not found: ${filePath}`);
+    console.error(\`[Warning] Image not found: \${filePath}\`);
     return '';
   }
   const fileBuffer = fs.readFileSync(filePath);
   const ext = path.extname(filename).toLowerCase().replace('.', '');
-  const mimeType = ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : `image/${ext}`;
-  return `data:${mimeType};base64,${fileBuffer.toString('base64')}`;
+  const mimeType = ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : \`image/\${ext}\`;
+  return \`data:\${mimeType};base64,\${fileBuffer.toString('base64')}\`;
 }
 
 // Prepare images
@@ -87,7 +92,7 @@ const acc6Branded = getBase64Image('acc6_branded.png', 'anas_images');
 const acc7Branded = getBase64Image('acc7_branded.png', 'anas_images');
 
 function generateHTML() {
-  return `
+  return \`
     <!DOCTYPE html>
     <html lang="ar" dir="rtl">
     <head>
@@ -963,7 +968,7 @@ function generateHTML() {
       <div class="page cover-page">
         <div class="cover-watermark"></div>
         <div class="cover-logo-wrapper">
-          <img class="cover-logo" src="${logoBase64}" alt="Silent Fog Logo">
+          <img class="cover-logo" src="\${logoBase64}" alt="Silent Fog Logo">
           <h1 class="cover-brand-title">Silent Fog</h1>
           <span class="cover-brand-ar">أبو طيف للضباب والرذاذ</span>
         </div>
@@ -982,7 +987,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1040,7 +1045,7 @@ function generateHTML() {
             <div class="tech-diagram-box">
               <h4>الهيكل الفني وتوزيع الشبكة</h4>
               <div class="diagram-img-wrapper">
-                <img src="${pumpDiagramBase64}" alt="Technical Pump Diagram">
+                <img src="\${pumpDiagramBase64}" alt="Technical Pump Diagram">
               </div>
             </div>
 
@@ -1071,7 +1076,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1088,7 +1093,7 @@ function generateHTML() {
             
             <!-- Mist 20 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p3Branded}" alt="p3"></div>
+              <div class="prod-img-box"><img src="\${p3Branded}" alt="p3"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (20 رأس) <span class="tag">تغطية 25 متر</span></div>
                 <p class="prod-desc">نظام منزلي ممتاز لتبريد الجلسات الصغيرة والمظلات المنزلية بضغط خفيف وهدوء كامل.</p>
@@ -1105,7 +1110,7 @@ function generateHTML() {
 
             <!-- Mist 30 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p4Branded}" alt="p4"></div>
+              <div class="prod-img-box"><img src="\${p4Branded}" alt="p4"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (30 رأس) <span class="tag">تغطية 40 متر</span></div>
                 <p class="prod-desc">مثالي للحدائق المنزلية المتوسطة والمظلات، تبريد طبيعي ناعم وجلستي صيف هادئة.</p>
@@ -1122,7 +1127,7 @@ function generateHTML() {
 
             <!-- Mist 40 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p2Branded}" alt="p2"></div>
+              <div class="prod-img-box"><img src="\${p2Branded}" alt="p2"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (40 رأس) <span class="tag">تغطية 50 متر</span></div>
                 <p class="prod-desc">كفاءة تشغيلية ممتازة ومضخة أقوى للمساحات الكبيرة والاستراحات لتدفق هادئ ومستمر.</p>
@@ -1139,7 +1144,7 @@ function generateHTML() {
 
             <!-- Mist 60 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p1Branded}" alt="p1"></div>
+              <div class="prod-img-box"><img src="\${p1Branded}" alt="p1"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (60 رأس) <span class="tag">تغطية 75 متر</span></div>
                 <p class="prod-desc">النظام الأقوى في فئة الرذاذ المطور، تغطية واسعة جداً للمساحات الخارجية المفتوحة والمنشآت التجارية.</p>
@@ -1169,7 +1174,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1186,7 +1191,7 @@ function generateHTML() {
             
             <!-- Fog Chinese 25 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p5Branded}" alt="p5"></div>
+              <div class="prod-img-box"><img src="\${p5Branded}" alt="p5"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب صيني متكامل (25 فوهة) <span class="tag">تغطية 35 متر</span></div>
                 <p class="prod-desc">نظام ضغط عالي متكامل بمضخة صينية قوية، يبرد الأجواء بفعالية ويمنع تشكل بلل المياه.</p>
@@ -1203,7 +1208,7 @@ function generateHTML() {
 
             <!-- Fog Italian 25 -->
             <div class="product-row featured">
-              <div class="prod-img-box"><img src="${p6Branded}" alt="p6"></div>
+              <div class="prod-img-box"><img src="\${p6Branded}" alt="p6"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب إيطالي متكامل (25 فوهة) <span class="tag">إيطالي صامت فاخر</span></div>
                 <p class="prod-desc">أهدأ مضخة ضباب إيطالية أصلية ذات عمر طويل وتبريد مجهري رائع ومثالي للمقاهي والفلل.</p>
@@ -1220,7 +1225,7 @@ function generateHTML() {
 
             <!-- Fog Taiwan 35 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p8Branded}" alt="p8"></div>
+              <div class="prod-img-box"><img src="\${p8Branded}" alt="p8"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب تايواني متكامل (35 فوهة) <span class="tag">تغطية 50 متر</span></div>
                 <p class="prod-desc">أداء عالي التحمل بمضخة تايوانية هادئة وفلاتر مزدوجة لحماية الشبكة ومنع انسداد الفوهات.</p>
@@ -1237,7 +1242,7 @@ function generateHTML() {
 
             <!-- Fog Taiwan 60 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p7Branded}" alt="p7"></div>
+              <div class="prod-img-box"><img src="\${p7Branded}" alt="p7"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب تايواني متكامل (60 فوهة) <span class="tag">تغطية 80 متر</span></div>
                 <p class="prod-desc">الخيار الأقوى للمساحات الشاسعة والمشاريع والمزارع بضغط هيدروليكي فائق وقوي جداً.</p>
@@ -1267,7 +1272,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1284,7 +1289,7 @@ function generateHTML() {
             
             <!-- Fans Package 24 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p10Branded}" alt="p10"></div>
+              <div class="prod-img-box"><img src="\${p10Branded}" alt="p10"></div>
               <div class="prod-details">
                 <div class="prod-title">باقة مروحتين رذاذ 24 إنش + مضخة <span class="tag">رذاذ مطور</span></div>
                 <p class="prod-desc">مروحتان رذاذ مع مضخة وتمديدات تضمن توزيع هواء مبرد ونقي في الاستراحات والمقاهي المفتوحة.</p>
@@ -1301,7 +1306,7 @@ function generateHTML() {
 
             <!-- Fans Package 20 Fog -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p9Branded}" alt="p9"></div>
+              <div class="prod-img-box"><img src="\${p9Branded}" alt="p9"></div>
               <div class="prod-details">
                 <div class="prod-title">باقة مروحتين ضباب 20 إنش + مضخة 40 بار <span class="tag">ضباب ضغط عالي</span></div>
                 <p class="prod-desc">أقوى دمج لتبريد مروحة التهوية مع ضباب مجهري فائق الكثافة لمنع الحرارة دون بلل.</p>
@@ -1318,7 +1323,7 @@ function generateHTML() {
 
             <!-- Columns 2 Package -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p12Branded}" alt="p12"></div>
+              <div class="prod-img-box"><img src="\${p12Branded}" alt="p12"></div>
               <div class="prod-details">
                 <div class="prod-title">باقة عمودين ضباب حديد + مضخة 40 بار <span class="tag">باقة الديكور</span></div>
                 <p class="prod-desc">عمودان حديد ديكوريان بطول 2.3م لتبريد وتزيين الممرات والحدائق الفاخرة للفلل والمقاهي.</p>
@@ -1335,7 +1340,7 @@ function generateHTML() {
 
             <!-- Columns 4 Package -->
             <div class="product-row featured">
-              <div class="prod-img-box"><img src="${p11Branded}" alt="p11"></div>
+              <div class="prod-img-box"><img src="\${p11Branded}" alt="p11"></div>
               <div class="prod-details">
                 <div class="prod-title">باقة 4 أعمدة ضباب حديد + مضخة 70 بار <span class="tag">VIP تجاري متكامل</span></div>
                 <p class="prod-desc">الباقة الديكورية التجارية الأقوى لتغطية وتبريد المقاهي الكبيرة والمساحات الخارجية الواسعة.</p>
@@ -1365,7 +1370,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1382,7 +1387,7 @@ function generateHTML() {
             
             <!-- col4: حديد مربع 12 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col4Branded}" alt="col4"></div>
+              <div class="pdf-compact-img-box"><img src="\${col4Branded}" alt="col4"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود حديد مربع أسود (12 نزل)</span>
                 <span class="pdf-compact-desc">بطول 2 متر — هيكل حديدي مربع متين للحدائق والممرات الخارجية.</span>
@@ -1392,7 +1397,7 @@ function generateHTML() {
 
             <!-- col3: ليد مربع 12 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col3Branded}" alt="col3"></div>
+              <div class="pdf-compact-img-box"><img src="\${col3Branded}" alt="col3"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ليد مربع أسود (12 نزل)</span>
                 <span class="pdf-compact-desc">يجمع بين إنارة LED مدمجة على طول العمود وتبريد الضباب.</span>
@@ -1402,7 +1407,7 @@ function generateHTML() {
 
             <!-- col1: ليد دائري 16 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col1Branded}" alt="col1"></div>
+              <div class="pdf-compact-img-box"><img src="\${col1Branded}" alt="col1"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ليد دائري أسود (16 نزل)</span>
                 <span class="pdf-compact-desc">إنارة ليد مدمجة دائرية تضفي لمسة جمالية وكثافة ضبابية ممتازة.</span>
@@ -1412,7 +1417,7 @@ function generateHTML() {
 
             <!-- col2: حديد إنارة كلاسيك 6 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col2Branded}" alt="col2"></div>
+              <div class="pdf-compact-img-box"><img src="\${col2Branded}" alt="col2"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود إنارة كلاسيكي (6 نزل)</span>
                 <span class="pdf-compact-desc">بطول 2 متر — عمود كلاسيكي يجمع تبريد الضباب والإنارة الجذابة.</span>
@@ -1422,7 +1427,7 @@ function generateHTML() {
 
             <!-- col5: ستانلس 1 متر 3 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col5Branded}" alt="col5"></div>
+              <div class="pdf-compact-img-box"><img src="\${col5Branded}" alt="col5"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود 1 متر ستانلس (3 نزل)</span>
                 <span class="pdf-compact-desc">ارتفاع 1 متر — ستانلس ستيل 304 أنيق للجلسات والممرات الضيقة.</span>
@@ -1432,7 +1437,7 @@ function generateHTML() {
 
             <!-- col6: ستانلس 6 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col6Branded}" alt="col6"></div>
+              <div class="pdf-compact-img-box"><img src="\${col6Branded}" alt="col6"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ستانلس ستيل (6 نزل)</span>
                 <span class="pdf-compact-desc">تصميم عمودي مصقول مقاوم للصدأ ومنافذ ضباب موزعة بشكل رائع.</span>
@@ -1455,7 +1460,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1472,7 +1477,7 @@ function generateHTML() {
             
             <!-- col7: ستانلس نخلة 9 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col7Branded}" alt="col7"></div>
+              <div class="pdf-compact-img-box"><img src="\${col7Branded}" alt="col7"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ستانلس نخلة (9 نزل)</span>
                 <span class="pdf-compact-desc">أفرع علوية موزعة كشكل النخلة لانتشار دائري رائع وجمالي للحدائق.</span>
@@ -1482,7 +1487,7 @@ function generateHTML() {
 
             <!-- col8: ستانلس فرعين 6 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col8Branded}" alt="col8"></div>
+              <div class="pdf-compact-img-box"><img src="\${col8Branded}" alt="col8"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ستانلس فرعين (6 نزل)</span>
                 <span class="pdf-compact-desc">فرعان جانبيان متوازنان لتوزيع الضباب باتجاهين متعاكسين لتغطية الممرات.</span>
@@ -1492,7 +1497,7 @@ function generateHTML() {
 
             <!-- col9: ستانلس نخلة 12 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col9Branded}" alt="col9"></div>
+              <div class="pdf-compact-img-box"><img src="\${col9Branded}" alt="col9"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ستانلس نخلة (12 نزل)</span>
                 <span class="pdf-compact-desc">تصميم نخلة VIP بـ 12 نزل لتبريد مكثف للقصور والمقاهي الفاخرة.</span>
@@ -1502,7 +1507,7 @@ function generateHTML() {
 
             <!-- col10: ستانلس منحني 7 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col10Branded}" alt="col10"></div>
+              <div class="pdf-compact-img-box"><img src="\${col10Branded}" alt="col10"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ستانلس منحني (7 نزل)</span>
                 <span class="pdf-compact-desc">قوس ديكوري رائع بارتفاع 2.50م يوجه الضباب من الأعلى إلى الأسفل بشكل انسيابي.</span>
@@ -1512,7 +1517,7 @@ function generateHTML() {
 
             <!-- col11: ستانلس قوس منحني 8 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${col11Branded}" alt="col11"></div>
+              <div class="pdf-compact-img-box"><img src="\${col11Branded}" alt="col11"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">عمود ستانلس قوس (8 نزل)</span>
                 <span class="pdf-compact-desc">قوس مزدوج ارتفاع 2.50م يعطي تدفقاً ضبابياً علوياً رائعاً للممرات.</span>
@@ -1535,7 +1540,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1552,7 +1557,7 @@ function generateHTML() {
             
             <!-- acc1: ماسورة 304 -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${acc1Branded}" alt="acc1"></div>
+              <div class="pdf-compact-img-box"><img src="\${acc1Branded}" alt="acc1"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">ماسورة ستانلس 304 (قياس 3/8)</span>
                 <span class="pdf-compact-desc">أنبوب مواسير ستانلس ستيل 304 لتأسيس شبكات ضغط عالي متينة.</span>
@@ -1562,7 +1567,7 @@ function generateHTML() {
 
             <!-- acc2: ماسورة 316 -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${acc2Branded}" alt="acc2"></div>
+              <div class="pdf-compact-img-box"><img src="\${acc2Branded}" alt="acc2"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">ماسورة ستانلس 316 (قياس 3/8)</span>
                 <span class="pdf-compact-desc">أعلى مقاومة للتآكل والترسبات وعوامل الرطوبة العالية.</span>
@@ -1572,7 +1577,7 @@ function generateHTML() {
 
             <!-- acc3: حلقة 5 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${acc3Branded}" alt="acc3"></div>
+              <div class="pdf-compact-img-box"><img src="\${acc3Branded}" alt="acc3"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">حلقة ضباب دائرية (5 نزل)</span>
                 <span class="pdf-compact-desc">حلقة ستانلس دائرية لتوزيع ضبابي متناسق لتثبيتها على المراوح.</span>
@@ -1582,7 +1587,7 @@ function generateHTML() {
 
             <!-- acc4: قاعدة جدارية 3 نقاط -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${acc4Branded}" alt="acc4"></div>
+              <div class="pdf-compact-img-box"><img src="\${acc4Branded}" alt="acc4"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">قاعدة ضباب جدارية (3 نقاط)</span>
                 <span class="pdf-compact-desc">قاعدة تثبيت جدارية ستانلس ستيل بـ 3 مخارج فوهات لتبريد الجلسات.</span>
@@ -1592,7 +1597,7 @@ function generateHTML() {
 
             <!-- acc5: ماسورة سقفية 3 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${acc5Branded}" alt="acc5"></div>
+              <div class="pdf-compact-img-box"><img src="\${acc5Branded}" alt="acc5"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">ماسورة سقفية ستانلس (3 نزل)</span>
                 <span class="pdf-compact-desc">ماسورة مجهزة للتثبيت بالسقف وتوجيه الضباب مباشرة للأسفل.</span>
@@ -1602,7 +1607,7 @@ function generateHTML() {
 
             <!-- acc6: ماسورة جدارية 3 نزل -->
             <div class="pdf-compact-card">
-              <div class="pdf-compact-img-box"><img src="${acc6Branded}" alt="acc6"></div>
+              <div class="pdf-compact-img-box"><img src="\${acc6Branded}" alt="acc6"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">ماسورة جدارية ستانلس (3 نزل)</span>
                 <span class="pdf-compact-desc">ماسورة جدارية ممتدة مع 3 مخارج فوهات لتغطية طولية جدارية.</span>
@@ -1612,7 +1617,7 @@ function generateHTML() {
 
             <!-- acc7: ماسورة سقفية 6 نزل -->
             <div class="pdf-compact-card" style="grid-column: span 2; max-width: 50%; margin: 0 auto;">
-              <div class="pdf-compact-img-box"><img src="${acc7Branded}" alt="acc7"></div>
+              <div class="pdf-compact-img-box"><img src="\${acc7Branded}" alt="acc7"></div>
               <div class="pdf-compact-details">
                 <span class="pdf-compact-title">ماسورة سقفية ستانلس (6 نزل)</span>
                 <span class="pdf-compact-desc">أنبوب سقفي مكثف بـ 6 مخارج نوزل لتوزيع ضبابي رأسي فائق التبريد.</span>
@@ -1635,7 +1640,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1657,7 +1662,7 @@ function generateHTML() {
               <span class="umb-badge">دائرية مستقلة</span>
               <h3>نموذج المظلة الدائرية المستقلة</h3>
               <div class="umbrella-img-box">
-                <img src="${roundUmbrellaBase64}" alt="Round Umbrella">
+                <img src="\${roundUmbrellaBase64}" alt="Round Umbrella">
               </div>
               <div class="umbrella-specs-box">
                 <h4>المواصفات الفنية للنموذج:</h4>
@@ -1676,7 +1681,7 @@ function generateHTML() {
               <span class="umb-badge">هرمية ثقيلة (Heavy Duty)</span>
               <h3>نموذج المظلة الهرمية الكبيرة</h3>
               <div class="umbrella-img-box">
-                <img src="${pyramidalUmbrellaBase64}" alt="Pyramidal Umbrella">
+                <img src="\${pyramidalUmbrellaBase64}" alt="Pyramidal Umbrella">
               </div>
               <div class="umbrella-specs-box">
                 <h4>المواصفات الفنية للنموذج:</h4>
@@ -1705,7 +1710,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1727,7 +1732,7 @@ function generateHTML() {
               <!-- 1. Address Cafe -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoAddressCafeBase64}" alt="Address Cafe">
+                  <img src="\${logoAddressCafeBase64}" alt="Address Cafe">
                 </div>
                 <span class="partner-name">عنوان القهوة</span>
               </div>
@@ -1735,7 +1740,7 @@ function generateHTML() {
               <!-- 2. UNIT Coffee -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoUnitCoffeeBase64}" alt="UNIT Coffee">
+                  <img src="\${logoUnitCoffeeBase64}" alt="UNIT Coffee">
                 </div>
                 <span class="partner-name">يونت كوفي</span>
               </div>
@@ -1743,7 +1748,7 @@ function generateHTML() {
               <!-- 3. Tea & Cake -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoTeaCakeBase64}" alt="Tea & Cake">
+                  <img src="\${logoTeaCakeBase64}" alt="Tea & Cake">
                 </div>
                 <span class="partner-name">شاي وكعك</span>
               </div>
@@ -1751,7 +1756,7 @@ function generateHTML() {
               <!-- 4. Raha Coffee -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoRahaCoffeeBase64}" alt="Raha">
+                  <img src="\${logoRahaCoffeeBase64}" alt="Raha">
                 </div>
                 <span class="partner-name">رحى</span>
               </div>
@@ -1759,7 +1764,7 @@ function generateHTML() {
               <!-- 5. Botticelli -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoBotticelliBase64}" alt="Botticelli">
+                  <img src="\${logoBotticelliBase64}" alt="Botticelli">
                 </div>
                 <span class="partner-name">بوتشيلي</span>
               </div>
@@ -1767,7 +1772,7 @@ function generateHTML() {
               <!-- 6. Rose Masyaf -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoRoseMasyafBase64}" alt="Rose Masyaf">
+                  <img src="\${logoRoseMasyafBase64}" alt="Rose Masyaf">
                 </div>
                 <span class="partner-name">روز المصيف</span>
               </div>
@@ -1775,7 +1780,7 @@ function generateHTML() {
               <!-- 7. Tarhib Hotel -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoTarhibHotelBase64}" alt="Tarhib Hotel">
+                  <img src="\${logoTarhibHotelBase64}" alt="Tarhib Hotel">
                 </div>
                 <span class="partner-name">فندق الترحيب</span>
               </div>
@@ -1783,7 +1788,7 @@ function generateHTML() {
               <!-- 8. 8oz Coffee -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoEightOzBase64}" alt="8oz">
+                  <img src="\${logoEightOzBase64}" alt="8oz">
                 </div>
                 <span class="partner-name">8oz Coffee</span>
               </div>
@@ -1791,7 +1796,7 @@ function generateHTML() {
               <!-- 9. Tea & Sesame -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoTeaSesameBase64}" alt="Tea & Sesame">
+                  <img src="\${logoTeaSesameBase64}" alt="Tea & Sesame">
                 </div>
                 <span class="partner-name">شاي وسمسم</span>
               </div>
@@ -1799,7 +1804,7 @@ function generateHTML() {
               <!-- 10. Dopamine -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoDopamineBase64}" alt="Dopamine">
+                  <img src="\${logoDopamineBase64}" alt="Dopamine">
                 </div>
                 <span class="partner-name">دوبامين</span>
               </div>
@@ -1807,7 +1812,7 @@ function generateHTML() {
               <!-- 11. Arabia Cafe -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoArabiaBase64}" alt="Arabia Cafe">
+                  <img src="\${logoArabiaBase64}" alt="Arabia Cafe">
                 </div>
                 <span class="partner-name">ارابيا كافيه</span>
               </div>
@@ -1854,7 +1859,7 @@ function generateHTML() {
 
     </body>
     </html>
-  `;
+  \`;
 }
 
 async function main() {
@@ -1872,7 +1877,7 @@ async function main() {
   await new Promise(r => setTimeout(r, 1200));
 
   const outputDir = path.join(__dirname, 'images');
-  const artifactsDir = 'C:\\Users\\t\\.gemini\\antigravity\\brain\\4ac733a0-c12b-413f-862e-707610cfd557';
+  const artifactsDir = 'C:\\\\Users\\\\t\\\\.gemini\\\\antigravity\\\\brain\\\\4ac733a0-c12b-413f-862e-707610cfd557';
 
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
@@ -1898,9 +1903,9 @@ async function main() {
   // Copy to brain artifacts directory so user can view immediately
   try {
     fs.copyFileSync(localPDFPath, brainPDFPath);
-    console.log(`✅ Saved expanded 10-page catalog PDF to website images and artifacts brain!`);
+    console.log(\`✅ Saved expanded 10-page catalog PDF to website images and artifacts brain!\`);
   } catch (err) {
-    console.error(`[Error] Failed to copy to artifacts:`, err.message);
+    console.error(\`[Error] Failed to copy to artifacts:\`, err.message);
   }
 
   await browser.close();
@@ -1911,3 +1916,7 @@ main().catch(err => {
   console.error('❌ PDF Generation failed:', err);
   process.exit(1);
 });
+`;
+
+fs.writeFileSync(filePath, code, 'utf8');
+console.log('🎉 generate_pdf_catalog.js successfully rebuilt with 10 pages!');
