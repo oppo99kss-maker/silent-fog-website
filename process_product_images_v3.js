@@ -1,0 +1,225 @@
+const fs = require('fs');
+const path = require('path');
+const puppeteer = require('puppeteer');
+
+function getBase64Image(filePath) {
+  if (!fs.existsSync(filePath)) {
+    console.error(`File not found: ${filePath}`);
+    return '';
+  }
+  const fileBuffer = fs.readFileSync(filePath);
+  const ext = path.extname(filePath).toLowerCase().replace('.', '');
+  const mimeType = `image/${ext === 'jpg' ? 'jpeg' : ext}`;
+  return `data:${mimeType};base64,${fileBuffer.toString('base64')}`;
+}
+
+const logoPath = path.join(__dirname, 'images', 'logo.png');
+const logoBase64 = getBase64Image(logoPath);
+
+const products = [
+  { id: 'p1', ext: 'png', type: 'box' },
+  { id: 'p2', ext: 'png', type: 'box' },
+  { id: 'p3', ext: 'png', type: 'box' },
+  { id: 'p4', ext: 'png', type: 'box' },
+  { id: 'p5', ext: 'webp', type: 'pump' },
+  { id: 'p6', ext: 'png', type: 'pump' },
+  { id: 'p7', ext: 'png', type: 'pump' },
+  { id: 'p8', ext: 'png', type: 'pump' },
+  { id: 'p9', ext: 'png', type: 'package' },
+  { id: 'p10', ext: 'png', type: 'package' },
+  { id: 'p11', ext: 'png', type: 'package' },
+  { id: 'p12', ext: 'png', type: 'package' }
+];
+
+async function main() {
+  console.log('🚀 Starting Advanced Puppeteer image branding and watermark removal...');
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+
+  const page = await browser.newPage();
+  const srcDir = path.join(__dirname, 'images', 'anas_images');
+
+  for (const prod of products) {
+    const filename = `${prod.id}_original.${prod.ext}`;
+    const filePath = path.join(srcDir, filename);
+    
+    if (!fs.existsSync(filePath)) {
+      console.warn(`⚠️ Original file not found: ${filePath}`);
+      continue;
+    }
+
+    const prodBase64 = getBase64Image(filePath);
+
+    // HTML with original image and smart masks
+    // 1. Top mask (white bar, height 30px) - covers top watermarks
+    // 2. Bottom mask (white bar, height 50px) - covers bottom watermarks like www.anaswaterksa.com
+    // 3. Left/Right masks (white bars, width 25px) - covers side watermarks
+    // 4. Centered stickers or corner badges to cover box barcodes and logos
+    const isBox = prod.type === 'box';
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body, html { width: 500px; height: 500px; overflow: hidden; background: #ffffff; }
+          .container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+          }
+          .prod-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            /* Scale slightly for pumps and packages to crop edges naturally */
+            transform: ${isBox ? 'scale(1.0)' : 'scale(1.08)'};
+          }
+          
+          /* Edge Masks to cover watermarks and barcodes */
+          .mask {
+            position: absolute;
+            background: #ffffff;
+            z-index: 5;
+          }
+          .mask-top {
+            top: 0; left: 0; width: 100%; height: 35px;
+          }
+          .mask-bottom {
+            bottom: 0; left: 0; width: 100%; height: 55px;
+          }
+          .mask-left {
+            top: 0; left: 0; width: 25px; height: 100%;
+          }
+          .mask-right {
+            top: 0; right: 0; width: 25px; height: 100%;
+          }
+
+          /* Premium Brand Sticker for Box Packaging (P1-P4) */
+          .box-sticker {
+            position: absolute;
+            bottom: 80px; /* Positioned directly on the front-bottom area of the box */
+            left: 50%;
+            transform: translateX(-50%);
+            background: #042d44; /* Silent Fog Navy */
+            border: 2px solid #0d7cc4; /* Silent Fog Blue */
+            padding: 8px 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(4, 45, 68, 0.35);
+            width: 240px;
+            z-index: 10;
+          }
+          
+          /* Corner Brand Badge for Pumps and Packages (P5-P12) */
+          .corner-badge {
+            position: absolute;
+            bottom: 60px;
+            right: 30px;
+            background: rgba(4, 45, 68, 0.95);
+            border: 1.5px solid #0d7cc4;
+            padding: 7px 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+          }
+
+          .brand-logo {
+            height: 28px;
+            width: auto;
+          }
+          .brand-text {
+            display: flex;
+            flex-direction: column;
+            color: #ffffff;
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
+            direction: rtl;
+          }
+          .brand-name {
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+          }
+          .brand-sub {
+            font-size: 8px;
+            color: #e8f4fd;
+            font-weight: 600;
+          }
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+      </head>
+      <body>
+        <div class="container">
+          <!-- original product image -->
+          <img class="prod-img" src="${prodBase64}" />
+
+          <!-- White masks to erase watermarks and barcode URLs at the edges -->
+          <div class="mask mask-top"></div>
+          <div class="mask mask-bottom"></div>
+          <div class="mask mask-left"></div>
+          <div class="mask mask-right"></div>
+
+          ${isBox ? `
+            <!-- Box sticker covering the Anas Water logo and barcode on the box packaging -->
+            <div class="box-sticker">
+              <div class="brand-text">
+                <span class="brand-name">أبو طيف للضباب والرذاذ</span>
+                <span class="brand-sub">Silent Fog Systems</span>
+              </div>
+              <img class="brand-logo" src="${logoBase64}" />
+            </div>
+          ` : `
+            <!-- Corner badge for pumps and packages -->
+            <div class="corner-badge">
+              <div class="brand-text">
+                <span class="brand-name">أبو طيف</span>
+                <span class="brand-sub">للضباب والرذاذ</span>
+              </div>
+              <img class="brand-logo" src="${logoBase64}" />
+            </div>
+          `}
+        </div>
+      </body>
+      </html>
+    `;
+
+    await page.setViewport({ width: 500, height: 500 });
+    await page.setContent(htmlContent, { waitUntil: 'load' });
+    
+    // Wait a brief moment for fonts / images to render
+    await new Promise(r => setTimeout(r, 450));
+
+    const brandedFilename = `${prod.id}_branded.png`;
+    const brandedFilePath = path.join(srcDir, brandedFilename);
+
+    console.log(`📸 Screenshotting branded ${prod.id}...`);
+    await page.screenshot({
+      path: brandedFilePath,
+      clip: { x: 0, y: 0, width: 500, height: 500 }
+    });
+    console.log(`   ✅ Branded image saved: ${brandedFilename}`);
+  }
+
+  await browser.close();
+  console.log('🎉 Product image branding and watermark/barcode cleaning complete!');
+}
+
+main().catch(err => {
+  console.error('❌ Branding process failed:', err);
+  process.exit(1);
+});
