@@ -762,6 +762,20 @@
             <p class="package-desc">أنبوب سقفي فاخر مع 6 مخارج نوزل لتوزيع ضبابي رأسي فائق وكثيف تبريد ممتاز</p>
             <div class="price-display">500 <span class="price-curr">ريال</span></div>
           </div>
+          <div class="package-pump-img">
+            <img src="images/anas_images/acc7_branded.png" alt="ماسورة سقفية 6 نزل">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">تثبيت سقفي</span>
+              <span class="highlight-tag">6 فوهات ضباب</span>
+              <span class="highlight-tag">كثافة تبريد ممتازة</span>
+            </div>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
+            </div>
+          </div>
+        </div>
 
         <!-- 31. نزل رذاذ (فوهة) -->
         <div class="package-card animate-on-scroll" data-category="accessories" onclick="openModal('prod31')">
@@ -901,20 +915,6 @@
           </div>
         </div>
 
-          <div class="package-pump-img">
-            <img src="images/anas_images/acc7_branded.png" alt="ماسورة سقفية 6 نزل">
-          </div>
-          <div class="package-card-body">
-            <div class="package-highlights">
-              <span class="highlight-tag">تثبيت سقفي</span>
-              <span class="highlight-tag">6 فوهات ضباب</span>
-              <span class="highlight-tag">كثافة تبريد ممتازة</span>
-            </div>
-            <div class="package-price-row">
-              <span class="package-cta">عرض التفاصيل والطلب</span>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -1609,6 +1609,11 @@
       const pkg = packagesData[pkgId];
       if (!pkg) return;
 
+      // Check if it's a pump system (prod1 to prod12)
+      const numId = parseInt(pkgId.replace('prod', ''), 10);
+      const isPump = numId >= 1 && numId <= 12;
+      const isColumn = numId >= 13 && numId <= 23;
+
       let productsHTML = '';
       pkg.products.forEach(p => {
         productsHTML += `
@@ -1624,6 +1629,27 @@
 
       const waLink = `https://wa.me/966559152818?text=${encodeURIComponent(pkg.whatsappMsg)}`;
 
+      let bodyHTML = '';
+      if (isPump) {
+        bodyHTML = `
+          <div class="modal-section">
+            <h3>${icons.box} مكونات الباقة (${pkg.products.length} قطع)</h3>
+            <div class="modal-products-grid">${productsHTML}</div>
+          </div>
+          <div class="modal-section">
+            <h3>${icons.shield} الضمان والصيانة</h3>
+            ${warrantyHTML}
+          </div>
+        `;
+      } else {
+        bodyHTML = `
+          <div class="modal-section">
+            <h3>${icons.box} ${isColumn ? 'تفاصيل العمود ومشتملاته' : 'تفاصيل ومواصفات المنتج'}</h3>
+            <div class="modal-products-grid">${productsHTML}</div>
+          </div>
+        `;
+      }
+
       document.getElementById('modalInner').innerHTML = `
         <div class="modal-header">
           <div class="modal-header-img"><img src="${pkg.pumpImg}" alt="${pkg.name}"></div>
@@ -1633,20 +1659,13 @@
           </div>
         </div>
         <div class="modal-body">
-          <div class="modal-section">
-            <h3>${icons.box} مكونات الباقة (${pkg.products.length} قطع)</h3>
-            <div class="modal-products-grid">${productsHTML}</div>
-          </div>
-          <div class="modal-section">
-            <h3>${icons.shield} الضمان والصيانة</h3>
-            ${warrantyHTML}
-          </div>
+          ${bodyHTML}
           <p class="modal-note">📞 للاستفسار عن الأسعار تواصل معنا عبر واتساب</p>
         </div>
         <div class="modal-footer">
           <a href="${waLink}" target="_blank" class="btn btn-primary">
             ${icons.whatsapp}
-            اطلب هذه الباقة عبر واتساب
+            ${isPump ? 'اطلب هذه الباقة عبر واتساب' : 'اطلب هذا المنتج عبر واتساب'}
           </a>
           <button onclick="closeModal()" class="btn btn-outline">إغلاق</button>
         </div>
