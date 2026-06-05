@@ -724,3 +724,55 @@ body {
   .columns-specs { gap: 8px; }
   .spec-chip { padding: 8px 14px; font-size: 0.78rem; }
 }
+
+/* ===== PRODUCTS SHOWCASE TABS ===== */
+.products-filter-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+  margin-top: -10px;
+}
+.tab-btn {
+  background: var(--dark-800);
+  border: 1px solid rgba(13, 124, 196, 0.2);
+  color: var(--gray-200);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+.tab-btn:hover {
+  background: rgba(13, 124, 196, 0.1);
+  color: var(--primary-300);
+  border-color: var(--primary-400);
+}
+.tab-btn.active {
+  background: var(--gradient-primary);
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: var(--shadow-glow-blue);
+}
+.package-card {
+  transition: all 0.4s ease;
+}
+.package-card-header .price-display {
+  margin-top: 8px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.package-card-header .price-display .price-curr {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.package-pump-img img {
+  border-radius: 12px;
+}
+

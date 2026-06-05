@@ -20,14 +20,14 @@ const downloadMap = {
   'رحى.jpg': 'logo_raha_coffee.jpg',
   'عنوان القهوة لوقو.png': 'logo_address_cafe.png',
   'فنق الترحيب.png': 'logo_tarhib_hotel.png',
-  'يونت.jfif': 'logo_unit_coffee.jfif'
+  'يونت.jfif': 'logo_unit_coffee.jfif',
+  'ارابيا.jpg': 'logo_arabia.jpg'
 };
 
 // Maps for online fetched logos (fallback for missing ones)
 const onlineFallbackMap = {
   'tea_sesame': 'logo_tea_sesame.jpeg',
-  'rose_masyaf': 'logo_rose_masyaf.jpeg',
-  'arabia': 'logo_arabia.jpeg'
+  'rose_masyaf': 'logo_rose_masyaf.jpeg'
 };
 
 function download(url, filename) {

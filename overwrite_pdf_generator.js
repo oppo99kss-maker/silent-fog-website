@@ -1,18 +1,23 @@
 const fs = require('fs');
 const path = require('path');
+
+const filePath = path.join(__dirname, 'generate_pdf_catalog.js');
+
+const code = `const fs = require('fs');
+const path = require('path');
 const puppeteer = require('puppeteer');
 
 // Helper to convert local images to Base64 data URIs for instant, reliable rendering
 function getBase64Image(filename, subDir = '') {
   const filePath = subDir ? path.join(__dirname, 'images', subDir, filename) : path.join(__dirname, 'images', filename);
   if (!fs.existsSync(filePath)) {
-    console.error(`[Warning] Image not found: ${filePath}`);
+    console.error(\`[Warning] Image not found: \${filePath}\`);
     return '';
   }
   const fileBuffer = fs.readFileSync(filePath);
   const ext = path.extname(filename).toLowerCase().replace('.', '');
-  const mimeType = ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : `image/${ext}`;
-  return `data:${mimeType};base64,${fileBuffer.toString('base64')}`;
+  const mimeType = ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : \`image/\${ext}\`;
+  return \`data:\${mimeType};base64,\${fileBuffer.toString('base64')}\`;
 }
 
 // Prepare images
@@ -65,7 +70,7 @@ const p11Branded = getBase64Image('p11_branded.png', 'anas_images');
 const p12Branded = getBase64Image('p12_branded.png', 'anas_images');
 
 function generateHTML() {
-  return `
+  return \`
     <!DOCTYPE html>
     <html lang="ar" dir="rtl">
     <head>
@@ -1122,7 +1127,7 @@ function generateHTML() {
         <div class="cover-watermark"></div>
         
         <div class="cover-logo-wrapper">
-          <img class="cover-logo" src="${logoBase64}" alt="Logo">
+          <img class="cover-logo" src="\${logoBase64}" alt="Logo">
           <div class="cover-brand-title">Silent Fog</div>
           <div class="cover-brand-ar">أبو طيف للضباب والرذاذ</div>
         </div>
@@ -1145,7 +1150,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1212,7 +1217,7 @@ function generateHTML() {
             <div class="tech-diagram-box">
               <h4>🔍 المخطط التشريحي للمضخة الإيطالية</h4>
               <div class="diagram-img-wrapper">
-                <img src="${pumpDiagramBase64}" alt="Pump Diagram">
+                <img src="\${pumpDiagramBase64}" alt="Pump Diagram">
               </div>
             </div>
 
@@ -1246,7 +1251,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1265,7 +1270,7 @@ function generateHTML() {
             
             <!-- Mist 20 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p3Branded}" alt="p3"></div>
+              <div class="prod-img-box"><img src="\${p3Branded}" alt="p3"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (20 رأس) <span class="tag">تغطية 25 متر</span></div>
                 <p class="prod-desc">الحل الاقتصادي المثالي للمظلات الصغيرة والجلسات الخارجية المحدودة. تشغيل صامت وكفاءة ممتازة.</p>
@@ -1282,7 +1287,7 @@ function generateHTML() {
 
             <!-- Mist 30 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p4Branded}" alt="p4"></div>
+              <div class="prod-img-box"><img src="\${p4Branded}" alt="p4"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (30 رأس) <span class="tag">تغطية 40 متر</span></div>
                 <p class="prod-desc">مناسب للحدائق والجلسات العائلية المتوسطة. يوفر توزيعاً ممتازاً للرذاذ لتلطيف مثالي للأجواء.</p>
@@ -1299,7 +1304,7 @@ function generateHTML() {
 
             <!-- Mist 40 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p2Branded}" alt="p2"></div>
+              <div class="prod-img-box"><img src="\${p2Branded}" alt="p2"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (40 رأس) <span class="tag">تغطية 50 متر</span></div>
                 <p class="prod-desc">قوة تشغيلية ممتازة ومثالية للمساحات الكبيرة المفتوحة والممرات والحدائق الفسيحة.</p>
@@ -1316,7 +1321,7 @@ function generateHTML() {
 
             <!-- Mist 60 -->
             <div class="product-row featured">
-              <div class="prod-img-box"><img src="${p1Branded}" alt="p1"></div>
+              <div class="prod-img-box"><img src="\${p1Branded}" alt="p1"></div>
               <div class="prod-details">
                 <div class="prod-title">جهاز رذاذ مطور (60 رأس) <span class="tag">تغطية 75 متر</span></div>
                 <p class="prod-desc">النظام الأقوى والأضخم في فئة الرذاذ المطور. تبريد كثيف وشامل للمساحات المنزلية الكبيرة والاستراحات.</p>
@@ -1346,7 +1351,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1365,7 +1370,7 @@ function generateHTML() {
             
             <!-- Fog Chinese 25 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p5Branded}" alt="p5"></div>
+              <div class="prod-img-box"><img src="\${p5Branded}" alt="p5"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب صيني متكامل (25 فوهة) <span class="tag">تغطية 35 متر</span></div>
                 <p class="prod-desc">نظام متكامل واقتصادي بمضخة ضغط عالي صينية. مناسب للاستراحات والحدائق وتأسيس نظام الضباب.</p>
@@ -1382,7 +1387,7 @@ function generateHTML() {
 
             <!-- Fog Taiwan 35 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p8Branded}" alt="p8"></div>
+              <div class="prod-img-box"><img src="\${p8Branded}" alt="p8"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب تايواني متكامل (35 فوهة) <span class="tag">تغطية 50 متر</span></div>
                 <p class="prod-desc">مضخة ضباب تايوانية عالية الكفاءة والهدوء. توزيع متوازن للضباب مجهري الحجم لتبريد فائق الانتعاش.</p>
@@ -1399,7 +1404,7 @@ function generateHTML() {
 
             <!-- Fog Italian 25 -->
             <div class="product-row featured">
-              <div class="prod-img-box"><img src="${p6Branded}" alt="p6"></div>
+              <div class="prod-img-box"><img src="\${p6Branded}" alt="p6"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب إيطالي متكامل (25 فوهة) <span class="tag">تغطية 35 متر</span></div>
                 <p class="prod-desc">النظام الأكثر هدوءاً وفخامة بمضخة إيطالية أصلية. مناسب للمقاهي الراقية والفلل الفخمة التي تتطلب هدوءاً تاماً.</p>
@@ -1416,7 +1421,7 @@ function generateHTML() {
 
             <!-- Fog Taiwan 60 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p7Branded}" alt="p7"></div>
+              <div class="prod-img-box"><img src="\${p7Branded}" alt="p7"></div>
               <div class="prod-details">
                 <div class="prod-title">نظام ضباب تايواني متكامل (60 فوهة) <span class="tag">تغطية 80 متر</span></div>
                 <p class="prod-desc">قوة هيدروليكية فائقة التغطية للأماكن التجارية الكبيرة، المطاعم المفتوحة، والمشاريع الواسعة جداً.</p>
@@ -1446,7 +1451,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1465,7 +1470,7 @@ function generateHTML() {
             
             <!-- Fans Package 24 -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p10Branded}" alt="p10"></div>
+              <div class="prod-img-box"><img src="\${p10Branded}" alt="p10"></div>
               <div class="prod-details">
                 <div class="prod-title">باكج مروحتين رذاذ 24 إنش + مضخة <span class="tag">تبريد هواء + رذاذ</span></div>
                 <p class="prod-desc">مروحتان رذاذ مع مضخة رذاذ مطورة وتمديدات لتدفق هواء مبرد في الاستراحات والحدائق والمقاهي المفتوحة.</p>
@@ -1482,7 +1487,7 @@ function generateHTML() {
 
             <!-- Fans Package 20 Fog -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p9Branded}" alt="p9"></div>
+              <div class="prod-img-box"><img src="\${p9Branded}" alt="p9"></div>
               <div class="prod-details">
                 <div class="prod-title">باكج مروحتين ضباب 20 إنش + مضخة 40 بار <span class="tag">تبريد هواء + ضباب</span></div>
                 <p class="prod-desc">أقوى باكج لدمج تبريد المروحة الدائرية مع ضباب عالي الضغط لتغطية شاملة ومثالية للمقاهي والقصور.</p>
@@ -1499,7 +1504,7 @@ function generateHTML() {
 
             <!-- Columns 2 Package -->
             <div class="product-row">
-              <div class="prod-img-box"><img src="${p12Branded}" alt="p12"></div>
+              <div class="prod-img-box"><img src="\${p12Branded}" alt="p12"></div>
               <div class="prod-details">
                 <div class="prod-title">باكج عمودين ضباب حديد + مضخة 40 بار <span class="tag">تغطية 25 متر مربع</span></div>
                 <p class="prod-desc">عمودان حديد ديكوريان فاخران لتبريد الممرات والحدائق ودمج أنظمة الضباب مع التصاميم الجمالية.</p>
@@ -1516,7 +1521,7 @@ function generateHTML() {
 
             <!-- Columns 4 Package -->
             <div class="product-row featured">
-              <div class="prod-img-box"><img src="${p11Branded}" alt="p11"></div>
+              <div class="prod-img-box"><img src="\${p11Branded}" alt="p11"></div>
               <div class="prod-details">
                 <div class="prod-title">باكج 4 أعمدة ضباب حديد + مضخة 70 بار <span class="tag">تغطية 45 متر مربع</span></div>
                 <p class="prod-desc">الباكج الديكوري التجاري الأقوى، يضم 4 أعمدة حديد فاخرة مع مضخة 70 بار قوية لتغطية المقاهي الواسعة.</p>
@@ -1546,7 +1551,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1568,7 +1573,7 @@ function generateHTML() {
               <span class="umb-badge">دائرية مستقلة</span>
               <h3>نموذج المظلة الدائرية المستقلة</h3>
               <div class="umbrella-img-box">
-                <img src="${roundUmbrellaBase64}" alt="Round Umbrella">
+                <img src="\${roundUmbrellaBase64}" alt="Round Umbrella">
               </div>
               <div class="umbrella-specs-box">
                 <h4>المواصفات الفنية للنموذج:</h4>
@@ -1587,7 +1592,7 @@ function generateHTML() {
               <span class="umb-badge">هرمية ثقيلة (Heavy Duty)</span>
               <h3>نموذج المظلة الهرمية الكبيرة</h3>
               <div class="umbrella-img-box">
-                <img src="${pyramidalUmbrellaBase64}" alt="Pyramidal Umbrella">
+                <img src="\${pyramidalUmbrellaBase64}" alt="Pyramidal Umbrella">
               </div>
               <div class="umbrella-specs-box">
                 <h4>المواصفات الفنية للنموذج:</h4>
@@ -1616,7 +1621,7 @@ function generateHTML() {
         
         <div class="page-header">
           <div class="header-logo">
-            <img src="${logoBase64}" alt="Logo">
+            <img src="\${logoBase64}" alt="Logo">
             <div class="brand-text">
               <span class="brand-en">Silent Fog</span>
               <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
@@ -1638,7 +1643,7 @@ function generateHTML() {
               <!-- 1. Address Cafe -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoAddressCafeBase64}" alt="Address Cafe">
+                  <img src="\${logoAddressCafeBase64}" alt="Address Cafe">
                 </div>
                 <span class="partner-logo-name">عنوان القهوة</span>
               </div>
@@ -1646,7 +1651,7 @@ function generateHTML() {
               <!-- 2. UNIT Coffee -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoUnitCoffeeBase64}" alt="UNIT Coffee">
+                  <img src="\${logoUnitCoffeeBase64}" alt="UNIT Coffee">
                 </div>
                 <span class="partner-logo-name">يونت كوفي</span>
               </div>
@@ -1654,7 +1659,7 @@ function generateHTML() {
               <!-- 3. Tea & Cake -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoTeaCakeBase64}" alt="Tea & Cake">
+                  <img src="\${logoTeaCakeBase64}" alt="Tea & Cake">
                 </div>
                 <span class="partner-logo-name">شاي وكعك</span>
               </div>
@@ -1662,7 +1667,7 @@ function generateHTML() {
               <!-- 4. Raha Coffee -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoRahaCoffeeBase64}" alt="Raha Coffee">
+                  <img src="\${logoRahaCoffeeBase64}" alt="Raha Coffee">
                 </div>
                 <span class="partner-logo-name">رحى كافيه</span>
               </div>
@@ -1670,7 +1675,7 @@ function generateHTML() {
               <!-- 5. Botticelli -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoBotticelliBase64}" alt="Botticelli">
+                  <img src="\${logoBotticelliBase64}" alt="Botticelli">
                 </div>
                 <span class="partner-logo-name">بوتشيلي</span>
               </div>
@@ -1678,7 +1683,7 @@ function generateHTML() {
               <!-- 6. Rose Al Masyaf Complex -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img class="padded" src="${logoRoseMasyafBase64}" alt="Rose Al Masyaf">
+                  <img class="padded" src="\${logoRoseMasyafBase64}" alt="Rose Al Masyaf">
                 </div>
                 <span class="partner-logo-name">روز المصيف</span>
               </div>
@@ -1686,7 +1691,7 @@ function generateHTML() {
               <!-- 7. Al Tarhib Hotel -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoTarhibHotelBase64}" alt="Al Tarhib Hotel">
+                  <img src="\${logoTarhibHotelBase64}" alt="Al Tarhib Hotel">
                 </div>
                 <span class="partner-logo-name">فندق الترحيب</span>
               </div>
@@ -1694,7 +1699,7 @@ function generateHTML() {
               <!-- 8. 8oz Coffee -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoEightOzBase64}" alt="8oz Coffee">
+                  <img src="\${logoEightOzBase64}" alt="8oz Coffee">
                 </div>
                 <span class="partner-logo-name">8oz Coffee</span>
               </div>
@@ -1702,7 +1707,7 @@ function generateHTML() {
               <!-- 9. Tea & Sesame -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoTeaSesameBase64}" alt="Tea & Sesame">
+                  <img src="\${logoTeaSesameBase64}" alt="Tea & Sesame">
                 </div>
                 <span class="partner-logo-name">شاي وسمسم</span>
               </div>
@@ -1710,7 +1715,7 @@ function generateHTML() {
               <!-- 10. Dopamine -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoDopamineBase64}" alt="Dopamine">
+                  <img src="\${logoDopamineBase64}" alt="Dopamine">
                 </div>
                 <span class="partner-logo-name">دوبامين</span>
               </div>
@@ -1718,7 +1723,7 @@ function generateHTML() {
               <!-- 11. Arabia -->
               <div class="partner-logo-item">
                 <div class="partner-logo-circle">
-                  <img src="${logoArabiaBase64}" alt="Arabia">
+                  <img src="\${logoArabiaBase64}" alt="Arabia">
                 </div>
                 <span class="partner-logo-name">أرابيا</span>
               </div>
@@ -1784,7 +1789,7 @@ function generateHTML() {
 
     </body>
     </html>
-  `;
+  \`;
 }
 
 // Generate the PDF brochure catalog
@@ -1803,7 +1808,7 @@ async function main() {
   await new Promise(r => setTimeout(r, 1200));
 
   const outputDir = path.join(__dirname, 'images');
-  const artifactsDir = 'C:\\Users\\t\\.gemini\\antigravity\\brain\\4ac733a0-c12b-413f-862e-707610cfd557';
+  const artifactsDir = 'C:\\\\Users\\\\t\\\\.gemini\\\\antigravity\\\\brain\\\\4ac733a0-c12b-413f-862e-707610cfd557';
 
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
@@ -1829,9 +1834,9 @@ async function main() {
   // Copy to brain artifacts directory so user can view immediately
   try {
     fs.copyFileSync(localPDFPath, brainPDFPath);
-    console.log(`✅ Saved expanded 7-page catalog PDF to website images and artifacts brain!`);
+    console.log(\`✅ Saved expanded 7-page catalog PDF to website images and artifacts brain!\`);
   } catch (err) {
-    console.error(`[Error] Failed to copy to artifacts:`, err.message);
+    console.error(\`[Error] Failed to copy to artifacts:\`, err.message);
   }
 
   await browser.close();
@@ -1842,3 +1847,7 @@ main().catch(err => {
   console.error('❌ PDF Generation failed:', err);
   process.exit(1);
 });
+`;
+
+fs.writeFileSync(filePath, code, 'utf8');
+console.log('🎉 Overwrote generate_pdf_catalog.js successfully!');
