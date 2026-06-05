@@ -85,6 +85,12 @@ const acc4Branded = getBase64Image('acc4_branded.png', 'anas_images');
 const acc5Branded = getBase64Image('acc5_branded.png', 'anas_images');
 const acc6Branded = getBase64Image('acc6_branded.png', 'anas_images');
 const acc7Branded = getBase64Image('acc7_branded.png', 'anas_images');
+const acc8Branded = getBase64Image('acc8_branded.png', 'anas_images');
+const acc9Branded = getBase64Image('acc9_branded.png', 'anas_images');
+const acc10Branded = getBase64Image('acc10_branded.png', 'anas_images');
+const acc11Branded = getBase64Image('acc11_branded.png', 'anas_images');
+const acc12Branded = getBase64Image('acc12_branded.png', 'anas_images');
+const acc13Branded = getBase64Image('acc13_branded.png', 'anas_images');
 
 function generateHTML() {
   return `
@@ -1061,7 +1067,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 2 من 10</span>
+          <span class="page-footer-right">صفحة 2 من 11</span>
         </div>
       </div>
 
@@ -1159,7 +1165,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 3 من 10</span>
+          <span class="page-footer-right">صفحة 3 من 11</span>
         </div>
       </div>
 
@@ -1257,7 +1263,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 4 من 10</span>
+          <span class="page-footer-right">صفحة 4 من 11</span>
         </div>
       </div>
 
@@ -1355,7 +1361,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 5 من 10</span>
+          <span class="page-footer-right">صفحة 5 من 11</span>
         </div>
       </div>
 
@@ -1445,7 +1451,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 6 من 10</span>
+          <span class="page-footer-right">صفحة 6 من 11</span>
         </div>
       </div>
 
@@ -1525,7 +1531,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 7 من 10</span>
+          <span class="page-footer-right">صفحة 7 من 11</span>
         </div>
       </div>
 
@@ -1625,7 +1631,97 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 8 من 10</span>
+          <span class="page-footer-right">صفحة 8 من 11</span>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 9: NOZZLES SECTION ================= -->
+      <div class="page">
+        <div class="watermark"></div>
+        
+        <div class="page-header">
+          <div class="header-logo">
+            <img src="${logoBase64}" alt="Logo">
+            <div class="brand-text">
+              <span class="brand-en">Silent Fog</span>
+              <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
+            </div>
+          </div>
+          <span class="header-title">فوهات ونزلات الضباب والرذاذ والصيانة</span>
+        </div>
+
+        <div class="page-content">
+          <h3 class="pdf-section-title" style="color: var(--primary-navy); margin-bottom: 6px;">فوهات ونزلات الضباب والرذاذ الاحترافية</h3>
+          <p class="pdf-section-subtitle" style="margin-bottom: 12px;">نوزلات ورؤوس رذاذ مجهرية دقيقة ومصممة للتبريد الفائق ومقاومة الأملاح ومحاليل التنظيف المعتمدة:</p>
+
+          <div class="pdf-grid-compact">
+            
+            <!-- acc10: نزل رذاذ -->
+            <div class="pdf-compact-card">
+              <div class="pdf-compact-img-box"><img src="${acc10Branded}" alt="acc10"></div>
+              <div class="pdf-compact-details">
+                <span class="pdf-compact-title">نزل رذاذ (فوهة) دقيقة</span>
+                <span class="pdf-compact-desc">فوهة نزل رذاذ مطور دقيق يوزع الرذاذ بانتظام ويقاوم الانسداد.</span>
+                <span class="pdf-compact-price">30 ريال</span>
+              </div>
+            </div>
+
+            <!-- acc9: نزل ضباب -->
+            <div class="pdf-compact-card">
+              <div class="pdf-compact-img-box"><img src="${acc9Branded}" alt="acc9"></div>
+              <div class="pdf-compact-details">
+                <span class="pdf-compact-title">نزل ضباب (فوهة) ستانلس</span>
+                <span class="pdf-compact-desc">نوزل ضباب ستانلس مجهري للضغط العالي يوفر برودة فائقة دون بلل.</span>
+                <span class="pdf-compact-price">35 ريال</span>
+              </div>
+            </div>
+
+            <!-- acc11: نزل ضباب نحاس امريكي -->
+            <div class="pdf-compact-card">
+              <div class="pdf-compact-img-box"><img src="${acc11Branded}" alt="acc11"></div>
+              <div class="pdf-compact-details">
+                <span class="pdf-compact-title">نزل ضباب نحاس أمريكي</span>
+                <span class="pdf-compact-desc">نوزل نحاسي أمريكي فاخر ذو مقاومة عالية جداً للأملاح والترسبات.</span>
+                <span class="pdf-compact-price">60 ريال</span>
+              </div>
+            </div>
+
+            <!-- acc12: نزل رذاذ صرف ماء -->
+            <div class="pdf-compact-card">
+              <div class="pdf-compact-img-box"><img src="${acc12Branded}" alt="acc12"></div>
+              <div class="pdf-compact-details">
+                <span class="pdf-compact-title">نزل رذاذ (مع صمام صرف)</span>
+                <span class="pdf-compact-desc">فوهة رذاذ مجهزة بصمام مانع للتنقيط وتصريف مائي تلقائي.</span>
+                <span class="pdf-compact-price">80 ريال</span>
+              </div>
+            </div>
+
+            <!-- acc13: نزل ضباب صرف ماء -->
+            <div class="pdf-compact-card">
+              <div class="pdf-compact-img-box"><img src="${acc13Branded}" alt="acc13"></div>
+              <div class="pdf-compact-details">
+                <span class="pdf-compact-title">نزل ضباب (مع صمام صرف)</span>
+                <span class="pdf-compact-desc">فوهة ضباب ستانلس ستيل مع صمام تصريف هيدروليكي لمنع التنقيط.</span>
+                <span class="pdf-compact-price">100 ريال</span>
+              </div>
+            </div>
+
+            <!-- acc8: سائل تنظيف فوهات -->
+            <div class="pdf-compact-card">
+              <div class="pdf-compact-img-box"><img src="${acc8Branded}" alt="acc8"></div>
+              <div class="pdf-compact-details">
+                <span class="pdf-compact-title">سائل تنظيف فوهات الضباب</span>
+                <span class="pdf-compact-desc">محلول صيانة فعال لتنظيف الفوهات المسدودة وإزالة الترسبات الكلسية.</span>
+                <span class="pdf-compact-price">220 ريال</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
+          <span class="page-footer-right">صفحة 9 من 11</span>
         </div>
       </div>
 
@@ -1695,7 +1791,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 9 من 10</span>
+          <span class="page-footer-right">صفحة 10 من 11</span>
         </div>
       </div>
 
@@ -1848,7 +1944,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 10 من 10</span>
+          <span class="page-footer-right">صفحة 11 من 11</span>
         </div>
       </div>
 
@@ -1858,7 +1954,7 @@ function generateHTML() {
 }
 
 async function main() {
-  console.log('🚀 Starting Overwritten 10-Page PDF Catalog Generation...');
+  console.log('🚀 Starting Overwritten 11-Page PDF Catalog Generation...');
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -1881,7 +1977,7 @@ async function main() {
   const localPDFPath = path.join(__dirname, 'images', 'silent_fog_catalog.pdf');
   const brainPDFPath = path.join(artifactsDir, 'silent_fog_catalog.pdf');
 
-  console.log('📸 Rendering 10 A4 Pages into PDF...');
+  console.log('📸 Rendering 11 A4 Pages into PDF...');
   
   await page.pdf({
     path: localPDFPath,
@@ -1898,13 +1994,13 @@ async function main() {
   // Copy to brain artifacts directory so user can view immediately
   try {
     fs.copyFileSync(localPDFPath, brainPDFPath);
-    console.log(`✅ Saved expanded 10-page catalog PDF to website images and artifacts brain!`);
+    console.log(`✅ Saved expanded 11-page catalog PDF to website images and artifacts brain!`);
   } catch (err) {
     console.error(`[Error] Failed to copy to artifacts:`, err.message);
   }
 
   await browser.close();
-  console.log('🎉 10-Page PDF Catalog generated successfully!');
+  console.log('🎉 11-Page PDF Catalog generated successfully!');
 }
 
 main().catch(err => {
