@@ -63,6 +63,10 @@ const p9Branded = getBase64Image('p9_branded.png', 'anas_images');
 const p10Branded = getBase64Image('p10_branded.png', 'anas_images');
 const p11Branded = getBase64Image('p11_branded.png', 'anas_images');
 const p12Branded = getBase64Image('p12_branded.png', 'anas_images');
+const col1Branded = getBase64Image('col1_branded.png', 'anas_images');
+const col2Branded = getBase64Image('col2_branded.png', 'anas_images');
+const col3Branded = getBase64Image('col3_branded.png', 'anas_images');
+const col4Branded = getBase64Image('col4_branded.png', 'anas_images');
 
 function generateHTML() {
   return `
@@ -1236,7 +1240,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 2 من 7</span>
+          <span class="page-footer-right">صفحة 2 من 8</span>
         </div>
       </div>
 
@@ -1336,7 +1340,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 3 من 7</span>
+          <span class="page-footer-right">صفحة 3 من 8</span>
         </div>
       </div>
 
@@ -1436,7 +1440,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 4 من 7</span>
+          <span class="page-footer-right">صفحة 4 من 8</span>
         </div>
       </div>
 
@@ -1536,11 +1540,111 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 5 من 7</span>
+          <span class="page-footer-right">صفحة 5 من 8</span>
         </div>
       </div>
 
-      <!-- ================= PAGE 6: UMBRELLAS SECTION ================= -->
+      <!-- ================= PAGE 6: SINGLE COLUMNS ================= -->
+      <div class="page">
+        <div class="watermark"></div>
+        
+        <div class="page-header">
+          <div class="header-logo">
+            <img src="${logoBase64}" alt="Logo">
+            <div class="brand-text">
+              <span class="brand-en">Silent Fog</span>
+              <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
+            </div>
+          </div>
+          <span class="header-title">أعمدة الضباب المنفردة والديكورية</span>
+        </div>
+
+        <div class="page-content">
+          <h2 class="section-title" style="margin-bottom: 6px;">أعمدة الضباب المنفردة</h2>
+          <p class="section-desc" style="margin-bottom: 8px;">
+            تشكيلة فاخرة من أعمدة الضباب المصممة من الحديد المقاوم للصدأ ومجهزة بنظام إضاءة LED مدمج لتبريد وتزيين الممرات والحدائق:
+          </p>
+
+          <div class="product-rows-container">
+            
+            <!-- Column 1 -->
+            <div class="product-row">
+              <div class="prod-img-box"><img src="${col4Branded}" alt="col4"></div>
+              <div class="prod-details">
+                <div class="prod-title">عامود ضباب حديد مربع أسود (12 فوهة) <span class="tag">حديدي اقتصادي</span></div>
+                <p class="prod-desc">بطول 2 متر — هيكل مربع متين بتوصيلات داخلية مدمجة يوفر تبريدًا متناسقًا وأداءً طويلاً في الممرات والجلسات.</p>
+                <div class="prod-tags">
+                  <span class="prod-tag">بطول 2 متر</span>
+                  <span class="prod-tag">12 فوهة ضباب ستانلس</span>
+                  <span class="prod-tag">حديد مربع أسود</span>
+                </div>
+              </div>
+              <div class="prod-price-box">
+                <div class="prod-price-val">1,450 <span class="prod-price-curr">ريال</span></div>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="product-row">
+              <div class="prod-img-box"><img src="${col3Branded}" alt="col3"></div>
+              <div class="prod-details">
+                <div class="prod-title">عامود ضباب مزود بإنارة ليد مربع (12 فوهة) <span class="tag">مضيء مميز</span></div>
+                <p class="prod-desc">عمود حديد مربع يجمع بين روعة إضاءة الـ LED المدمجة وتبريد الضباب الكثيف لتصميم ليلي فخم وساحر.</p>
+                <div class="prod-tags">
+                  <span class="prod-tag">إنارة ليد مدمجة</span>
+                  <span class="prod-tag">12 فوهة ضباب ستانلس</span>
+                  <span class="prod-tag">حديد مربع أسود</span>
+                </div>
+              </div>
+              <div class="prod-price-box">
+                <div class="prod-price-val">1,900 <span class="prod-price-curr">ريال</span></div>
+              </div>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="product-row">
+              <div class="prod-img-box"><img src="${col1Branded}" alt="col1"></div>
+              <div class="prod-details">
+                <div class="prod-title">عامود ضباب مزود بإنارة ليد دائري (16 فوهة) <span class="tag">مضيء احترافي</span></div>
+                <p class="prod-desc">تغطية واسعة بـ 16 نزل مع إضاءة LED مدمجة تضفي جمالاً ساحراً وتبريداً ممتازاً للممرات والمقاهي.</p>
+                <div class="prod-tags">
+                  <span class="prod-tag">إنارة ليد مدمجة</span>
+                  <span class="prod-tag">16 فوهة ضباب ستانلس</span>
+                  <span class="prod-tag">حديد دائري أسود</span>
+                </div>
+              </div>
+              <div class="prod-price-box">
+                <div class="prod-price-val">2,199 <span class="prod-price-curr">ريال</span></div>
+              </div>
+            </div>
+
+            <!-- Column 4 -->
+            <div class="product-row">
+              <div class="prod-img-box"><img src="${col2Branded}" alt="col2"></div>
+              <div class="prod-details">
+                <div class="prod-title">عامود ضباب حديد مزود بإنارة (6 فوهات) <span class="tag">مضيء كلاسيكي</span></div>
+                <p class="prod-desc">بطول 2 متر — عمود كلاسيكي دائري يجمع التبريد اللطيف بإنارة مدمجة جذابة تناسب الفلل والاستراحات.</p>
+                <div class="prod-tags">
+                  <span class="prod-tag">بطول 2 متر</span>
+                  <span class="prod-tag">6 فوهات ضباب رذاذية</span>
+                  <span class="prod-tag">إنارة كلاسيكية مدمجة</span>
+                </div>
+              </div>
+              <div class="prod-price-box">
+                <div class="prod-price-val">2,300 <span class="prod-price-curr">ريال</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
+          <span class="page-footer-right">صفحة 6 من 8</span>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 7: UMBRELLAS SECTION ================= -->
       <div class="page">
         <div class="watermark"></div>
         
@@ -1606,7 +1710,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 6 من 7</span>
+          <span class="page-footer-right">صفحة 7 من 8</span>
         </div>
       </div>
 
@@ -1778,7 +1882,7 @@ function generateHTML() {
 
         <div class="page-footer">
           <span>دليل وكتالوج أنظمة الضباب والرذاذ — أبو طيف</span>
-          <span class="page-footer-right">صفحة 7 من 7</span>
+          <span class="page-footer-right">صفحة 8 من 8</span>
         </div>
       </div>
 
@@ -1789,7 +1893,7 @@ function generateHTML() {
 
 // Generate the PDF brochure catalog
 async function main() {
-  console.log('🚀 Starting Overwritten 7-Page PDF Catalog Generation...');
+  console.log('🚀 Starting Overwritten 8-Page PDF Catalog Generation...');
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -1812,7 +1916,7 @@ async function main() {
   const localPDFPath = path.join(__dirname, 'images', 'silent_fog_catalog.pdf');
   const brainPDFPath = path.join(artifactsDir, 'silent_fog_catalog.pdf');
 
-  console.log('📸 Rendering 7 A4 Pages into PDF...');
+  console.log('📸 Rendering 8 A4 Pages into PDF...');
   
   await page.pdf({
     path: localPDFPath,
@@ -1829,13 +1933,13 @@ async function main() {
   // Copy to brain artifacts directory so user can view immediately
   try {
     fs.copyFileSync(localPDFPath, brainPDFPath);
-    console.log(`✅ Saved expanded 7-page catalog PDF to website images and artifacts brain!`);
+    console.log(`✅ Saved expanded 8-page catalog PDF to website images and artifacts brain!`);
   } catch (err) {
     console.error(`[Error] Failed to copy to artifacts:`, err.message);
   }
 
   await browser.close();
-  console.log('🎉 7-Page PDF Catalog generated successfully!');
+  console.log('🎉 8-Page PDF Catalog generated successfully!');
 }
 
 main().catch(err => {
