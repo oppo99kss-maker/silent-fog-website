@@ -23,6 +23,7 @@
       <ul class="navbar-nav" id="navMenu">
         <li><a href="#home">الرئيسية</a></li>
         <li><a href="#packages">الباقات</a></li>
+        <li><a href="#why">مميزاتنا</a></li>
         <li><a href="#mist">الضباب</a></li>
         <li><a href="#umbrellas">المظلات</a></li>
         <li><a href="#columns">الأعمدة</a></li>
@@ -41,6 +42,9 @@
   <section class="hero" id="home">
     <div class="hero-bg"><img src="images/hero_banner.png" alt="ضباب ورذاذ"></div>
     <canvas id="heroMistCanvas"></canvas>
+    <div class="hero-sphere s1"></div>
+    <div class="hero-sphere s2"></div>
+    <div class="hero-sphere s3"></div>
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge"><span class="dot"></span> أنظمة تبريد احترافية</div>
@@ -63,86 +67,53 @@
         </div>
       </div>
     </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"></div>
+      <span>اكتشف المزيد</span>
+    </div>
   </section>
 
   
-  <!-- INTERACTIVE COOLING SIMULATOR -->
-  <section class="simulator-section" id="simulator">
+  <!-- WHY ABU TAIF FEATURES SECTION -->
+  <section class="why-section" id="why">
     <div class="container">
-      <div class="section-header animate-on-scroll">
-        <div class="section-tag">تجربة حية</div>
-        <h2>محاكي <span>التبريد الذكي</span> بالضباب</h2>
-        <p>شاهد كيف يقوم نظام الضباب والرذاذ بتخفيض درجات الحرارة فورياً وتلطيف الأجواء الجافة والحارة</p>
+      <div class="section-header reveal-up">
+        <div class="section-tag">لماذا أبو طيف؟</div>
+        <h2>تميّز <span>يفوق التوقعات</span></h2>
+        <p>نلتزم بأعلى معايير الجودة في كل تفصيلة، من اختيار المضخات وحتى التركيب النهائي والدعم الفني</p>
       </div>
 
-      <div class="simulator-container animate-on-scroll">
-        <!-- Visual Simulation Panel -->
-        <div class="simulator-visual">
-          <img src="images/desktop_assets/WhatsApp Image 2026-02-15 at 2.41.12 PM (5).jpeg" class="simulator-bg-img" id="simBgImgReal" alt="حديقة خارجية فاخرة">
-          <canvas id="simulatorMistCanvas"></canvas>
-
-          <!-- Temperature Gauge Overlay -->
-          <div class="temp-gauge-area">
-            <div class="temp-gauge-circle">
-              <svg>
-                <circle class="circle-bg" cx="45" cy="45" r="40"></circle>
-                <circle class="circle-val" id="tempCircle" cx="45" cy="45" r="40"></circle>
-              </svg>
-              <div class="temp-num"><span id="tempNumber">42</span><span>°م</span></div>
-            </div>
-            <div class="temp-status-text" id="tempStatus">أجواء حارة وجافة جداً</div>
+      <div class="why-grid stagger-children">
+        <div class="why-card">
+          <div class="why-card-icon icon-blue">
+            <i class="fas fa-microchip"></i>
           </div>
-
-          <!-- Simulation Info Overlay -->
-          <div class="simulation-overlay-info">
-            <div class="sim-info-item">
-              <div class="sim-info-icon">
-                <i class="fas fa-wind"></i>
-              </div>
-              <div class="sim-info-details">
-                <span>تأثير التبريد</span>
-                <p id="coolingEffectText">النظام متوقف</p>
-              </div>
-            </div>
-            <div class="sim-info-item">
-              <div class="sim-info-icon">
-                <i class="fas fa-tint"></i>
-              </div>
-              <div class="sim-info-details">
-                <span>مستوى الرطوبة</span>
-                <p id="humidityText">12% (جاف جداً)</p>
-              </div>
-            </div>
-          </div>
+          <h3>مضخات إيطالية صامتة</h3>
+          <p>مضخات هيدروليكية فائقة الهدوء بتقنية FWP-IT الإيطالية، عمر افتراضي طويل وأداء ثابت بدون اهتزاز أو إزعاج.</p>
         </div>
 
-        <!-- Controls Panel -->
-        <div class="simulator-controls-panel">
-          <div class="simulator-title-bar">
-            <h3>لوحة التحكم بالمحاكاة</h3>
-            <p>قم بتغيير درجة الحرارة وتشغيل الضباب لتجربة تبريد أبو طيف</p>
+        <div class="why-card">
+          <div class="why-card-icon icon-teal">
+            <i class="fas fa-spray-can-sparkles"></i>
           </div>
+          <h3>نوزلات نحاسية مانعة للتنقيط</h3>
+          <p>فوهات FWP نحاسية أمريكية بتصميم مانع للتنقيط تماماً، تنتج ضباباً فائق النعومة يتبخر قبل ملامسة الأسطح.</p>
+        </div>
 
-          <!-- Slider Group -->
-          <div class="control-group">
-            <div class="control-label">
-              <span>درجة الحرارة الخارجية الخارجية:</span>
-              <span class="control-val"><span id="sliderValDisplay">42</span>°م</span>
-            </div>
-            <input type="range" min="30" max="50" value="42" class="simulator-slider" id="tempSlider">
+        <div class="why-card">
+          <div class="why-card-icon icon-gold">
+            <i class="fas fa-wand-magic-sparkles"></i>
           </div>
+          <h3>تأسيس متكامل وأعمدة LED</h3>
+          <p>تركيب وتأسيس كامل لشبكات الضباب مع أعمدة LED ديكورية ساحرة تجمع بين إنارة الليل وتبريد الضباب الكثيف.</p>
+        </div>
 
-          <!-- Switch Group -->
-          <div class="toggle-switch-container">
-            <div class="switch-label-area">
-              <h4>تشغيل نظام الضباب والرذاذ</h4>
-              <span>تقنية ضباب ناعم FWP-IT صامتة</span>
-            </div>
-            <label class="switch">
-              <input type="checkbox" id="mistSwitch">
-              <span class="slider-btn"></span>
-            </label>
+        <div class="why-card">
+          <div class="why-card-icon icon-white">
+            <i class="fas fa-shield-halved"></i>
           </div>
+          <h3>ضمان ذهبي وخدمة فورية</h3>
+          <p>ضمان شامل لمدة سنتين على جميع المضخات مع فريق صيانة متخصص وخدمة استجابة فورية على مدار الساعة.</p>
         </div>
       </div>
     </div>
@@ -1923,167 +1894,32 @@
       animateHeroCanvas();
     }
 
-    // ===== MIST COOLING SIMULATOR LOGIC =====
-    const tempSlider = document.getElementById('tempSlider');
-    const sliderValDisplay = document.getElementById('sliderValDisplay');
-    const mistSwitch = document.getElementById('mistSwitch');
-    const tempNumber = document.getElementById('tempNumber');
-    const tempCircle = document.getElementById('tempCircle');
-    const tempStatus = document.getElementById('tempStatus');
-    const coolingEffectText = document.getElementById('coolingEffectText');
-    const humidityText = document.getElementById('humidityText');
-    const simBgImgReal = document.getElementById('simBgImgReal');
-    const simCanvas = document.getElementById('simulatorMistCanvas');
-
-    let tempAnimInterval = null;
-
-    function updateGauge(temp, isCooling) {
-      const pct = Math.max(0, Math.min(1, (50 - temp) / (50 - 30)));
-      const offset = 251.2 - (pct * 251.2);
-      tempCircle.style.strokeDashoffset = offset;
-      
-      if (isCooling) {
-        tempCircle.style.stroke = 'var(--accent-teal)';
-      } else {
-        tempCircle.style.stroke = 'var(--accent-gold)';
-      }
-    }
-
-    function runSimulation() {
-      const ambientTemp = parseInt(tempSlider.value, 10);
-      sliderValDisplay.innerText = ambientTemp;
-      clearInterval(tempAnimInterval);
-
-      if (mistSwitch.checked) {
-        simCanvas.classList.add('active');
-        simBgImgReal.classList.add('mist-active');
-        const targetTemp = Math.max(20, ambientTemp - 15);
-        
-        let tempStep = ambientTemp;
-        tempAnimInterval = setInterval(() => {
-          if (tempStep > targetTemp) {
-            tempStep--;
-            tempNumber.innerText = tempStep;
-            updateGauge(tempStep, true);
-          } else {
-            clearInterval(tempAnimInterval);
-          }
-        }, 50);
-
-        tempStatus.innerText = 'نسيم ربيعي بارد ومنعش';
-        tempStatus.classList.add('cool');
-        coolingEffectText.innerText = 'نشط (تبريد -15°م)';
-        humidityText.innerText = '45% (رطوبة متوازنة)';
-      } else {
-        simCanvas.classList.remove('active');
-        simBgImgReal.classList.remove('mist-active');
-        
-        let tempStep = parseInt(tempNumber.innerText, 10);
-        tempAnimInterval = setInterval(() => {
-          if (tempStep < ambientTemp) {
-            tempStep++;
-            tempNumber.innerText = tempStep;
-            updateGauge(tempStep, false);
-          } else {
-            clearInterval(tempAnimInterval);
-          }
-        }, 50);
-
-        if (ambientTemp > 40) {
-          tempStatus.innerText = 'أجواء حارة وجافة جداً';
-        } else if (ambientTemp > 35) {
-          tempStatus.innerText = 'أجواء متوسطة الحرارة';
-        } else {
-          tempStatus.innerText = 'أجواء معتدلة جافة';
-        }
-        tempStatus.classList.remove('cool');
-        coolingEffectText.innerText = 'النظام متوقف';
-        humidityText.innerText = '12% (جاف جداً)';
-      }
-    }
-
-    if (tempSlider && mistSwitch) {
-      tempSlider.addEventListener('input', runSimulation);
-      mistSwitch.addEventListener('change', runSimulation);
-      updateGauge(42, false);
-    }
-    
-    // Simulator Canvas Mist Particles
-    if (simCanvas) {
-      const sctx = simCanvas.getContext('2d');
-      let simParticles = [];
-      const simPCount = 25;
-
-      function resizeSimCanvas() {
-        simCanvas.width = simCanvas.parentElement.clientWidth;
-        simCanvas.height = simCanvas.parentElement.clientHeight;
-      }
-      window.addEventListener('resize', resizeSimCanvas);
-      resizeSimCanvas();
-
-      class SimParticle {
-        constructor() {
-          this.reset(true);
-        }
-        reset(init = false) {
-          this.x = Math.random() * simCanvas.width;
-          this.y = init ? Math.random() * simCanvas.height : -10;
-          this.vx = (Math.random() - 0.7) * 0.5;
-          this.vy = 1.0 + Math.random() * 1.5;
-          this.alpha = 0.01;
-          this.maxAlpha = 0.15 + Math.random() * 0.2;
-          this.size = 25 + Math.random() * 40;
-          this.growth = 0.2 + Math.random() * 0.5;
-          this.life = 0;
-          this.maxLife = 120 + Math.random() * 120;
-        }
-        update() {
-          this.x += this.vx;
-          this.y += this.vy;
-          this.size += this.growth;
-          this.life++;
-
-          if (this.life < this.maxLife * 0.25) {
-            this.alpha = (this.life / (this.maxLife * 0.25)) * this.maxAlpha;
-          } else if (this.life > this.maxLife * 0.6) {
-            this.alpha = (1 - ((this.life - this.maxLife * 0.6) / (this.maxLife * 0.4))) * this.maxAlpha;
-          } else {
-            this.alpha = this.maxAlpha;
-          }
-
-          if (this.life >= this.maxLife || this.y > simCanvas.height || this.alpha <= 0) {
-            this.reset();
+    // ===== SCROLL REVEAL ANIMATION ENGINE =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          // For stagger-children, also add revealed class
+          if (entry.target.classList.contains('stagger-children')) {
+            entry.target.classList.add('revealed');
           }
         }
-        draw() {
-          if (!mistSwitch.checked || this.alpha <= 0) return;
-          sctx.beginPath();
-          const grad = sctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-          grad.addColorStop(0, `rgba(245, 250, 255, ${this.alpha})`);
-          grad.addColorStop(0.6, `rgba(245, 250, 255, ${this.alpha * 0.3})`);
-          grad.addColorStop(1, 'rgba(245, 250, 255, 0)');
-          sctx.fillStyle = grad;
-          sctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          sctx.fill();
-        }
-      }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-      for (let i = 0; i < simPCount; i++) {
-        simParticles.push(new SimParticle());
-      }
+    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale, .stagger-children').forEach(el => {
+      revealObserver.observe(el);
+    });
 
-      function animateSimCanvas() {
-        sctx.clearRect(0, 0, simCanvas.width, simCanvas.height);
-        if (mistSwitch.checked) {
-          simParticles.forEach(p => {
-            p.update();
-            p.draw();
-          });
+    // Also observe existing animate-on-scroll elements
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-        requestAnimationFrame(animateSimCanvas);
-      }
-      animateSimCanvas();
-    }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
 
     // Initialize tab slider pill on load
     document.addEventListener('DOMContentLoaded', () => {
