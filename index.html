@@ -40,7 +40,7 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg"><img src="images/hero_banner.png" alt="ضباب ورذاذ"></div>
-    <div class="mist-particles" id="mistParticles"></div>
+    <canvas id="heroMistCanvas"></canvas>
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge"><span class="dot"></span> أنظمة تبريد احترافية</div>
@@ -66,6 +66,88 @@
   </section>
 
   
+  <!-- INTERACTIVE COOLING SIMULATOR -->
+  <section class="simulator-section" id="simulator">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">تجربة حية</div>
+        <h2>محاكي <span>التبريد الذكي</span> بالضباب</h2>
+        <p>شاهد كيف يقوم نظام الضباب والرذاذ بتخفيض درجات الحرارة فورياً وتلطيف الأجواء الجافة والحارة</p>
+      </div>
+
+      <div class="simulator-container animate-on-scroll">
+        <!-- Visual Simulation Panel -->
+        <div class="simulator-visual">
+          <img src="images/desktop_assets/WhatsApp Image 2026-02-15 at 2.41.12 PM (5).jpeg" class="simulator-bg-img" id="simBgImgReal" alt="حديقة خارجية فاخرة">
+          <canvas id="simulatorMistCanvas"></canvas>
+
+          <!-- Temperature Gauge Overlay -->
+          <div class="temp-gauge-area">
+            <div class="temp-gauge-circle">
+              <svg>
+                <circle class="circle-bg" cx="45" cy="45" r="40"></circle>
+                <circle class="circle-val" id="tempCircle" cx="45" cy="45" r="40"></circle>
+              </svg>
+              <div class="temp-num"><span id="tempNumber">42</span><span>°م</span></div>
+            </div>
+            <div class="temp-status-text" id="tempStatus">أجواء حارة وجافة جداً</div>
+          </div>
+
+          <!-- Simulation Info Overlay -->
+          <div class="simulation-overlay-info">
+            <div class="sim-info-item">
+              <div class="sim-info-icon">
+                <i class="fas fa-wind"></i>
+              </div>
+              <div class="sim-info-details">
+                <span>تأثير التبريد</span>
+                <p id="coolingEffectText">النظام متوقف</p>
+              </div>
+            </div>
+            <div class="sim-info-item">
+              <div class="sim-info-icon">
+                <i class="fas fa-tint"></i>
+              </div>
+              <div class="sim-info-details">
+                <span>مستوى الرطوبة</span>
+                <p id="humidityText">12% (جاف جداً)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls Panel -->
+        <div class="simulator-controls-panel">
+          <div class="simulator-title-bar">
+            <h3>لوحة التحكم بالمحاكاة</h3>
+            <p>قم بتغيير درجة الحرارة وتشغيل الضباب لتجربة تبريد أبو طيف</p>
+          </div>
+
+          <!-- Slider Group -->
+          <div class="control-group">
+            <div class="control-label">
+              <span>درجة الحرارة الخارجية الخارجية:</span>
+              <span class="control-val"><span id="sliderValDisplay">42</span>°م</span>
+            </div>
+            <input type="range" min="30" max="50" value="42" class="simulator-slider" id="tempSlider">
+          </div>
+
+          <!-- Switch Group -->
+          <div class="toggle-switch-container">
+            <div class="switch-label-area">
+              <h4>تشغيل نظام الضباب والرذاذ</h4>
+              <span>تقنية ضباب ناعم FWP-IT صامتة</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="mistSwitch">
+              <span class="slider-btn"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PACKAGES SECTION -->
   <section class="packages" id="packages">
     <div class="container">
@@ -77,12 +159,12 @@
 
       <!-- Categories Filter Tabs -->
       <div class="products-filter-container animate-on-scroll">
-        <button class="tab-btn active" onclick="filterProducts('all')">الكل</button>
-        <button class="tab-btn" onclick="filterProducts('mist')">أجهزة الرذاذ</button>
-        <button class="tab-btn" onclick="filterProducts('fog')">أجهزة الضباب</button>
-        <button class="tab-btn" onclick="filterProducts('columns')">أعمدة الضباب</button>
-        <button class="tab-btn" onclick="filterProducts('accessories')">مواسير وإكسسوارات</button>
-        <button class="tab-btn" onclick="filterProducts('packages')">باقات التوفير</button>
+        <button class="tab-btn active" onclick="filterProducts('all', this)">الكل</button>
+        <button class="tab-btn" onclick="filterProducts('mist', this)">أجهزة الرذاذ</button>
+        <button class="tab-btn" onclick="filterProducts('fog', this)">أجهزة الضباب</button>
+        <button class="tab-btn" onclick="filterProducts('columns', this)">أعمدة الضباب</button>
+        <button class="tab-btn" onclick="filterProducts('accessories', this)">مواسير وإكسسوارات</button>
+        <button class="tab-btn" onclick="filterProducts('packages', this)">باقات التوفير</button>
       </div>
 
       <div class="packages-grid">
@@ -1574,21 +1656,25 @@
 
     
     // ===== PRODUCTS FILTER =====
-    function filterProducts(category) {
+    function filterProducts(category, element) {
       const cards = document.querySelectorAll('.package-card');
       const tabs = document.querySelectorAll('.tab-btn');
       
-      // Update active tab class
-      tabs.forEach(tab => tab.classList.remove('active'));
-      if (event && event.target) {
-        event.target.classList.add('active');
+      let activeTab = element;
+      if (!activeTab && event && event.target && event.target.classList.contains('tab-btn')) {
+        activeTab = event.target;
+      }
+      
+      if (activeTab) {
+        tabs.forEach(tab => tab.classList.remove('active'));
+        activeTab.classList.add('active');
+        updateTabSliderPill(activeTab);
       }
 
       cards.forEach(card => {
         const cardCategory = card.getAttribute('data-category');
         if (category === 'all' || cardCategory === category) {
           card.style.display = 'block';
-          // Force layout recalculation / animation class if needed
           setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
@@ -1601,6 +1687,14 @@
           }, 300);
         }
       });
+    }
+
+    function updateTabSliderPill(activeTab) {
+      const pill = document.getElementById('tabSliderPill');
+      if (pill && activeTab) {
+        pill.style.width = activeTab.offsetWidth + 'px';
+        pill.style.left = activeTab.offsetLeft + 'px';
+      }
     }
 
 
@@ -1718,20 +1812,6 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-    // Mist particles
-    const mistContainer = document.getElementById('mistParticles');
-    for (let i = 0; i < 40; i++) {
-      const p = document.createElement('div');
-      p.classList.add('mist-particle');
-      p.style.left = Math.random() * 100 + '%';
-      p.style.top = Math.random() * 100 + '%';
-      const size = (Math.random() * 6 + 3) + 'px';
-      p.style.width = size; p.style.height = size;
-      p.style.animationDelay = Math.random() * 5 + 's';
-      p.style.animationDuration = (Math.random() * 4 + 4) + 's';
-      mistContainer.appendChild(p);
-    }
-
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1739,6 +1819,290 @@
         const wasActive = item.classList.contains('active');
         item.closest('.faq-category').querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
         if (!wasActive) item.classList.add('active');
+      });
+    });
+
+    // ===== HERO MIST CANVAS BACKGROUND =====
+    const heroCanvas = document.getElementById('heroMistCanvas');
+    if (heroCanvas) {
+      const hctx = heroCanvas.getContext('2d');
+      let heroParticles = [];
+      const pCount = 50;
+
+      function resizeHeroCanvas() {
+        heroCanvas.width = heroCanvas.parentElement.clientWidth;
+        heroCanvas.height = heroCanvas.parentElement.clientHeight;
+      }
+      window.addEventListener('resize', resizeHeroCanvas);
+      resizeHeroCanvas();
+
+      // Track mouse
+      let mousePos = { x: null, y: null };
+      heroCanvas.parentElement.addEventListener('mousemove', (e) => {
+        const rect = heroCanvas.getBoundingClientRect();
+        mousePos.x = e.clientX - rect.left;
+        mousePos.y = e.clientY - rect.top;
+      });
+      heroCanvas.parentElement.addEventListener('mouseleave', () => {
+        mousePos.x = null;
+        mousePos.y = null;
+      });
+
+      class HeroParticle {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init = false) {
+          this.x = init ? Math.random() * heroCanvas.width : heroCanvas.width + Math.random() * 100;
+          this.y = Math.random() * heroCanvas.height;
+          this.vx = -0.4 - Math.random() * 0.8;
+          this.vy = (Math.random() - 0.5) * 0.2;
+          this.alpha = 0.01;
+          this.maxAlpha = 0.12 + Math.random() * 0.15;
+          this.size = 60 + Math.random() * 80;
+          this.growth = 0.15 + Math.random() * 0.3;
+          this.life = 0;
+          this.maxLife = 200 + Math.random() * 300;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.size += this.growth;
+          this.life++;
+
+          // Mouse push effect
+          if (mousePos.x !== null && mousePos.y !== null) {
+            const dx = this.x - mousePos.x;
+            const dy = this.y - mousePos.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              const force = (120 - dist) / 120;
+              const angle = Math.atan2(dy, dx);
+              this.x += Math.cos(angle) * force * 3;
+              this.y += Math.sin(angle) * force * 3;
+            }
+          }
+
+          if (this.life < this.maxLife * 0.2) {
+            this.alpha = (this.life / (this.maxLife * 0.2)) * this.maxAlpha;
+          } else if (this.life > this.maxLife * 0.7) {
+            this.alpha = (1 - ((this.life - this.maxLife * 0.7) / (this.maxLife * 0.3))) * this.maxAlpha;
+          } else {
+            this.alpha = this.maxAlpha;
+          }
+
+          if (this.life >= this.maxLife || this.x < -this.size || this.alpha <= 0) {
+            this.reset();
+          }
+        }
+        draw() {
+          if (this.alpha <= 0) return;
+          hctx.beginPath();
+          const grad = hctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+          grad.addColorStop(0, `rgba(240, 248, 255, ${this.alpha})`);
+          grad.addColorStop(0.5, `rgba(240, 248, 255, ${this.alpha * 0.3})`);
+          grad.addColorStop(1, 'rgba(240, 248, 255, 0)');
+          hctx.fillStyle = grad;
+          hctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          hctx.fill();
+        }
+      }
+
+      for (let i = 0; i < pCount; i++) {
+        heroParticles.push(new HeroParticle());
+      }
+
+      function animateHeroCanvas() {
+        hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+        heroParticles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateHeroCanvas);
+      }
+      animateHeroCanvas();
+    }
+
+    // ===== MIST COOLING SIMULATOR LOGIC =====
+    const tempSlider = document.getElementById('tempSlider');
+    const sliderValDisplay = document.getElementById('sliderValDisplay');
+    const mistSwitch = document.getElementById('mistSwitch');
+    const tempNumber = document.getElementById('tempNumber');
+    const tempCircle = document.getElementById('tempCircle');
+    const tempStatus = document.getElementById('tempStatus');
+    const coolingEffectText = document.getElementById('coolingEffectText');
+    const humidityText = document.getElementById('humidityText');
+    const simBgImgReal = document.getElementById('simBgImgReal');
+    const simCanvas = document.getElementById('simulatorMistCanvas');
+
+    let tempAnimInterval = null;
+
+    function updateGauge(temp, isCooling) {
+      const pct = Math.max(0, Math.min(1, (50 - temp) / (50 - 30)));
+      const offset = 251.2 - (pct * 251.2);
+      tempCircle.style.strokeDashoffset = offset;
+      
+      if (isCooling) {
+        tempCircle.style.stroke = 'var(--accent-teal)';
+      } else {
+        tempCircle.style.stroke = 'var(--accent-gold)';
+      }
+    }
+
+    function runSimulation() {
+      const ambientTemp = parseInt(tempSlider.value, 10);
+      sliderValDisplay.innerText = ambientTemp;
+      clearInterval(tempAnimInterval);
+
+      if (mistSwitch.checked) {
+        simCanvas.classList.add('active');
+        simBgImgReal.classList.add('mist-active');
+        const targetTemp = Math.max(20, ambientTemp - 15);
+        
+        let tempStep = ambientTemp;
+        tempAnimInterval = setInterval(() => {
+          if (tempStep > targetTemp) {
+            tempStep--;
+            tempNumber.innerText = tempStep;
+            updateGauge(tempStep, true);
+          } else {
+            clearInterval(tempAnimInterval);
+          }
+        }, 50);
+
+        tempStatus.innerText = 'نسيم ربيعي بارد ومنعش';
+        tempStatus.classList.add('cool');
+        coolingEffectText.innerText = 'نشط (تبريد -15°م)';
+        humidityText.innerText = '45% (رطوبة متوازنة)';
+      } else {
+        simCanvas.classList.remove('active');
+        simBgImgReal.classList.remove('mist-active');
+        
+        let tempStep = parseInt(tempNumber.innerText, 10);
+        tempAnimInterval = setInterval(() => {
+          if (tempStep < ambientTemp) {
+            tempStep++;
+            tempNumber.innerText = tempStep;
+            updateGauge(tempStep, false);
+          } else {
+            clearInterval(tempAnimInterval);
+          }
+        }, 50);
+
+        if (ambientTemp > 40) {
+          tempStatus.innerText = 'أجواء حارة وجافة جداً';
+        } else if (ambientTemp > 35) {
+          tempStatus.innerText = 'أجواء متوسطة الحرارة';
+        } else {
+          tempStatus.innerText = 'أجواء معتدلة جافة';
+        }
+        tempStatus.classList.remove('cool');
+        coolingEffectText.innerText = 'النظام متوقف';
+        humidityText.innerText = '12% (جاف جداً)';
+      }
+    }
+
+    if (tempSlider && mistSwitch) {
+      tempSlider.addEventListener('input', runSimulation);
+      mistSwitch.addEventListener('change', runSimulation);
+      updateGauge(42, false);
+    }
+    
+    // Simulator Canvas Mist Particles
+    if (simCanvas) {
+      const sctx = simCanvas.getContext('2d');
+      let simParticles = [];
+      const simPCount = 25;
+
+      function resizeSimCanvas() {
+        simCanvas.width = simCanvas.parentElement.clientWidth;
+        simCanvas.height = simCanvas.parentElement.clientHeight;
+      }
+      window.addEventListener('resize', resizeSimCanvas);
+      resizeSimCanvas();
+
+      class SimParticle {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init = false) {
+          this.x = Math.random() * simCanvas.width;
+          this.y = init ? Math.random() * simCanvas.height : -10;
+          this.vx = (Math.random() - 0.7) * 0.5;
+          this.vy = 1.0 + Math.random() * 1.5;
+          this.alpha = 0.01;
+          this.maxAlpha = 0.15 + Math.random() * 0.2;
+          this.size = 25 + Math.random() * 40;
+          this.growth = 0.2 + Math.random() * 0.5;
+          this.life = 0;
+          this.maxLife = 120 + Math.random() * 120;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.size += this.growth;
+          this.life++;
+
+          if (this.life < this.maxLife * 0.25) {
+            this.alpha = (this.life / (this.maxLife * 0.25)) * this.maxAlpha;
+          } else if (this.life > this.maxLife * 0.6) {
+            this.alpha = (1 - ((this.life - this.maxLife * 0.6) / (this.maxLife * 0.4))) * this.maxAlpha;
+          } else {
+            this.alpha = this.maxAlpha;
+          }
+
+          if (this.life >= this.maxLife || this.y > simCanvas.height || this.alpha <= 0) {
+            this.reset();
+          }
+        }
+        draw() {
+          if (!mistSwitch.checked || this.alpha <= 0) return;
+          sctx.beginPath();
+          const grad = sctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+          grad.addColorStop(0, `rgba(245, 250, 255, ${this.alpha})`);
+          grad.addColorStop(0.6, `rgba(245, 250, 255, ${this.alpha * 0.3})`);
+          grad.addColorStop(1, 'rgba(245, 250, 255, 0)');
+          sctx.fillStyle = grad;
+          sctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          sctx.fill();
+        }
+      }
+
+      for (let i = 0; i < simPCount; i++) {
+        simParticles.push(new SimParticle());
+      }
+
+      function animateSimCanvas() {
+        sctx.clearRect(0, 0, simCanvas.width, simCanvas.height);
+        if (mistSwitch.checked) {
+          simParticles.forEach(p => {
+            p.update();
+            p.draw();
+          });
+        }
+        requestAnimationFrame(animateSimCanvas);
+      }
+      animateSimCanvas();
+    }
+
+    // Initialize tab slider pill on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.products-filter-container');
+      if (container) {
+        const pill = document.createElement('div');
+        pill.className = 'tab-slider-pill';
+        pill.id = 'tabSliderPill';
+        container.appendChild(pill);
+        
+        const activeTab = container.querySelector('.tab-btn.active');
+        if (activeTab) {
+          setTimeout(() => updateTabSliderPill(activeTab), 100);
+        }
+      }
+      
+      window.addEventListener('resize', () => {
+        const activeTab = document.querySelector('.tab-btn.active');
+        if (activeTab) updateTabSliderPill(activeTab);
       });
     });
   </script>

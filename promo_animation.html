@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silent Fog - العرض الترويجي التفاعلي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0d7cc4;
+      --primary-glow: rgba(13, 124, 196, 0.4);
+      --accent: #0fb8a9;
+      --bg: #030a13;
+      --card-bg: rgba(6, 17, 32, 0.7);
+      --text: #ffffff;
+      --text-muted: #a0aec0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Video Container (16:9 Aspect Ratio) */
+    .video-canvas-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 1080px; /* Can adjust to 1920x1080 if needed */
+      max-height: 607.5px;
+      aspect-ratio: 16 / 9;
+      background: radial-gradient(circle at center, #06192d 0%, #02070e 100%);
+      border: 2px solid rgba(13, 124, 196, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px;
+    }
+
+    /* For Portrait Reel/TikTok format (9:16 Aspect Ratio) toggle option */
+    .video-canvas-container.reel-format {
+      max-width: 380px;
+      max-height: 675px;
+      aspect-ratio: 9 / 16;
+      padding: 30px 20px;
+    }
+
+    /* Mist Particle Background Canvas */
+    #mistCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    /* Glow Overlay */
+    .glow-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 80% 20%, rgba(15, 184, 169, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(13, 124, 196, 0.1) 0%, transparent 60%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Grid Overlay */
+    .grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(13, 124, 196, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(13, 124, 196, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Brand Header */
+    .brand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 5;
+      width: 100%;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-symbol {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 4px 15px var(--primary-glow);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text h1 {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      background: linear-gradient(to left, #ffffff, #88c8f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .logo-text span {
+      font-size: 10px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .promo-badge {
+      background: rgba(13, 124, 196, 0.1);
+      border: 1.5px solid var(--primary);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(13, 124, 196, 0.2);
+      animation: pulse 2s infinite alternate;
+    }
+
+    /* Main Content Area */
+    .content-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-grow: 1;
+      width: 100%;
+      z-index: 5;
+      margin: 20px 0;
+    }
+
+    .text-showcase {
+      width: 55%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: right;
+    }
+
+    .reel-format .text-showcase {
+      width: 100%;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .slide-text {
+      display: none;
+      animation: fadeInUp 0.8s forwards ease;
+    }
+
+    .slide-text.active {
+      display: block;
+    }
+
+    .slide-text h2 {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .reel-format .slide-text h2 {
+      font-size: 28px;
+    }
+
+    .slide-text h2 span {
+      background: linear-gradient(135deg, #0d7cc4, #0fb8a9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-text p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Animated Columns/Pumps representation */
+    .visual-showcase {
+      width: 40%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .reel-format .visual-showcase {
+      width: 100%;
+      height: 250px;
+    }
+
+    /* Column Representation */
+    .column-graphic {
+      width: 24px;
+      height: 260px;
+      background: linear-gradient(90deg, #111e2e, #2c3e50, #0b131f);
+      border-radius: 4px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: floatGraphic 4s infinite ease-in-out;
+    }
+
+    /* LED Strip in the column */
+    .column-graphic::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: calc(50% - 2px);
+      width: 4px;
+      height: 80%;
+      background: #0fb8a9;
+      border-radius: 2px;
+      box-shadow: 0 0 10px #0fb8a9, 0 0 20px #0fb8a9;
+      animation: ledColorChange 8s infinite alternate;
+    }
+
+    /* Mist nozzles on the column emitting particles */
+    .nozzle-point {
+      position: absolute;
+      width: 8px;
+      height: 6px;
+      background: #555;
+      right: -8px;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .nozzle-point.n1 { top: 25%; }
+    .nozzle-point.n2 { top: 50%; }
+    .nozzle-point.n3 { top: 75%; }
+
+    /* Nozzle spray effect (CSS glow) */
+    .nozzle-point::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 6px;
+      width: 50px;
+      height: 26px;
+      background: radial-gradient(ellipse at left, rgba(255,255,255,0.4) 0%, transparent 70%);
+      transform-origin: left center;
+      transform: rotate(0deg);
+      opacity: 0.8;
+      animation: sprayPulse 1s infinite alternate;
+    }
+
+    /* Footer / CTA Area */
+    .brand-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 5;
+      width: 100%;
+      border-top: 1px solid rgba(13, 124, 196, 0.1);
+      padding-top: 20px;
+    }
+
+    .reel-format .brand-footer {
+      flex-direction: column;
+      gap: 15px;
+      border-top: none;
+      padding-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .cta-text {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .cta-text strong {
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    .phone-number {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    /* Controls Overlay for User (not in recording) */
+    .recording-controls {
+      position: absolute;
+      bottom: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      z-index: 10;
+      background: rgba(6, 17, 32, 0.9);
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--primary);
+    }
+
+    .control-btn {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+
+    .control-btn:hover {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .control-btn.secondary {
+      background: transparent;
+      border: 1px solid var(--text-muted);
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      from {
+        box-shadow: 0 0 5px rgba(13, 124, 196, 0.2);
+        border-color: rgba(13, 124, 196, 0.5);
+      }
+      to {
+        box-shadow: 0 0 20px rgba(13, 124, 196, 0.6);
+        border-color: rgba(15, 184, 169, 1);
+      }
+    }
+
+    @keyframes ledColorChange {
+      0% {
+        background: #0fb8a9;
+        box-shadow: 0 0 10px #0fb8a9, 0 0 20px #0fb8a9;
+      }
+      50% {
+        background: #0d7cc4;
+        box-shadow: 0 0 10px #0d7cc4, 0 0 20px #0d7cc4;
+      }
+      100% {
+        background: #e5a93b;
+        box-shadow: 0 0 10px #e5a93b, 0 0 20px #e5a93b;
+      }
+    }
+
+    @keyframes sprayPulse {
+      from { opacity: 0.5; transform: scaleX(0.9) rotate(0deg); }
+      to { opacity: 0.9; transform: scaleX(1.1) rotate(2deg); }
+    }
+
+    @keyframes floatGraphic {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(0.5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    /* Recording Tips Box */
+    .recording-tips {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(3, 10, 19, 0.9);
+      border: 1px dashed var(--accent);
+      padding: 15px;
+      border-radius: 8px;
+      width: 250px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      z-index: 100;
+    }
+    
+    .recording-tips h3 {
+      color: #ffffff;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RECORDING INSTRUCTIONS FOR THE USER -->
+  <div class="recording-tips">
+    <h3>🔴 طريقة التسجيل لعمل الفيديو:</h3>
+    <p>1. قم بفتح هذه الصفحة في المتصفح بكامل الشاشة.</p>
+    <p>2. اضغط على أزرار التحكم بالأسفل لاختيار المقاس (أفقي لليوتيوب وسناب، أو رأسي للـ Reels وتيك توك).</p>
+    <p>3. اضغط على زر التسجيل في جهازك (مثل <strong>Win + Alt + R</strong> في ويندوز) لبدء تسجيل الشاشة بدون البشر وبشكل آلي ومتحرك بالكامل.</p>
+  </div>
+
+  <!-- Main Video Showcase Box -->
+  <div class="video-canvas-container" id="videoContainer">
+    <div class="glow-overlay"></div>
+    <div class="grid-overlay"></div>
+    
+    <!-- Realistic Mist Canvas System -->
+    <canvas id="mistCanvas"></canvas>
+
+    <!-- Header -->
+    <div class="brand-header">
+      <div class="logo-area">
+        <div class="logo-symbol">SF</div>
+        <div class="logo-text">
+          <h1>أبو طيف</h1>
+          <span>لأنظمة الضباب والرذاذ</span>
+        </div>
+      </div>
+      <div class="promo-badge">تأسيس وضمان معتمد</div>
+    </div>
+
+    <!-- Content (Slides) -->
+    <div class="content-area">
+      <div class="text-showcase">
+        <!-- Slide 1: General Cooling -->
+        <div class="slide-text active" id="slide1">
+          <h2>اجعل صيفك <span>بارداً ومنعشاً</span></h2>
+          <p>أنظمة ضباب ورذاذ متطورة تخفض درجات الحرارة لغاية 15 درجة مئوية. تبريد ناعم ومنعش للحدائق والفلل دون أي بلل.</p>
+        </div>
+        
+        <!-- Slide 2: LEDs Misting Columns -->
+        <div class="slide-text" id="slide2">
+          <h2>أعمدة الضباب <span>بإنارة LED</span></h2>
+          <p>لمسة ديكورية فخمة تنبض بالحياة. تبريد كثيف مع إضاءة ساحرة للجلسات الخارجية والمقاهي الراقية.</p>
+        </div>
+
+        <!-- Slide 3: Silent Pumps -->
+        <div class="slide-text" id="slide3">
+          <h2>قوة هيدروليكية <span>بصمت تام</span></h2>
+          <p>مضخات إيطالية وتايوانية عالية التحمل والضغط، تعمل بهدوء فائق وعمر افتراضي طويل بدون أي إزعاج.</p>
+        </div>
+      </div>
+
+      <!-- Animated Graphic Column Showcase (No Humans) -->
+      <div class="visual-showcase">
+        <div class="column-graphic" id="animatedGraphic">
+          <div class="nozzle-point n1"></div>
+          <div class="nozzle-point n2"></div>
+          <div class="nozzle-point n3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="brand-footer">
+      <div class="cta-text">
+        <span>للاستفسار والطلب المباشر</span><br>
+        <strong>تواصل معنا الآن</strong>
+      </div>
+      <a href="https://wa.me/966559152818" target="_blank" class="phone-number">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0559152818
+      </a>
+    </div>
+
+    <!-- Action Buttons for formatting (Hidden in screenshot if cropped, or placed at bottom outer) -->
+    <div class="recording-controls">
+      <button class="control-btn" onclick="toggleFormat('landscape')">مقاس أفقي (16:9)</button>
+      <button class="control-btn" onclick="toggleFormat('portrait')">مقاس رأسي ريلز (9:16)</button>
+      <button class="control-btn secondary" onclick="changeSlide()">اللوحة التالية</button>
+    </div>
+  </div>
+
+  <script>
+    // 1. Particle Canvas System for Fog/Mist simulation
+    const canvas = document.getElementById('mistCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    let particles = [];
+    const particleCount = 60;
+    
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class MistParticle {
+      constructor() {
+        this.reset(true);
+      }
+
+      reset(init = false) {
+        // Emitters can start from the nozzles (center-right) or left
+        const startFromNozzles = Math.random() > 0.4;
+        
+        if (startFromNozzles) {
+          // Near the column nozzle points
+          this.x = canvas.width * 0.75 + (Math.random() * 20 - 10);
+          this.y = canvas.height * (0.2 + Math.random() * 0.6);
+          this.vx = -1.2 - Math.random() * 2; // Spray leftwards
+          this.vy = (Math.random() * 2 - 1) * 0.4;
+        } else {
+          // Drifting randomly
+          this.x = init ? Math.random() * canvas.width : canvas.width + 50;
+          this.y = Math.random() * canvas.height;
+          this.vx = -0.5 - Math.random() * 1;
+          this.vy = (Math.random() * 2 - 1) * 0.2;
+        }
+
+        this.alpha = 0.01;
+        this.maxAlpha = 0.15 + Math.random() * 0.25;
+        this.size = 30 + Math.random() * 60;
+        this.growth = 0.4 + Math.random() * 0.8;
+        this.life = 0;
+        this.maxLife = 100 + Math.random() * 250;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.size += this.growth;
+        this.life++;
+
+        // Fade in and out curve
+        if (this.life < this.maxLife * 0.2) {
+          this.alpha = (this.life / (this.maxLife * 0.2)) * this.maxAlpha;
+        } else if (this.life > this.maxLife * 0.7) {
+          this.alpha = (1 - ((this.life - this.maxLife * 0.7) / (this.maxLife * 0.3))) * this.maxAlpha;
+        } else {
+          this.alpha = this.maxAlpha;
+        }
+
+        if (this.life >= this.maxLife || this.x < -100 || this.alpha <= 0) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+        grad.addColorStop(0, `rgba(240, 248, 255, ${this.alpha})`);
+        grad.addColorStop(0.5, `rgba(240, 248, 255, ${this.alpha * 0.4})`);
+        grad.addColorStop(1, 'rgba(240, 248, 255, 0)');
+        ctx.fillStyle = grad;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new MistParticle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    // Start animation loop
+    animate();
+
+    // 2. Format Toggler (Landscape vs Portrait Reels)
+    const container = document.getElementById('videoContainer');
+    function toggleFormat(format) {
+      if (format === 'portrait') {
+        container.classList.add('reel-format');
+      } else {
+        container.classList.remove('reel-format');
+      }
+      setTimeout(resizeCanvas, 150); // Resize canvas on transition
+    }
+
+    // 3. Slides Automator
+    let currentSlide = 1;
+    const totalSlides = 3;
+
+    function changeSlide() {
+      document.getElementById(`slide${currentSlide}`).classList.remove('active');
+      currentSlide = (currentSlide % totalSlides) + 1;
+      document.getElementById(`slide${currentSlide}`).classList.add('active');
+      
+      // Update visual column animations based on slide topic
+      const graphic = document.getElementById('animatedGraphic');
+      if (currentSlide === 2) {
+        // LED focus: make it pulse with different colors
+        graphic.style.transform = 'scale(1.05)';
+      } else if (currentSlide === 3) {
+        // Silent pump focus: quieter animations
+        graphic.style.transform = 'scale(0.95)';
+      } else {
+        graphic.style.transform = 'scale(1)';
+      }
+    }
+
+    // Auto rotate slides every 5 seconds for recording convenience
+    let slideInterval = setInterval(changeSlide, 5000);
+
+    // Pause auto-rotation if user interacts with controls
+    document.querySelectorAll('.control-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        // Restart interval
+        slideInterval = setInterval(changeSlide, 6000);
+      });
+    });
+  </script>
+</body>
+</html>
