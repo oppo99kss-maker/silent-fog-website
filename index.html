@@ -3,381 +3,594 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أبو طيف | أنظمة الضباب والرذاذ</title>
-  <meta name="description" content="أبو طيف - مضخات ضباب ورذاذ إيطالية وصينية وأعمدة ضباب ستانلس وحديد. أسعار منافسة وضمان حقيقي.">
+  <meta name="description" content="أبو طيف للضباب والرذاذ - Silent Fog | أنظمة تبريد خارجية احترافية، باقات متعددة تناسب جميع الاحتياجات. تواصل: 0559152818">
+  <title>Silent Fog | أبو طيف للضباب والرذاذ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="nav">
+  <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="#" class="nav-logo">
-        <img src="images/logo.png" alt="أبو طيف" onerror="this.style.display='none'">
-        <span>أبو طيف</span>
+      <a href="#" class="navbar-brand">
+        <img src="images/logo.png" alt="Silent Fog Logo">
+        <div class="navbar-brand-text">
+          <span class="brand-en">Silent Fog</span>
+          <span class="brand-ar">أبو طيف للضباب والرذاذ</span>
+        </div>
       </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#pumps">المضخات</a></li>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#packages">الباقات</a></li>
+        <li><a href="#why">مميزاتنا</a></li>
+        <li><a href="#mist">الضباب</a></li>
+        <li><a href="#umbrellas">المظلات</a></li>
         <li><a href="#columns">الأعمدة</a></li>
-        <li><a href="#accessories">المستلزمات</a></li>
-        <li><a href="#contact">تواصل معنا</a></li>
-        <li><a href="https://wa.me/966559152818" target="_blank" class="nav-cta">اطلب الآن</a></li>
+        <li><a href="#portfolio">أعمالنا</a></li>
+        <li><a href="#warranty">الضمان</a></li>
+        <li><a href="#contact" class="navbar-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.37 1.73.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c1.08.33 1.93.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          تواصل معنا
+        </a></li>
       </ul>
-      <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="القائمة"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <div class="hero-bg"><img src="images/hero_banner.png" alt="ضباب ورذاذ"></div>
+    <canvas id="heroMistCanvas"></canvas>
+    <div class="hero-sphere s1"></div>
+    <div class="hero-sphere s2"></div>
+    <div class="hero-sphere s3"></div>
     <div class="container">
-      <div class="hero-inner">
+      <div class="hero-content">
         <div class="hero-badge"><span class="dot"></span> أنظمة تبريد احترافية</div>
-        <h1>مضخات <span>ضباب ورذاذ</span><br>وأعمدة تبريد فاخرة</h1>
-        <p>مضخات إيطالية وصينية بضمان حقيقي وأعمدة ضباب ديكورية. أسعار منافسة وتوصيل لجميع مناطق المملكة.</p>
-        <div class="hero-btns">
+        <h1>حلول <span>الضباب والرذاذ</span><br>لتبريد الأجواء</h1>
+        <p class="hero-subtitle">نقدم أفضل أنظمة الضباب والرذاذ عالية الجودة لتبريد الحدائق والجلسات الخارجية والمطاعم. 5 باقات تناسب جميع الاحتياجات والميزانيات.</p>
+        <div class="hero-actions">
           <a href="https://wa.me/966559152818" target="_blank" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            تواصل واتساب
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            تواصل عبر واتساب
           </a>
-          <a href="#pumps" class="btn btn-outline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            استعرض المنتجات
+          <a href="#packages" class="btn btn-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            استعرض الباقات
           </a>
         </div>
         <div class="hero-stats">
-          <div><div class="stat-num">11</div><div class="stat-label">منتجاً مختاراً</div></div>
-          <div><div class="stat-num">2</div><div class="stat-label">سنوات ضمان</div></div>
-          <div><div class="stat-num">100%</div><div class="stat-label">جودة مضمونة</div></div>
+          <div class="hero-stat"><div class="number">11</div><div class="label">منتجاً مختاراً</div></div>
+          <div class="hero-stat"><div class="number">2+</div><div class="label">سنوات ضمان</div></div>
+          <div class="hero-stat"><div class="number">100%</div><div class="label">جودة مضمونة</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"></div>
+      <span>اكتشف المزيد</span>
+    </div>
+  </section>
+
+  
+  <!-- WHY ABU TAIF FEATURES SECTION -->
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">لماذا أبو طيف؟</div>
+        <h2>تميّز <span>يفوق التوقعات</span></h2>
+        <p>نلتزم بأعلى معايير الجودة في كل تفصيلة، من اختيار المضخات وحتى التركيب النهائي والدعم الفني</p>
+      </div>
+
+      <div class="why-grid stagger-children">
+        <div class="why-card">
+          <div class="why-card-icon icon-blue">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3>مضخات إيطالية صامتة</h3>
+          <p>مضخات هيدروليكية فائقة الهدوء بتقنية FWP-IT الإيطالية، عمر افتراضي طويل وأداء ثابت بدون اهتزاز أو إزعاج.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon icon-teal">
+            <i class="fas fa-spray-can-sparkles"></i>
+          </div>
+          <h3>نوزلات نحاسية مانعة للتنقيط</h3>
+          <p>فوهات FWP نحاسية أمريكية بتصميم مانع للتنقيط تماماً، تنتج ضباباً فائق النعومة يتبخر قبل ملامسة الأسطح.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon icon-gold">
+            <i class="fas fa-wand-magic-sparkles"></i>
+          </div>
+          <h3>تأسيس متكامل وأعمدة LED</h3>
+          <p>تركيب وتأسيس كامل لشبكات الضباب مع أعمدة LED ديكورية ساحرة تجمع بين إنارة الليل وتبريد الضباب الكثيف.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon icon-white">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <h3>ضمان ذهبي وخدمة فورية</h3>
+          <p>ضمان شامل لمدة سنتين على جميع المضخات مع فريق صيانة متخصص وخدمة استجابة فورية على مدار الساعة.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PUMPS SECTION -->
-  <section class="section" id="pumps">
+  <!-- PACKAGES SECTION -->
+  <section class="packages" id="packages">
     <div class="container">
-      <div class="section-head">
-        <div class="section-tag">المضخات</div>
-        <h2>مضخات <span>الضباب والرذاذ</span></h2>
-        <p>مضخات إيطالية صامتة ومضخات صينية اقتصادية بأسعار تنافسية</p>
-        <div class="divider"></div>
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">باقاتنا ومنتجاتنا</div>
+        <h2>اختر <span>النظام والتبريد</span> الأنسب لك</h2>
+        <p>مجموعة واسعة من أنظمة الرذاذ المطور والضباب المتكامل والباكجات المجهزة بأعلى المواصفات والأسعار التنافسية</p>
       </div>
 
-      <div class="products-grid">
+      <!-- Categories Filter Tabs -->
+      <div class="products-filter-container animate-on-scroll">
+        <button class="tab-btn active" onclick="filterProducts('all', this)">الكل</button>
+        <button class="tab-btn" onclick="filterProducts('pumps', this)">المضخات</button>
+        <button class="tab-btn" onclick="filterProducts('columns', this)">الأعمدة</button>
+        <button class="tab-btn" onclick="filterProducts('accessories', this)">المستلزمات والإكسسوارات</button>
+      </div>
+
+      <div class="packages-grid">
 
         <!-- 1. مضخة إيطالية 1 حصان -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/italian_1hp.png" alt="مضخة ضباب إيطالية 1 حصان" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-italian">🇮🇹 إيطالية</span>
+        <div class="package-card animate-on-scroll" data-category="pumps" onclick="openModal('prod1')">
+          <div class="package-card-header">
+            <span class="package-tier tier-premium">🇮🇹 إيطالية</span>
             <h3>مضخة ضباب إيطالية 1 حصان</h3>
-            <p>مضخة ضباب إيطالية فائقة الهدوء بقوة 1 حصان، مثالية للجلسات الخارجية والحدائق المتوسطة. صوت هادئ جداً وأداء ثابت طوال فترة التشغيل.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> 1 حصان</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> صوت هادئ</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> ضمان سنتين</span>
+            <p class="package-desc">مضخة ضباب فائقة الهدوء بقوة 1 حصان، صوت هادئ جداً وأداء ثابت.</p>
+            <div class="price-display">5,500 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/italian_1hp.png" alt="مضخة إيطالية 1 حصان">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">1 حصان</span>
+              <span class="highlight-tag">صوت هادئ جداً</span>
+              <span class="highlight-tag">ضمان سنتين</span>
             </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">5,500</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D9%85%D8%B6%D8%AE%D8%A9%20%D8%B6%D8%A8%D8%A7%D8%A8%20%D8%A5%D9%8A%D8%B7%D8%A7%D9%84%D9%8A%D8%A9%201%20%D8%AD%D8%B5%D8%A7%D9%86%20%D8%A8%D8%B3%D8%B9%D8%B1%205500%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
             </div>
           </div>
         </div>
 
         <!-- 2. مضخة إيطالية 2 حصان -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/italian_2hp.png" alt="مضخة ضباب إيطالية 2 حصان" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-italian">🇮🇹 إيطالية</span>
+        <div class="package-card animate-on-scroll" data-category="pumps" onclick="openModal('prod2')">
+          <div class="package-card-header">
+            <span class="package-tier tier-elite">🇮🇹 إيطالية</span>
             <h3>مضخة ضباب إيطالية 2 حصان</h3>
-            <p>مضخة ضباب إيطالية بقوة 2 حصان للمساحات الكبيرة والمشاريع التجارية. قوة مضاعفة مع الحفاظ على الهدوء والكفاءة العالية في التبريد.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> 2 حصان</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> مساحات كبيرة</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> ضمان سنتين</span>
+            <p class="package-desc">مضخة ضباب بقوة 2 حصان للمساحات الكبيرة. قوة مضاعفة مع الهدوء التام والكفاءة العالية.</p>
+            <div class="price-display">9,000 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/italian_2hp.png" alt="مضخة إيطالية 2 حصان">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">2 حصان</span>
+              <span class="highlight-tag">مساحات كبيرة</span>
+              <span class="highlight-tag">ضمان سنتين</span>
             </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">9,000</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D9%85%D8%B6%D8%AE%D8%A9%20%D8%B6%D8%A8%D8%A7%D8%A8%20%D8%A5%D9%8A%D8%B7%D8%A7%D9%84%D9%8A%D8%A9%202%20%D8%AD%D8%B5%D8%A7%D9%86%20%D8%A8%D8%B3%D8%B9%D8%B1%209000%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
             </div>
           </div>
         </div>
 
         <!-- 3. مضخة صينية 1 حصان -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/chinese_1hp.png" alt="مضخة ضباب صينية 1 حصان" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-chinese">🇨🇳 صينية</span>
+        <div class="package-card animate-on-scroll" data-category="pumps" onclick="openModal('prod3')">
+          <div class="package-card-header">
+            <span class="package-tier tier-basic">🇨🇳 صينية</span>
             <h3>مضخة ضباب صينية 1 حصان</h3>
-            <p>مضخة ضباب صينية اقتصادية بقوة 1 حصان، خيار ممتاز للميزانيات المحدودة مع أداء جيد وموثوقية في التبريد اليومي.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> 1 حصان</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> اقتصادية</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> ضمان سنة</span>
+            <p class="package-desc">مضخة ضباب صينية اقتصادية بقوة 1 حصان، خيار ممتاز للميزانيات المحدودة مع أداء موثوق.</p>
+            <div class="price-display">3,800 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/chinese_1hp.png" alt="مضخة صينية 1 حصان">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">1 حصان</span>
+              <span class="highlight-tag">اقتصادية</span>
+              <span class="highlight-tag">ضمان سنة</span>
             </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">3,800</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D9%85%D8%B6%D8%AE%D8%A9%20%D8%B6%D8%A8%D8%A7%D8%A8%20%D8%B5%D9%8A%D9%86%D9%8A%D8%A9%201%20%D8%AD%D8%B5%D8%A7%D9%86%20%D8%A8%D8%B3%D8%B9%D8%B1%203800%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
             </div>
           </div>
         </div>
 
         <!-- 4. مضخة صينية 2 حصان -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/chinese_2hp.png" alt="مضخة ضباب صينية 2 حصان" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-chinese">🇨🇳 صينية</span>
+        <div class="package-card animate-on-scroll" data-category="pumps" onclick="openModal('prod4')">
+          <div class="package-card-header">
+            <span class="package-tier tier-pro">🇨🇳 صينية</span>
             <h3>مضخة ضباب صينية 2 حصان</h3>
-            <p>مضخة ضباب صينية بقوة مضاعفة 2 حصان للمشاريع الكبيرة والمقاهي. تغطية واسعة مع قوة ضخ عالية بسعر اقتصادي مناسب.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> 2 حصان</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> تغطية واسعة</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> ضمان سنة</span>
+            <p class="package-desc">مضخة ضباب صينية بقوة مضاعفة 2 حصان للمشاريع الكبيرة والمقاهي. تغطية واسعة وسعر اقتصادي.</p>
+            <div class="price-display">7,600 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/chinese_2hp.png" alt="مضخة صينية 2 حصان">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">2 حصان</span>
+              <span class="highlight-tag">تغطية واسعة</span>
+              <span class="highlight-tag">ضمان سنة</span>
             </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">7,600</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D9%85%D8%B6%D8%AE%D8%A9%20%D8%B6%D8%A8%D8%A7%D8%A8%20%D8%B5%D9%8A%D9%86%D9%8A%D8%A9%202%20%D8%AD%D8%B5%D8%A7%D9%86%20%D8%A8%D8%B3%D8%B9%D8%B1%207600%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
             </div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- COLUMNS SECTION -->
-  <section class="section" id="columns" style="background:rgba(20,184,166,0.02);">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-tag">الأعمدة</div>
-        <h2>أعمدة <span>الضباب الديكورية</span></h2>
-        <p>أعمدة ضباب بتصاميم متنوعة تجمع بين التبريد والجمال</p>
-        <div class="divider"></div>
-      </div>
-
-      <div class="columns-grid">
-
         <!-- 5. عامود ضباب أسود -->
-        <div class="column-card product-card">
-          <div class="column-img product-img">
-            <img src="images/products/black_column.png" alt="عامود ضباب أسود 220سم" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-column">عامود حديد</span>
+        <div class="package-card animate-on-scroll" data-category="columns" onclick="openModal('prod5')">
+          <div class="package-card-header">
+            <span class="package-tier tier-basic">عامود حديد</span>
             <h3>عامود ضباب أسود 220 سم — 12 فوهة</h3>
-            <p>عامود ضباب حديد مربع لون أسود بارتفاع 220 سم مع 12 فوهة ضباب مدمجة. تصميم أنيق ومتين يناسب الممرات والحدائق والمداخل.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> 220 سم</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg> 12 فوهة</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> حديد مربع أسود</span>
+            <p class="package-desc">عامود ضباب حديد مربع لون أسود بارتفاع 220 سم مع 12 فوهة ضباب مدمجة وتوصيلات جاهزة.</p>
+            <div class="price-display">950 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/black_column.png" alt="عامود ضباب أسود">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">ارتفاع 220 سم</span>
+              <span class="highlight-tag">12 فوهة ضباب</span>
+              <span class="highlight-tag">حديد مربع أسود</span>
             </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">950</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D8%B9%D8%A7%D9%85%D9%88%D8%AF%20%D8%B6%D8%A8%D8%A7%D8%A8%20%D8%A3%D8%B3%D9%88%D8%AF%20%D8%A8%D8%B3%D8%B9%D8%B1%20950%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
             </div>
           </div>
         </div>
 
         <!-- 6. عامود نخلة 4 أفرع ستانلس -->
-        <div class="column-card product-card">
-          <div class="column-img product-img">
-            <img src="images/products/palm_column.png" alt="عامود نخلة ستانلس 4 أفرع" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-column">ستانلس ستيل</span>
+        <div class="package-card animate-on-scroll" data-category="columns" onclick="openModal('prod6')">
+          <div class="package-card-header">
+            <span class="package-tier tier-premium">ستانلس ستيل</span>
             <h3>عامود نخلة ستانلس ستيل — 4 أفرع</h3>
-            <p>عامود ضباب ستانلس ستيل بتصميم نخلة أنيق مع 4 أفرع موزعة لانتشار ضبابي دائري. مقاوم للصدأ ومصمم للمساحات الخارجية.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> تصميم نخلة</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg> 4 أفرع</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> ستانلس مقاوم للصدأ</span>
+            <p class="package-desc">عامود ضباب ستانلس ستيل بتصميم نخلة أنيق مع 4 أفرع علوية موزعة لانتشار ضبابي دائري.</p>
+            <div class="price-display">1,150 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/palm_column.png" alt="عامود نخلة ستانلس">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">تصميم نخلة</span>
+              <span class="highlight-tag">4 أفرع علوية</span>
+              <span class="highlight-tag">ستانلس مقاوم للصدأ</span>
             </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">1,150</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D8%B9%D8%A7%D9%85%D9%88%D8%AF%20%D9%86%D8%AE%D9%84%D8%A9%20%D8%B3%D8%AA%D8%A7%D9%86%D9%84%D8%B3%204%20%D8%A3%D9%81%D8%B1%D8%B9%20%D8%A8%D8%B3%D8%B9%D8%B1%201150%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
             </div>
           </div>
         </div>
 
+        <!-- 7. سنارة ضباب ستانلس 1 متر (3 نزل) -->
+        <div class="package-card animate-on-scroll" data-category="accessories" onclick="openModal('prod7')">
+          <div class="package-card-header">
+            <span class="package-tier tier-basic">ستانلس 1م</span>
+            <h3>سنارة ضباب ستانلس 1 متر — 3 مخارج</h3>
+            <p class="package-desc">علاق/سنارة ضباب ستانلس ستيل بطول 1 متر مجهزة بـ 3 مخارج فوهات. تعليق رأسي انسيابي للممرات.</p>
+            <div class="price-display">180 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/hook_1m_3n.png" alt="سنارة 1 متر 3 نزل">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">طول 1 متر</span>
+              <span class="highlight-tag">3 مخارج (نوزل)</span>
+              <span class="highlight-tag">ستانلس ستيل 304</span>
+            </div>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. سنارة ضباب ستانلس 1 متر (6 نزل) -->
+        <div class="package-card animate-on-scroll" data-category="accessories" onclick="openModal('prod8')">
+          <div class="package-card-header">
+            <span class="package-tier tier-pro">ستانلس 1م مكثف</span>
+            <h3>سنارة ضباب ستانلس 1 متر — 6 مخارج</h3>
+            <p class="package-desc">سنارة ضباب ستانلس ستيل بطول 1 متر مجهزة بـ 6 أذرع جانبية متباعدة لتوزيع ضبابي كثيف وتبريد متكامل.</p>
+            <div class="price-display">240 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/hook_1m_6n.png" alt="سنارة 1 متر 6 نزل">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">طول 1 متر</span>
+              <span class="highlight-tag">6 مخارج (نوزل)</span>
+              <span class="highlight-tag">توزيع كثيف 360 درجة</span>
+            </div>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. سنارة ضباب ستانلس 2 متر (3 نزل) -->
+        <div class="package-card animate-on-scroll" data-category="accessories" onclick="openModal('prod9')">
+          <div class="package-card-header">
+            <span class="package-tier tier-premium">ستانلس 2م</span>
+            <h3>سنارة ضباب ستانلس 2 متر — 3 مخارج</h3>
+            <p class="package-desc">علاق/سنارة ضباب ستانلس ستيل منحنية بطول 2 متر، مناسبة للتعليق على الجدران والأسقف المرتفعة.</p>
+            <div class="price-display">280 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/hook_2m_3n.png" alt="سنارة 2 متر 3 نزل">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">طول 2 متر</span>
+              <span class="highlight-tag">3 مخارج (نوزل)</span>
+              <span class="highlight-tag">ستانلس ستيل منحني</span>
+            </div>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. لفة لي ضباب 100 متر -->
+        <div class="package-card animate-on-scroll" data-category="accessories" onclick="openModal('prod10')">
+          <div class="package-card-header">
+            <span class="package-tier tier-pro">تمديدات</span>
+            <h3>لفة لي (خرطوم) ضباب أصلي — 100 متر</h3>
+            <p class="package-desc">لفة خرطوم (لي) ضباب نايلون عالي الجودة قياس 3/8 بوصة يتحمل الضغوط العالية للشبكات لغاية 70 بار.</p>
+            <div class="price-display">700 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/products/hose_roll.jpg" alt="لفة لي ضباب 100م">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">طول 100 متر</span>
+              <span class="highlight-tag">قياس 3/8 بوصة</span>
+              <span class="highlight-tag">نايلون ضغط عالي</span>
+            </div>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. نزل ضباب فوهة -->
+        <div class="package-card animate-on-scroll" data-category="accessories" onclick="openModal('prod11')">
+          <div class="package-card-header">
+            <span class="package-tier tier-basic">قطع غيار</span>
+            <h3>نزل ضباب (فوهة) ستانلس ستيل دقيقة</h3>
+            <p class="package-desc">فوهة نزل ضباب ميكرونية احترافية مصنوعة من الستانلس ستيل، مصممة لمنع التنقيط وإنتاج أصفى درجات الضباب.</p>
+            <div class="price-display">35 <span class="price-curr">ريال</span></div>
+          </div>
+          <div class="package-pump-img">
+            <img src="images/product_connector.png" alt="نزل ضباب فوهة">
+          </div>
+          <div class="package-card-body">
+            <div class="package-highlights">
+              <span class="highlight-tag">فوهة 0.15 مم</span>
+              <span class="highlight-tag">ستانلس ستيل 304</span>
+              <span class="highlight-tag">نظام مانع للتنقيط</span>
+            </div>
+            <div class="package-price-row">
+              <span class="package-cta">عرض التفاصيل والطلب</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </section>
+
+  <!-- FOG SYSTEMS SECTION -->
+  <section class="services-section" id="mist">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">أنظمة الضباب</div>
+        <h2>التأسيس و<span>الحلول المتكاملة</span></h2>
+        <p>نقدم أفضل حلول التأسيس والتركيب لأنظمة الضباب لتحقيق أقصى درجات البرودة</p>
+        <div class="glow-divider"></div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card animate-on-scroll">
+          <div class="service-card-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/a1.jpeg" alt="تأسيس أنظمة الضباب" loading="lazy"><div class="service-overlay"><span><i class="fas fa-expand"></i> عرض نماذج التأسيس</span></div></div>
+          <div class="service-card-body"><h3>تأسيس احترافي</h3><p>تمديدات متكاملة تضمن توزيعاً عادلاً للرذاذ وهدوءاً تاماً في التشغيل.</p></div>
+        </div>
+        <div class="service-card animate-on-scroll">
+          <div class="service-card-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/m1.jpeg" alt="تفاصيل هندسية" loading="lazy"><div class="service-overlay"><span><i class="fas fa-expand"></i> عرض التفاصيل الهندسية</span></div></div>
+          <div class="service-card-body"><h3>تفاصيل هندسية</h3><p>تغطية واسعة للمساحات المفتوحة مع التحكم الكامل في كثافة الضباب.</p></div>
+        </div>
+        <div class="service-card animate-on-scroll">
+          <div class="service-card-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/t1.jpeg" alt="معدات وقطع غيار" loading="lazy"><div class="service-overlay"><span><i class="fas fa-expand"></i> عرض المعدات والقطع</span></div></div>
+          <div class="service-card-body"><h3>المعدات والقطع</h3><p>نوفر أفضل المعدات وقطع الغيار الأصلية (تايواني وإيطالي وألماني) لضمان استمرارية النظام.</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ACCESSORIES SECTION -->
-  <section class="section" id="accessories">
+  <!-- UMBRELLAS SECTION -->
+  <section class="services-section" id="umbrellas">
     <div class="container">
-      <div class="section-head">
-        <div class="section-tag">الملحقات والتمديدات</div>
-        <h2>مستلزمات <span>شبكات الضباب</span></h2>
-        <p>سنارات ستانلس، ليات ضغط عالي، ونوزلات دقيقة لتمديد شبكتك بنفسك</p>
-        <div class="divider"></div>
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">المظلات المبتكرة</div>
+        <h2>تشكيلة متنوعة من <span>الحلول العصرية</span></h2>
+        <p>نصمم وننفذ أرقى أنواع المظلات المزودة بأنظمة الضباب لضمان الراحة والجمال</p>
+        <div class="glow-divider"></div>
       </div>
-
-      <div class="products-grid">
-
-        <!-- 7. سنارة ضباب 1 متر (3 نزل) -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/hook_1m_3n.png" alt="سنارة ضباب 1 متر 3 نزل" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-column">ستانلس ستيل</span>
-            <h3>سنارة ضباب ستانلس 1 متر — 3 مخارج</h3>
-            <p>علاق/سنارة ضباب ستانلس ستيل بطول 1 متر مجهزة بـ 3 مخارج فوهات. تعليق رأسي انسيابي لتوجيه الضباب مباشرة نحو الممرات.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> طول 1 متر</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg> 3 مخارج (نوزل)</span>
-            </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">180</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D8%B5%D9%86%D8%A7%D8%B1%D8%A9%20%D8%B6%D8%A8%D8%A7%D8%A8%201%20%D9%85%D8%AA%D8%B1%203%20%D9%86%D8%B2%D9%84%20%D8%A8%D8%B3%D8%B9%D8%B1%20180%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
-            </div>
-          </div>
+      <div class="section-hero-banner animate-on-scroll"><img src="https://oppo99kss-maker.github.io/silentfog3/images/umbrella-hero.jpeg" alt="مظلات Silent Fog" loading="lazy"><div class="banner-gradient"></div></div>
+      <div class="services-grid">
+        <div class="service-card animate-on-scroll">
+          <div class="service-card-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/b1.jpeg" alt="مظلات فاخرة" loading="lazy"><div class="service-overlay"><span><i class="fas fa-expand"></i> عرض التشكيلة الفاخرة</span></div><div class="premium-badge"><i class="fas fa-certificate"></i> إصدار اللوقو</div></div>
+          <div class="service-card-body"><h3>المظلات الفاخرة - إصدار اللوقو</h3><p>تشكيلة تجمع بين البساطة والرقي، مع إمكانية طباعة لوقو محلك الخاص.</p></div>
         </div>
-
-        <!-- 8. سنارة ضباب 1 متر (6 نزل) -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/hook_1m_6n.png" alt="سنارة ضباب 1 متر 6 نزل" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-column">ستانلس ستيل</span>
-            <h3>سنارة ضباب ستانلس 1 متر — 6 مخارج</h3>
-            <p>علاق/سنارة ضباب ستانلس ستيل بطول 1 متر مجهزة بـ 6 أذرع جانبية متباعدة لتوزيع ضبابي كثيف وتبريد مثالي في الاتجاهات الأربعة.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> طول 1 متر</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg> 6 مخارج (نوزل)</span>
-            </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">240</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D8%B5%D9%86%D8%A7%D8%B1%D8%A9%20%D8%B6%D8%A8%D8%A7%D8%A8%201%20%D9%85%D8%AA%D8%B1%206%20%D9%86%D8%B2%D9%84%20%D8%A8%D8%B3%D8%B9%D8%B1%20240%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
-            </div>
-          </div>
+        <div class="service-card animate-on-scroll">
+          <div class="service-card-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/r1.jpeg" alt="مخارج ضباب" loading="lazy"><div class="service-overlay"><span><i class="fas fa-expand"></i> عرض مخارج الضباب</span></div><div class="premium-badge secondary"><i class="fas fa-wind"></i> مخارج ضباب</div></div>
+          <div class="service-card-body"><h3>مظلات بمخارج الضباب</h3><p>تصاميم احترافية مزودة بفوهات رذاذ مدمجة لتوزيع الضباب بشكل انسيابي.</p></div>
         </div>
-
-        <!-- 9. سنارة ضباب 2 متر (3 نزل) -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/hook_2m_3n.png" alt="سنارة ضباب 2 متر 3 نزل" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-column">ستانلس ستيل</span>
-            <h3>سنارة ضباب ستانلس 2 متر — 3 مخارج</h3>
-            <p>علاق/سنارة ضباب ستانلس ستيل منحنية بطول 2 متر، مناسبة للتعليق على الجدران والأسقف المرتفعة لتبريد من الأعلى لضباب متدفق ورائع.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> طول 2 متر</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg> 3 مخارج (نوزل)</span>
-            </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">280</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D8%B5%D9%86%D8%A7%D8%B1%D8%A9%20%D8%B6%D8%A8%D8%A7%D8%A8%202%20%D9%85%D8%AA%D8%B1%203%20%D9%86%D8%B2%D9%84%20%D8%A8%D8%B3%D8%B9%D8%B1%20280%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
-            </div>
-          </div>
+        <div class="service-card animate-on-scroll">
+          <div class="service-card-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/n1.jpeg" alt="تشكيلة ألوان" loading="lazy"><div class="service-overlay"><span><i class="fas fa-expand"></i> عرض تشكيلة الألوان</span></div></div>
+          <div class="service-card-body"><h3>مظلات - تشكيلة ألوان</h3><p>تصميم هندسي متين مع تشكيلة واسعة من الألوان العصرية التي تناسب ذوقك.</p></div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- 10. لفة اللي (خرطوم ضباب) -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/products/hose_roll.jpg" alt="لفة لي خرطوم ضباب" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-chinese">تمديدات</span>
-            <h3>لفة لي (خرطوم) ضباب أصلي — 100 متر</h3>
-            <p>لفة خرطوم (لي) ضباب نايلون عالي الجودة قياس 3/8 بوصة يتحمل الضغوط العالية للشبكات حتى 70 بار، بطول 100 متر كاملة.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> طول 100 متر</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> قياس 3/8 بوصة</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> نايلون ضغط عالي</span>
-            </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">700</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D9%84%D9%81%D8%A9%20%D9%84%D9%8A%20%D8%B6%D8%A8%D8%A7%D8%A8%20100%20%D9%85%D8%AA%D8%B1%20%D8%A8%D8%B3%D8%B9%D8%B1%20700%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
-            </div>
-          </div>
+  <!-- COLUMNS SECTION -->
+  <section class="services-section columns-section" id="columns">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">أعمدة الضباب</div>
+        <h2>تشكيلات <span>جمالية وعصرية</span></h2>
+        <p>أعمدة مصممة بعناية لتكون قطعة فنية في مكانك، مع دمج تقنيات الضباب والإضاءة</p>
+        <div class="glow-divider"></div>
+      </div>
+      <div class="columns-specs animate-on-scroll">
+        <div class="spec-chip"><i class="fas fa-ruler-vertical"></i><span>ارتفاع 230 سم</span></div>
+        <div class="spec-chip"><i class="fas fa-cube"></i><span>10×10 سم</span></div>
+        <div class="spec-chip"><i class="fas fa-tint"></i><span>نوازل ستانلس ستيل</span></div>
+        <div class="spec-chip"><i class="fas fa-lightbulb"></i><span>إنارة LED مدمجة</span></div>
+        <div class="spec-chip"><i class="fas fa-paint-brush"></i><span>طلاء أسود مطفي</span></div>
+      </div>
+      <div class="columns-showcase">
+        <div class="column-showcase-card animate-on-scroll">
+          <div class="column-showcase-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/s2.jpeg" alt="تشكيلة سيجنتشر" loading="lazy"><div class="premium-badge"><i class="fas fa-gem"></i> 9 تصاميم</div></div>
+          <div class="column-showcase-info"><h3>تشكيلة "سيجنتشر" <span class="card-tag">قص ليزر + إضاءة</span></h3><p>9 تصاميم فاخرة بقص الليزر: هندسي إسلامي، فروع شجرية، أمواج، ورود، شبكي حديث، وغيرها. كل تصميم بإضاءة خلفية مميزة.</p><div class="column-features"><span><i class="fas fa-check-circle"></i> قص ليزر دقيق</span><span><i class="fas fa-check-circle"></i> إضاءة خلفية LED</span><span><i class="fas fa-check-circle"></i> تخصيص اللوقو</span></div></div>
         </div>
-
-        <!-- 11. نزل ضباب (فوهة) -->
-        <div class="product-card">
-          <div class="product-img">
-            <img src="images/product_connector.png" alt="نزل ضباب فوهة" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-badge badge-italian">قطع غيار</span>
-            <h3>نزل ضباب (فوهة) ستانلس ستيل دقيقة</h3>
-            <p>فوهة نزل ضباب ميكرونية احترافية مصنوعة من الستانلس ستيل، مصممة لمنع التنقيط وإنتاج أصفى درجات الضباب البارد.</p>
-            <div class="product-specs">
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg> فوهة 0.15 مم</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> ستانلس ستيل 304</span>
-              <span class="spec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> مانع للتنقيط</span>
-            </div>
-            <div class="product-footer">
-              <div class="price"><span class="amount">35</span><span class="currency">ريال</span></div>
-              <a href="https://wa.me/966559152818?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D9%8B%D9%86%D8%B2%D9%84%20%D8%B6%D8%A8%D8%A7%D8%A8%20%D9%81%D9%88%D9%87%D8%A9%20%D8%A8%D8%B3%D8%B9%D8%B1%2035%20%D8%B1%D9%8A%D8%A7%D9%84" target="_blank" class="order-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-                اطلب الآن
-              </a>
-            </div>
-          </div>
+        <div class="column-showcase-card animate-on-scroll">
+          <div class="column-showcase-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/v1.jpeg" alt="تشكيلة إيليت" loading="lazy"><div class="premium-badge secondary"><i class="fas fa-palette"></i> 9 ألوان</div></div>
+          <div class="column-showcase-info"><h3>تشكيلة "إيليت" <span class="card-tag">ألوان وخامات</span></h3><p>9 ألوان وخامات متنوعة: أسود مطفي، أبيض، رمادي، بيج، تأثير خشبي، كورتن ستيل، برونز، أخضر زيتوني، وأزرق بحري.</p><div class="column-features"><span><i class="fas fa-check-circle"></i> ستانلس ستيل 304</span><span><i class="fas fa-check-circle"></i> رأس ثلاثي متطور</span><span><i class="fas fa-check-circle"></i> 9 خيارات لون</span></div></div>
         </div>
+        <div class="column-showcase-card animate-on-scroll">
+          <div class="column-showcase-img"><img src="https://oppo99kss-maker.github.io/silentfog3/images/v2.jpeg" alt="تشكيلة التراث السعودي" loading="lazy"><div class="premium-badge"><i class="fas fa-crown"></i> حصري</div></div>
+          <div class="column-showcase-info"><h3>تشكيلة "التراث السعودي" <span class="card-tag">إصدار فاخر</span></h3><p>5 تصاميم مستوحاة من التراث: السعودي الفخم، التراث النجدي، الدرعية التاريخية، الفن العسيري، ونقوش حائل. مع إضاءة وقص مضيء.</p><div class="column-features"><span><i class="fas fa-check-circle"></i> تراث سعودي أصيل</span><span><i class="fas fa-check-circle"></i> قص وإضاءة مضيئة</span><span><i class="fas fa-check-circle"></i> قابل للتعديل</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- PORTFOLIO SECTION -->
+  <section class="services-section portfolio-section" id="portfolio">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">من أعمالنا</div>
+        <h2>مشاريع واقعية <span>نفخر بها</span></h2>
+        <p>نماذج حقيقية من تركيباتنا في أشهر المقاهي والمطاعم والمنشآت</p>
+        <div class="glow-divider"></div>
+      </div>
+      <div class="portfolio-grid animate-on-scroll">
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-01.jpg" alt="UNIT Coffee" loading="lazy"><div class="portfolio-overlay"><span>UNIT Coffee</span></div></div>
+        <div class="portfolio-item tall"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-02.jpg" alt="UNIT واجهة مضيئة" loading="lazy"><div class="portfolio-overlay"><span>UNIT — واجهة مضيئة</span></div></div>
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-03.jpg" alt="Arabia أعمدة ضباب" loading="lazy"><div class="portfolio-overlay"><span>Arabia — أعمدة ضباب</span></div></div>
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-04.jpg" alt="8Oz Coffee" loading="lazy"><div class="portfolio-overlay"><span>8Oz Coffee</span></div></div>
+        <div class="portfolio-item tall"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-05.jpg" alt="Demli Tea" loading="lazy"><div class="portfolio-overlay"><span>Demli Tea &amp; Oven</span></div></div>
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-06.jpg" alt="ضباب مسبح" loading="lazy"><div class="portfolio-overlay"><span>ضباب مسبح — إضاءة ليلية</span></div></div>
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-07.jpg" alt="حس المكان" loading="lazy"><div class="portfolio-overlay"><span>حس المكان</span></div></div>
+        <div class="portfolio-item tall"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-08.jpg" alt="Arabia Cafe" loading="lazy"><div class="portfolio-overlay"><span>Arabia Cafe.Bakery</span></div></div>
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-09.jpg" alt="ضباب سقف تراثي" loading="lazy"><div class="portfolio-overlay"><span>ضباب سقف تراثي</span></div></div>
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-10.jpg" alt="Coffee Address" loading="lazy"><div class="portfolio-overlay"><span>The Coffee Address</span></div></div>
+        <div class="portfolio-item"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-11.jpg" alt="جلسة خارجية" loading="lazy"><div class="portfolio-overlay"><span>تبريد جلسة خارجية</span></div></div>
+        <div class="portfolio-item tall"><img src="https://oppo99kss-maker.github.io/silentfog3/images/portfolio/work-12.jpg" alt="فندق الترحيب" loading="lazy"><div class="portfolio-overlay"><span>فندق الترحيب</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="services-section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">الأسئلة الشائعة</div>
+        <h2>كل ما تحتاج <span>معرفته</span></h2>
+        <p>إجابات واضحة لأكثر الأسئلة تكراراً حول خدماتنا ومنتجاتنا</p>
+        <div class="glow-divider"></div>
+      </div>
+      <div class="faq-grid animate-on-scroll">
+        <div class="faq-category">
+          <div class="faq-cat-header"><i class="fas fa-wind"></i><h3>أنظمة الضباب</h3></div>
+          <div class="faq-item"><button class="faq-question"><span>ما هي أنواع المضخات المتوفرة؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>نوفر مضخات متعددة الخيارات: <strong>إيطالية</strong> (الأعلى جودة وصمتاً)، <strong>ألمانية</strong>، <strong>أمريكية</strong>، و<strong>صينية</strong>. يتم اختيار النوع المناسب حسب طبيعة الموقع ومتطلباته.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل الضباب يسبب بلل؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><strong>لا</strong>، بشرط توزيع النوازل بشكل مدروس ومناسب للمساحة، مع ضبط التوقيت الصحيح واستخدام أدوات أصلية عالية الجودة.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل يستهلك الماء بكميات كبيرة؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>الاستهلاك يعتمد على عدد النوازل وتوقيت التشغيل، لكن <strong>كمتوسط لا يستهلك الكثير أبداً</strong>. النوازل الدقيقة تحول الماء لرذاذ ناعم مما يقلل الاستهلاك.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل للنظام صوت مزعج؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>توجد أنواع <strong>لا صوت لها إطلاقاً</strong> مثل المضخات الإيطالية. الأنواع الأخرى تصدر صوتاً خفيفاً لا يُذكر.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل يحتاج النظام صيانة دورية؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>نعم، إذا كان الماء عادياً: كل <strong>2-3 أشهر</strong>. إذا كان مفلتراً: كل <strong>6 أشهر</strong>. الصيانة تشمل تغيير الفلاتر والزيت.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل الكلس والملوحة تؤثر على النظام؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>قد تؤثر على <strong>مخارج الضباب (النوازل)</strong> بعد فترة. لكن الماكينة مزودة بـ<strong>فلاتر متعددة المراحل</strong> تحميها بنسبة كبيرة.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل يوجد ضمان وخدمات ما بعد البيع؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><strong>نعم بالتأكيد!</strong> نقدم صيانة دورية، إصلاح، واستبدال القطع. نحرص على أن يعمل نظامك بكفاءة دائماً.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل قطع الغيار متوفرة؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><strong>نعم</strong>، جميع قطع الغيار متوفرة بجودة ممتازة لضمان أداء مثالي وعمر افتراضي طويل.</p></div></div>
+        </div>
+        <div class="faq-category">
+          <div class="faq-cat-header"><i class="fas fa-umbrella-beach"></i><h3>المظلات والأعمدة</h3></div>
+          <div class="faq-item"><button class="faq-question"><span>هل يمكن إضافة لوقو على المظلات؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><strong>نعم</strong>، نوفر توريد المظلات مع طباعة لوقو محلك الخاص بجودة عالية ومقاومة للعوامل الجوية.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>هل المظلات قوية ومتينة؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><strong>نعم</strong>، مظلاتنا مصنوعة من أجود الخامات، تتحمل أشعة الشمس والحرارة العالية. متوفرة بأحجام مختلفة تناسب جميع المساحات.</p></div></div>
+          <div class="faq-item"><button class="faq-question"><span>ما هي خيارات الأعمدة المتوفرة؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>نوفر <strong>تشكيلات واسعة ومتنوعة</strong>: تصاميم هندسية وإسلامية، إضاءة LED مدمجة، قص ليزر دقيق، وإمكانية إضافة لوقو محلك.</p></div></div>
+          <div class="faq-cat-header" style="margin-top:20px"><i class="fas fa-map-marker-alt"></i><h3>التواصل والموقع</h3></div>
+          <div class="faq-item"><button class="faq-question"><span>أين موقعكم وهل تخدمون جميع المناطق؟</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>مقرنا في <strong>تبوك</strong>، ونقدم خدماتنا <strong>لجميع مناطق المملكة العربية السعودية</strong>. نوصل ونركّب في كل مكان بنفس مستوى الجودة. 🇸🇦</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARRANTY SECTION -->
+  <section class="warranty" id="warranty">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-tag">الضمان</div>
+        <h2>ضمان <span>شامل ومريح</span></h2>
+        <p>نقدم ضماناً لمدة سنتين على المضخة وعلى العيوب المصنعية</p>
+      </div>
+      <div class="warranty-grid">
+        <div class="warranty-card animate-on-scroll">
+          <div class="warranty-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>ضمان سنتين</h3>
+          <p>ضمان لمدة سنتين كاملتين على المضخة وجميع العيوب المصنعية، ماعدا الفوهات (النوزل) وحالات سوء الاستخدام.</p>
+        </div>
+        <div class="warranty-card animate-on-scroll">
+          <div class="warranty-card-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h3>السنة الأولى</h3>
+          <p>شاملة قطع الغيار وشغل اليد مجاناً بالكامل. نحن نتكفل بكل شيء لراحتك.</p>
+        </div>
+        <div class="warranty-card animate-on-scroll">
+          <div class="warranty-card-icon gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>السنة الثانية</h3>
+          <p>يدفع العميل قيمة قطع الغيار فقط وشغل اليد مجاناً بالكامل دون رسوم إضافية.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section" id="contact">
+  <section class="contact" id="contact">
     <div class="container">
-      <div class="contact-box">
+      <div class="contact-card animate-on-scroll">
         <h2>تواصل معنا الآن</h2>
-        <p>للاستفسار أو الطلب، تواصل معنا مباشرة عبر واتساب أو اتصل بنا</p>
-        <div class="contact-btns">
-          <a href="https://wa.me/966559152818" target="_blank" class="wa-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            واتساب
+        <p>نسعد بخدمتكم والإجابة على جميع استفساراتكم حول أنظمة الضباب والرذاذ</p>
+        <div class="contact-methods">
+          <a href="https://wa.me/966559152818" target="_blank" class="contact-method">
+            <div class="method-icon whatsapp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div class="method-info"><div class="method-label">واتساب</div><div class="method-value">0559152818</div></div>
           </a>
-          <a href="tel:+966559152818" class="phone-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            0559152818
+          <a href="tel:+966559152818" class="contact-method">
+            <div class="method-icon phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.37 1.73.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c1.08.33 1.93.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="method-info"><div class="method-label">اتصال مباشر</div><div class="method-value">0559152818</div></div>
           </a>
         </div>
       </div>
@@ -387,26 +600,503 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p>© 2026 <span>أبو طيف</span> — جميع الحقوق محفوظة</p>
+      <div class="footer-brand"><img src="images/logo.png" alt="Silent Fog"><span>Silent Fog</span></div>
+      <div class="social-bar">
+        <a href="https://wa.me/966559152818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.tiktok.com/@silentfog3" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <p>أبو طيف للضباب والرذاذ — جميع الحقوق محفوظة © 2026</p>
     </div>
   </footer>
 
   <!-- WHATSAPP FAB -->
-  <a href="https://wa.me/966559152818" target="_blank" class="wa-fab">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <a href="https://wa.me/966559152818" target="_blank" class="whatsapp-fab" aria-label="واتساب">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
-  <!-- MINIMAL JS -->
+  <!-- ===== MODAL OVERLAY ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modalContent">
+      <button class="modal-close" onclick="closeModal()" aria-label="إغلاق">✕</button>
+      <div id="modalInner"></div>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // Close mobile menu when link clicked
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    // ===== SVG ICONS =====
+    const icons = {
+      check: '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>',
+      cross: '<svg class="cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+      shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      wrench: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+      alert: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      box: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+      whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'
+    };
+
+    
+    // ===== PRODUCTS DATA =====
+    const packagesData = {
+      prod1: {
+        name: 'مضخة ضباب إيطالية 1 حصان',
+        desc: 'مضخة ضباب إيطالية فائقة الهدوء بقوة 1 حصان، مثالية للجلسات الخارجية والحدائق المتوسطة. صوت هادئ جداً وأداء ثابت طوال فترة التشغيل.',
+        pumpImg: 'images/products/italian_1hp.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لمضخة ضباب إيطالية 1 حصان بسعر 5500 ريال',
+        products: [
+          { num: '01', name: 'مضخة إيطالية 1 حصان', desc: 'محرك إيطالي صامت فائق الأداء للتشغيل المستمر', img: 'images/products/italian_1hp.png', qty: '1 ماكينة' },
+          { num: '02', name: 'ضمان ذهبي سنتين', desc: 'ضمان حقيقي شامل قطع الغيار وأجور اليد للسنة الأولى', img: 'images/small_filter.png', qty: 'سنتين' }
+        ]
+      },
+      prod2: {
+        name: 'مضخة ضباب إيطالية 2 حصان',
+        desc: 'مضخة ضباب إيطالية بقوة 2 حصان للمساحات الكبيرة والمشاريع التجارية. قوة مضاعفة مع الحفاظ على الهدوء والكفاءة العالية في التبريد.',
+        pumpImg: 'images/products/italian_2hp.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لمضخة ضباب إيطالية 2 حصان بسعر 9000 ريال',
+        products: [
+          { num: '01', name: 'مضخة إيطالية 2 حصان', desc: 'قوة مضاعفة لتغذية شبكات الضباب الكبيرة والمطاعم', img: 'images/products/italian_2hp.png', qty: '1 ماكينة' },
+          { num: '02', name: 'ضمان ذهبي سنتين', desc: 'ضمان الوكيل المعتمد شامل الصيانة والدعم الفني', img: 'images/small_filter.png', qty: 'سنتين' }
+        ]
+      },
+      prod3: {
+        name: 'مضخة ضباب صينية 1 حصان',
+        desc: 'مضخة ضباب صينية اقتصادية بقوة 1 حصان، خيار ممتاز للميزانيات المحدودة مع أداء جيد وموثوقية عالية في التبريد اليومي.',
+        pumpImg: 'images/products/chinese_1hp.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لمضخة ضباب صينية 1 حصان بسعر 3800 ريال',
+        products: [
+          { num: '01', name: 'مضخة صينية 1 حصان', desc: 'أداء عملي ومناسب للاستخدام اليومي الخفيف والمتوسط', img: 'images/products/chinese_1hp.png', qty: '1 ماكينة' },
+          { num: '02', name: 'ضمان ذهبي سنة', desc: 'ضمان شامل العيوب المصنعية وقطع الغيار', img: 'images/small_filter.png', qty: 'سنة واحدة' }
+        ]
+      },
+      prod4: {
+        name: 'مضخة ضباب صينية 2 حصان',
+        desc: 'مضخة ضباب صينية بقوة مضاعفة 2 حصان للمشاريع الكبيرة والمقاهي. تغطية واسعة مع قوة ضخ عالية بسعر اقتصادي مناسب.',
+        pumpImg: 'images/products/chinese_2hp.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لمضخة ضباب صينية 2 حصان بسعر 7600 ريال',
+        products: [
+          { num: '01', name: 'مضخة صينية 2 حصان', desc: 'ضغط تشغيلي عالي يغطي مساحات ممتدة بكفاءة', img: 'images/products/chinese_2hp.png', qty: '1 ماكينة' },
+          { num: '02', name: 'ضمان ذهبي سنة', desc: 'ضمان شامل الوكيل لمدة سنة كاملة من تاريخ الشراء', img: 'images/small_filter.png', qty: 'سنة واحدة' }
+        ]
+      },
+      prod5: {
+        name: 'عامود ضباب أسود 220 سم — 12 فوهة',
+        desc: 'عامود ضباب حديد مربع لون أسود بارتفاع 220 سم مع 12 فوهة ضباب مدمجة. تصميم أنيق ومتين يناسب الممرات والحدائق والمداخل.',
+        pumpImg: 'images/products/black_column.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لعامود ضباب أسود 220سم بسعر 950 ريال',
+        products: [
+          { num: '01', name: 'عامود حديد مربع أسود', desc: 'هيكل حديدي مطلي ومقاوم للعوامل الجوية بطول 2.20 متر', img: 'images/products/black_column.png', qty: '1 حبة' },
+          { num: '02', name: 'فوهات ضباب مدمجة', desc: '12 فوهة ضباب ستانلس ستيل مدمجة وموزعة بدقة', img: 'images/fog_nozzle.png', qty: '12 فوهة' },
+          { num: '03', name: 'تمديدات وتوصيلات داخلية', desc: 'قنوات ربط مجهزة ومخفية تماماً بنظام سليب لوك 3/8"', img: 'images/nozzle_base.png', qty: 'طقم مدمج' }
+        ]
+      },
+      prod6: {
+        name: 'عامود نخلة ستانلس ستيل — 4 أفرع',
+        desc: 'عامود ضباب ستانلس ستيل بتصميم نخلة أنيق مع 4 أفرع علوية موزعة لانتشار ضبابي دائري ومظهر جمالي مميز.',
+        pumpImg: 'images/products/palm_column.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لعامود نخلة ستانلس 4 أفرع بسعر 1150 ريال',
+        products: [
+          { num: '01', name: 'عامود نخلة ستانلس ستيل 304', desc: 'مقاوم تماماً للصدأ والترسبات الملحية والكلسية', img: 'images/products/palm_column.png', qty: '1 حبة' },
+          { num: '02', name: 'أفرع علوية للتوزيع', desc: '4 أفرع دائرية الشكل لانتشار الضباب في جميع الاتجاهات', img: 'images/nozzle_base.png', qty: '4 أفرع' }
+        ]
+      },
+      prod7: {
+        name: 'سنارة ضباب ستانلس 1 متر — 3 مخارج',
+        desc: 'علاق/سنارة ضباب ستانلس ستيل بطول 1 متر مجهزة بـ 3 مخارج فوهات. تعليق رأسي انسيابي لتوجيه الضباب مباشرة نحو الممرات والمقاعد الخارجية.',
+        pumpImg: 'images/products/hook_1m_3n.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لسنارة ضباب 1 متر 3 نزل بسعر 180 ريال',
+        products: [
+          { num: '01', name: 'سنارة ستانلس 1 متر', desc: 'أنبوب ستانلس ستيل 304 ناعم جاهز للتعليق', img: 'images/products/hook_1m_3n.png', qty: '1 حبة' },
+          { num: '02', name: 'مخارج الفوهات', desc: '3 مخارج متباعدة بالتساوي لتوزيع ضبابي انسيابي', img: 'images/fog_nozzle.png', qty: '3 مخارج' }
+        ]
+      },
+      prod8: {
+        name: 'سنارة ضباب ستانلس 1 متر — 6 مخارج',
+        desc: 'سنارة ضباب ستانلس ستيل بطول 1 متر مجهزة بـ 6 أذرع جانبية متباعدة لتوزيع ضبابي كثيف وتبريد متكامل في الاتجاهات الأربعة دون بلل.',
+        pumpImg: 'images/products/hook_1m_6n.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لسنارة ضباب 1 متر 6 نزل بسعر 240 ريال',
+        products: [
+          { num: '01', name: 'سنارة ستانلس 1 متر مكثف', desc: 'هيكل ستانلس 6 مخارج لزيادة كثافة التبريد الموضعي', img: 'images/products/hook_1m_6n.png', qty: '1 حبة' },
+          { num: '02', name: 'مخارج الفوهات', desc: '6 مخارج جانبية لانتشار الضباب بزاوية 360 درجة', img: 'images/fog_nozzle.png', qty: '6 مخارج' }
+        ]
+      },
+      prod9: {
+        name: 'سنارة ضباب ستانلس 2 متر — 3 مخارج',
+        desc: 'علاق/سنارة ضباب ستانلس ستيل منحنية بطول 2 متر، مناسبة جداً للتعليق على الجدران والأسقف المرتفعة وتوجيه الضباب بدقة ممتازة.',
+        pumpImg: 'images/products/hook_2m_3n.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لسنارة ضباب 2 متر 3 نزل بسعر 280 ريال',
+        products: [
+          { num: '01', name: 'سنارة ستانلس منحنية 2 متر', desc: 'تصميم منحني مقوس يعطي مظهراً ديكورياً متميزاً', img: 'images/products/hook_2m_3n.png', qty: '1 حبة' },
+          { num: '02', name: 'مخارج الفوهات', desc: '3 مخارج مخصصة لنوزلات الضباب دقيقة الفتحة', img: 'images/fog_nozzle.png', qty: '3 مخارج' }
+        ]
+      },
+      prod10: {
+        name: 'لفة لي (خرطوم) ضباب أصلي — 100 متر',
+        desc: 'لفة خرطوم (لي) ضباب نايلون عالي الجودة قياس 3/8 بوصة يتحمل الضغوط العالية للشبكات لغاية 70 بار، بطول 100 متر كاملة لتغطية كافة الممرات والجلسات.',
+        pumpImg: 'images/products/hose_roll.jpg',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب للفة لي ضباب 100 متر بسعر 700 ريال',
+        products: [
+          { num: '01', name: 'لفة خرطوم نايلون 100م', desc: 'لي ضباب ضغط عالي يتحمل درجات الحرارة والشمس', img: 'images/products/hose_roll.jpg', qty: 'لفة واحدة (100م)' },
+          { num: '02', name: 'توافق النظام', desc: 'متوافقة تماماً مع مضخات وقسامات سليب لوك 3/8"', img: 'images/nozzle_base.png', qty: 'كبس 3/8"' }
+        ]
+      },
+      prod11: {
+        name: 'نزل ضباب (فوهة) ستانلس ستيل دقيقة',
+        desc: 'فوهة نزل ضباب ميكرونية احترافية مصنوعة من الستانلس ستيل، مصممة خصيصاً لشبكات الضباب لمنع التنقيط وإنتاج أصفى درجات الضباب البارد دون بلل.',
+        pumpImg: 'images/product_connector.png',
+        whatsappMsg: 'السلام عليكم، أرغب في الاستفسار والطلب لنزل ضباب فوهة بسعر 35 ريال',
+        products: [
+          { num: '01', name: 'فوهة نزل ستانلس دقيقة', desc: 'فتحة متناهية الصغر 0.15 مم تضمن تبخر الماء فوراً', img: 'images/product_connector.png', qty: '1 حبة' },
+          { num: '02', name: 'صمام مانع للتنقيط', desc: 'صمام مدمج يغلق تلقائياً عند انخفاض الضغط لمنع بلل الجلسات', img: 'images/fog_nozzle.png', qty: 'مدمج' }
+        ]
+      }
+    };
+    
+    const warrantyHTML = `
+      <div class="modal-info-grid">
+        <div class="modal-info-card">
+          <h4>${icons.shield} الضمان والشروط</h4>
+          <ul>
+            <li>${icons.check} ضمان لمدة سنتين على المضخة وعلى العيوب المصنعية ماعدا الفوهات (النوزل) وسوء الاستخدام</li>
+            <li>${icons.check} <strong>السنة الأولى:</strong> شاملة قطع الغيار وشغل اليد مجاناً</li>
+            <li>${icons.check} <strong>السنة الثانية:</strong> يدفع العميل قيمة قطع الغيار فقط وشغل اليد مجاناً</li>
+          </ul>
+        </div>
+        <div class="modal-info-card">
+          <h4>${icons.wrench} إرشادات الصيانة الدورية</h4>
+          <ul>
+            <li>${icons.check} تغيير فلتر الماء إذا كان متسخاً</li>
+            <li>${icons.check} تغيير زيت المضخة كل 1000 ساعة أو 6 أشهر (فيما يخص مضخات الضباب)</li>
+            <li>${icons.check} تنظيف النوزل في حال انسداد أكثر من 20% من عدد النوزل المستخدم</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-info-card warning" style="margin-top: 16px;">
+        <h4>${icons.alert} ⚠️ أسباب الخروج عن الضمان (سوء الاستخدام)</h4>
+        <ul>
+          <li>${icons.cross} عدم التقيد بالصيانة الدورية</li>
+          <li>${icons.cross} تشغيل المضخة دون التأكد من عدم وجود تهريب ماء أو زيت</li>
+          <li>${icons.cross} تشغيل المضخة دون التأكد من تدفق دخول الماء</li>
+          <li>${icons.cross} رفع ضغط المضخة دون التقيد بالحد المسموح</li>
+          <li>${icons.cross} وضع المضخة بمكان معرض لغمر الماء</li>
+        </ul>
+      </div>
+    `;
+
+    
+    // ===== PRODUCTS FILTER =====
+    function filterProducts(category, element) {
+      const cards = document.querySelectorAll('.package-card');
+      const tabs = document.querySelectorAll('.tab-btn');
+      
+      let activeTab = element;
+      if (!activeTab && event && event.target && event.target.classList.contains('tab-btn')) {
+        activeTab = event.target;
+      }
+      
+      if (activeTab) {
+        tabs.forEach(tab => tab.classList.remove('active'));
+        activeTab.classList.add('active');
+        updateTabSliderPill(activeTab);
+      }
+
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+
+    function updateTabSliderPill(activeTab) {
+      const pill = document.getElementById('tabSliderPill');
+      if (pill && activeTab) {
+        pill.style.width = activeTab.offsetWidth + 'px';
+        pill.style.left = activeTab.offsetLeft + 'px';
+      }
+    }
+
+
+    // ===== MODAL FUNCTIONS =====
+    function openModal(pkgId) {
+      const pkg = packagesData[pkgId];
+      if (!pkg) return;
+
+      // Check if it's a pump system (prod1 to prod12)
+      const numId = parseInt(pkgId.replace('prod', ''), 10);
+      const isPump = numId >= 1 && numId <= 12;
+      const isColumn = numId >= 13 && numId <= 23;
+
+      let productsHTML = '';
+      pkg.products.forEach(p => {
+        productsHTML += `
+          <div class="modal-product-item">
+            <div class="item-img"><img src="${p.img}" alt="${p.name}"></div>
+            <div class="item-number">ITEM — ${p.num}</div>
+            <h4>${p.name}</h4>
+            <p>${p.desc}</p>
+            <div class="item-qty">${p.qty}</div>
+          </div>
+        `;
+      });
+
+      const waLink = `https://wa.me/966559152818?text=${encodeURIComponent(pkg.whatsappMsg)}`;
+
+      let bodyHTML = '';
+      if (isPump) {
+        bodyHTML = `
+          <div class="modal-section">
+            <h3>${icons.box} مكونات الباقة (${pkg.products.length} قطع)</h3>
+            <div class="modal-products-grid">${productsHTML}</div>
+          </div>
+          <div class="modal-section">
+            <h3>${icons.shield} الضمان والصيانة</h3>
+            ${warrantyHTML}
+          </div>
+        `;
+      } else {
+        bodyHTML = `
+          <div class="modal-section">
+            <h3>${icons.box} ${isColumn ? 'تفاصيل العمود ومشتملاته' : 'تفاصيل ومواصفات المنتج'}</h3>
+            <div class="modal-products-grid">${productsHTML}</div>
+          </div>
+        `;
+      }
+
+      document.getElementById('modalInner').innerHTML = `
+        <div class="modal-header">
+          <div class="modal-header-img"><img src="${pkg.pumpImg}" alt="${pkg.name}"></div>
+          <div class="modal-header-info">
+            <h2>${pkg.name}</h2>
+            <p class="modal-desc">${pkg.desc}</p>
+          </div>
+        </div>
+        <div class="modal-body">
+          ${bodyHTML}
+          <p class="modal-note">📞 للاستفسار عن الأسعار تواصل معنا عبر واتساب</p>
+        </div>
+        <div class="modal-footer">
+          <a href="${waLink}" target="_blank" class="btn btn-primary">
+            ${icons.whatsapp}
+            ${isPump ? 'اطلب هذه الباقة عبر واتساب' : 'اطلب هذا المنتج عبر واتساب'}
+          </a>
+          <button onclick="closeModal()" class="btn btn-outline">إغلاق</button>
+        </div>
+      `;
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOutside(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ===== NAVBAR =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Navbar scroll
-    window.addEventListener('scroll', () => {
-      document.querySelector('.nav').style.borderBottomColor =
-        window.scrollY > 50 ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.08)';
+    // Mobile menu
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+    document.querySelectorAll('.navbar-nav a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navMenu').classList.remove('active'));
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasActive = item.classList.contains('active');
+        item.closest('.faq-category').querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+
+    // ===== HERO MIST CANVAS BACKGROUND =====
+    const heroCanvas = document.getElementById('heroMistCanvas');
+    if (heroCanvas) {
+      const hctx = heroCanvas.getContext('2d');
+      let heroParticles = [];
+      const pCount = 50;
+
+      function resizeHeroCanvas() {
+        heroCanvas.width = heroCanvas.parentElement.clientWidth;
+        heroCanvas.height = heroCanvas.parentElement.clientHeight;
+      }
+      window.addEventListener('resize', resizeHeroCanvas);
+      resizeHeroCanvas();
+
+      // Track mouse
+      let mousePos = { x: null, y: null };
+      heroCanvas.parentElement.addEventListener('mousemove', (e) => {
+        const rect = heroCanvas.getBoundingClientRect();
+        mousePos.x = e.clientX - rect.left;
+        mousePos.y = e.clientY - rect.top;
+      });
+      heroCanvas.parentElement.addEventListener('mouseleave', () => {
+        mousePos.x = null;
+        mousePos.y = null;
+      });
+
+      class HeroParticle {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init = false) {
+          this.x = init ? Math.random() * heroCanvas.width : heroCanvas.width + Math.random() * 100;
+          this.y = Math.random() * heroCanvas.height;
+          this.vx = -0.4 - Math.random() * 0.8;
+          this.vy = (Math.random() - 0.5) * 0.2;
+          this.alpha = 0.01;
+          this.maxAlpha = 0.12 + Math.random() * 0.15;
+          this.size = 60 + Math.random() * 80;
+          this.growth = 0.15 + Math.random() * 0.3;
+          this.life = 0;
+          this.maxLife = 200 + Math.random() * 300;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.size += this.growth;
+          this.life++;
+
+          // Mouse push effect
+          if (mousePos.x !== null && mousePos.y !== null) {
+            const dx = this.x - mousePos.x;
+            const dy = this.y - mousePos.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              const force = (120 - dist) / 120;
+              const angle = Math.atan2(dy, dx);
+              this.x += Math.cos(angle) * force * 3;
+              this.y += Math.sin(angle) * force * 3;
+            }
+          }
+
+          if (this.life < this.maxLife * 0.2) {
+            this.alpha = (this.life / (this.maxLife * 0.2)) * this.maxAlpha;
+          } else if (this.life > this.maxLife * 0.7) {
+            this.alpha = (1 - ((this.life - this.maxLife * 0.7) / (this.maxLife * 0.3))) * this.maxAlpha;
+          } else {
+            this.alpha = this.maxAlpha;
+          }
+
+          if (this.life >= this.maxLife || this.x < -this.size || this.alpha <= 0) {
+            this.reset();
+          }
+        }
+        draw() {
+          if (this.alpha <= 0) return;
+          hctx.beginPath();
+          const grad = hctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+          grad.addColorStop(0, `rgba(240, 248, 255, ${this.alpha})`);
+          grad.addColorStop(0.5, `rgba(240, 248, 255, ${this.alpha * 0.3})`);
+          grad.addColorStop(1, 'rgba(240, 248, 255, 0)');
+          hctx.fillStyle = grad;
+          hctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          hctx.fill();
+        }
+      }
+
+      for (let i = 0; i < pCount; i++) {
+        heroParticles.push(new HeroParticle());
+      }
+
+      function animateHeroCanvas() {
+        hctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+        heroParticles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateHeroCanvas);
+      }
+      animateHeroCanvas();
+    }
+
+    // ===== SCROLL REVEAL ANIMATION ENGINE =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          // For stagger-children, also add revealed class
+          if (entry.target.classList.contains('stagger-children')) {
+            entry.target.classList.add('revealed');
+          }
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale, .stagger-children').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Also observe existing animate-on-scroll elements
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
+
+    // Initialize tab slider pill on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.products-filter-container');
+      if (container) {
+        const pill = document.createElement('div');
+        pill.className = 'tab-slider-pill';
+        pill.id = 'tabSliderPill';
+        container.appendChild(pill);
+        
+        const activeTab = container.querySelector('.tab-btn.active');
+        if (activeTab) {
+          setTimeout(() => updateTabSliderPill(activeTab), 100);
+        }
+      }
+      
+      window.addEventListener('resize', () => {
+        const activeTab = document.querySelector('.tab-btn.active');
+        if (activeTab) updateTabSliderPill(activeTab);
+      });
     });
   </script>
 

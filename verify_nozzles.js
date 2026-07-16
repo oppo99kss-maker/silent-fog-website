@@ -27,16 +27,16 @@ async function verifyPage() {
   }
 
   // Check if click handler on a newly added card works
-  console.log('Testing clicking on a newly added card (prod31)...');
+  console.log('Testing clicking on a newly added card (prod11)...');
   const clicked = await page.evaluate(() => {
-    const card = document.querySelector('[onclick="openModal(\'prod31\')"]');
+    const card = document.querySelector('[onclick="openModal(\'prod11\')"]');
     if (card) {
       card.click();
       return true;
     }
     return false;
   });
-  console.log(`Card prod31 found and clicked: ${clicked}`);
+  console.log(`Card prod11 found and clicked: ${clicked}`);
   
   // Wait for modal transition
   await new Promise(r => setTimeout(r, 1000));
