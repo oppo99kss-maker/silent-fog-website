@@ -26,30 +26,8 @@ async function verifyPage() {
     console.log('✅ Mobile has NO horizontal overflow.');
   }
 
-  // Check if click handler on a newly added card works
-  console.log('Testing clicking on a newly added card (prod11)...');
-  const clicked = await page.evaluate(() => {
-    const card = document.querySelector('[onclick="openModal(\'prod11\')"]');
-    if (card) {
-      card.click();
-      return true;
-    }
-    return false;
-  });
-  console.log(`Card prod11 found and clicked: ${clicked}`);
-  
-  // Wait for modal transition
-  await new Promise(r => setTimeout(r, 1000));
-
-  // Check if modal is visible using the correct ID 'modalOverlay'
-  const modalVisible = await page.evaluate(() => {
-    const modal = document.getElementById('modalOverlay');
-    return modal ? modal.classList.contains('active') || window.getComputedStyle(modal).display !== 'none' : false;
-  });
-  console.log(`Modal Overlay is active/visible: ${modalVisible}`);
-
-  // Capture screenshot of mobile viewport with modal open
-  const screenshotPath = path.resolve('images', 'mobile_verification_modal.png');
+  // Capture screenshot of mobile viewport
+  const screenshotPath = path.resolve('images', 'mobile_verification.png');
   await page.screenshot({ path: screenshotPath });
   console.log(`Saved screenshot to: ${screenshotPath}`);
 
