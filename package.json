@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:3d": "esbuild fog-scene.js --bundle --minify --format=esm --target=es2020 --legal-comments=linked --outfile=fog-scene.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,10 @@
   },
   "homepage": "https://github.com/oppo99kss-maker/silent-fog-website#readme",
   "dependencies": {
-    "puppeteer": "^25.1.0"
+    "puppeteer": "^25.1.0",
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }
